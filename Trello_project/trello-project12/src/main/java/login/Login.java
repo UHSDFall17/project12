@@ -23,16 +23,17 @@ public class Login {
 			String password = inputReader.nextLine();
 		
 			
-			while(rs.next()) {
+			if(rs.next()) {
 				
 			if (username.equals(rs.getString(1)) && password.equals(rs.getString(2))) {
 				System.out.println("Successful Login");	
 			}
-			
-			}  
-			con.close();  
+			else {
+			System.out.println("Invalid Login");
+			}    
 			}
-		
+			con.close();
+		}
 		catch(Exception e){ System.out.println(e);}  
 			 
 	}
