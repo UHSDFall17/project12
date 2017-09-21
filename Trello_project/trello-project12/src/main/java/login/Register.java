@@ -14,9 +14,8 @@ public class Register {
 		System.out.println("Please enter your desired password");
 		String password = inputReader.nextLine();
 		inputReader.close();
-		
 		System.out.println("Name:"+ username + "Email ID:"+email);
-		
+		inputReader.close();
 	}
 
 }
