@@ -21,15 +21,19 @@ public class Register {
 		break;
 		case 3: System.out.println ("Password is Required!. Try Again");
 		register();
-		case 4: System.out.println ("Email Id is Invalid!. Try Again");
+		case 4: System.out.println ("Confirm Password is Required!. Try Again");
 		register();
-		case 5: System.out.println ("Name should contain only Numbers!. Try Again");
+		case 5: System.out.println ("Email Id is Invalid!. Try Again");
+		register();
+		case 6: System.out.println ("Name should contain only Numbers!. Try Again");
+		register();
+		case 7: System.out.println ("Password and Confirm password does not match!. Try Again");
 		register();
 		break;
 		}
 	}
 	public boolean checkEmailvalidity(String emailaddress){
-	    String email_regex = "[A-Z]+[a-zA-Z_]+@\b([a-zA-Z]+.){2}\b?.[a-zA-Z]+";
+	    String email_regex = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
 	   boolean b = emailaddress.matches(email_regex);
 	   return b;
 	}
@@ -55,7 +59,7 @@ public class Register {
 				 RequiredValidation(1);
 		    }
 			 else if (!checkNamevalidity(username)){
-				 RequiredValidation(5);
+				 RequiredValidation(6);
 			 }				 
 				System.out.println("Please enter your emailID:");
 				String email  = inputReader.nextLine();
@@ -65,14 +69,24 @@ public class Register {
 				    }
 				 else if(!checkEmailvalidity(email))
 				 {
-					 RequiredValidation(4);
+					 RequiredValidation(5);
 		              } 
-				System.out.println("Please enter your desired password");
+				System.out.println("Please enter your password");
 				String password = inputReader.nextLine();
 				 if (password.length()==0)
 				    {
 						 RequiredValidation(3);
 				    }
+				 System.out.println("Please confirm your password");
+					String confirmPassword = inputReader.nextLine();
+					 if (confirmPassword.length()==0)
+					    {
+							 RequiredValidation(3);
+					    }
+					 else if(!password.equals(confirmPassword))
+					 {
+						 RequiredValidation(7);
+					 }
 				inputReader.close();
 				System.out.println("Name:"+ username + "Email ID:"+email);
 				
@@ -84,6 +98,6 @@ public class Register {
 			
 	}
 		catch(Exception e){ System.out.println(e);}  
-}
+s}
 
 }
