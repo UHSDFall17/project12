@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class Register {
 	
-	public void RequiredValidation(int a)
+	public void RequiredValidation(int input)
 	{
 	
-		switch(a)
+		switch(input)
 		{
 		case 1: System.out.println ("Name is Required!. Try Again");
 		register();
@@ -21,10 +21,23 @@ public class Register {
 		break;
 		case 3: System.out.println ("Password is Required!. Try Again");
 		register();
+		case 4: System.out.println ("Email Id is Invalid!. Try Again");
+		register();
+		case 5: System.out.println ("Name should contain only Numbers!. Try Again");
+		register();
 		break;
 		}
 	}
-	
+	public boolean checkEmailvalidity(String emailaddress){
+	    String email_regex = "[A-Z]+[a-zA-Z_]+@\b([a-zA-Z]+.){2}\b?.[a-zA-Z]+";
+	   boolean b = emailaddress.matches(email_regex);
+	   return b;
+	}
+	public boolean checkNamevalidity(String name){
+	    String name_regex = "[a-zA-Z]+";
+	   boolean b = name.matches(name_regex);
+	   return b;
+	}
 	public void register()
 	{
 		try{  
@@ -41,13 +54,19 @@ public class Register {
 		    {
 				 RequiredValidation(1);
 		    }
-				 
+			 else if (!checkNamevalidity(username)){
+				 RequiredValidation(5);
+			 }				 
 				System.out.println("Please enter your emailID:");
 				String email  = inputReader.nextLine();
 				 if (email.length()==0)
 				    {
 						 RequiredValidation(2);
 				    }
+				 else if(!checkEmailvalidity(email))
+				 {
+					 RequiredValidation(4);
+		              } 
 				System.out.println("Please enter your desired password");
 				String password = inputReader.nextLine();
 				 if (password.length()==0)
