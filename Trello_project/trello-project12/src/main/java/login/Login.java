@@ -43,4 +43,46 @@ public class Login {
 		catch(Exception e){ System.out.println(e);}  
 			 
 	}
+
+
+	public void restart() {
+		System.out.println("Entry does not match.");
+		forgotPassword();
+	}
+	
+	public void forgotPassword() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");  
+			Connection con=DriverManager.getConnection(  
+			"jdbc:mysql://50.62.176.51/Trello","trello","Team12");
+			
+			Scanner input = new Scanner(System.in);
+			System.out.println("Enter your existing username:");
+			String username = input.nextLine();
+			
+			String values = "SELECT user_name FROM login Where user_name = '" + username + "';";
+			Statement s = con.createStatement();
+			ResultSet rs = s.executeQuery(values);
+			
+			if(rs.next()) {
+				System.out.println("Entry matches. Please enter a new password:");
+				String password = input.nextLine();
+				
+				values = "UPDATE login (user_name,password) " + "VALUES ('" +username+ "', '" +password+"')";
+				s = con.createStatement();
+				s.executeUpdate(values);  
+				System.out.println("Updated Successfully");								
+				
+				input.close();
+				con.close();
+				login();
+			}
+			else
+				restart();
+		}
+		catch(Exception e) { 
+			System.out.println(e);
+		}
+	}
 }
+
