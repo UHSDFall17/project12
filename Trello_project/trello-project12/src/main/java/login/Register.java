@@ -92,16 +92,13 @@ public class Register {
 				//inputReader.close();
 				System.out.println("Name:"+ username + "Email ID:"+email);
 				
-				String values = "INSERT INTO login (user_name,password) " + "VALUES ('" +username+ "', '" +password+"')";
+				String values = "INSERT INTO login (user_name,password,email_id) " + "VALUES ('" +username+ "', '" +password+"','" +email+"')";
 				s = con.createStatement();
 				s.executeUpdate(values);  
 				System.out.println("Updated Successfully");
 				WelcomeBoard b = new WelcomeBoard();
 				b.welcome();
 		}
-		catch(Exception e){ System.out.println(e);}	
-		
-	
-		  
+		catch(Exception e){ System.out.println(e);}	  
 	}
 }
