@@ -2,7 +2,9 @@ package login;
 
 import java.util.Scanner;
 import java.sql.*;
+
 import board.Board;
+import board.WelcomeBoard;
 
 public class Login {
 
@@ -17,6 +19,7 @@ public class Login {
 			
 			
 			Scanner inputReader = new Scanner (System.in);
+			System.out.println("---Login Form---");
 			System.out.println("Please enter your username:");
 			String username  = inputReader.nextLine();
 			System.out.println("Please enter your password");
@@ -28,8 +31,8 @@ public class Login {
 			
 			if(rs.next()) {
 				System.out.println("Successful Login");
-				Board b = new Board();
-				b.board();
+				WelcomeBoard b = new WelcomeBoard();
+				b.welcome();
 			}
 			else {
 			System.out.println("Invalid Login");

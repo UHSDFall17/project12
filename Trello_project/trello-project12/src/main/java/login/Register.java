@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import board.WelcomeBoard;
+
 public class Register {
 	
 	public void RequiredValidation(int input)
@@ -87,15 +89,15 @@ public class Register {
 					 {
 						 RequiredValidation(7);
 					 }
-				inputReader.close();
+				//inputReader.close();
 				System.out.println("Name:"+ username + "Email ID:"+email);
 				
 				String values = "INSERT INTO login (user_name,password) " + "VALUES ('" +username+ "', '" +password+"')";
 				s = con.createStatement();
 				s.executeUpdate(values);  
 				System.out.println("Updated Successfully");
-				//Login obj = new Login();
-				//obj.login();
+				WelcomeBoard b = new WelcomeBoard();
+				b.welcome();
 		}
 		catch(Exception e){ System.out.println(e);}	
 		
