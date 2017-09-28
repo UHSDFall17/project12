@@ -2,6 +2,7 @@ package login;
 
 import java.util.Scanner;
 import java.sql.*;
+import board.Board;
 
 public class Login {
 
@@ -26,7 +27,9 @@ public class Login {
 			ResultSet rs=s.executeQuery(values); 
 			
 			if(rs.next()) {
-				System.out.println("Successful Login");	
+				System.out.println("Successful Login");
+				Board b = new Board();
+				b.board();
 			}
 			else {
 			System.out.println("Invalid Login");
