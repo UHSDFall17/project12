@@ -94,10 +94,12 @@ public class Register {
 				s = con.createStatement();
 				s.executeUpdate(values);  
 				System.out.println("Updated Successfully");
-			 
-			
+				//Login obj = new Login();
+				//obj.login();
+		}
+		catch(Exception e){ System.out.println(e);}	
+		
+	
+		  
 	}
-		catch(Exception e){ System.out.println(e);}  
-s}
-
 }
