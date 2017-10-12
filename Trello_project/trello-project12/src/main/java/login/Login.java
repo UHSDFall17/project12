@@ -5,41 +5,63 @@ import java.sql.*;
 import board.WelcomeBoard;
 
 public class Login {
-
+	public String username;
+	public String password;
 	
-	public void login()
+	
+	public void loginPage()
 	{ 
 		
 		try{  
-			Class.forName("com.mysql.jdbc.Driver");  
-			Connection con=DriverManager.getConnection(  
-			"jdbc:mysql://50.62.176.51/Trello","trello","Team12");   
-			
 			
 			Scanner inputReader = new Scanner (System.in);
 			System.out.println("---Login Form---");
 			System.out.println("Please enter your username:");
-			String username  = inputReader.nextLine();
+			 username  = inputReader.nextLine();
 			System.out.println("Please enter your password");
-			String password = inputReader.nextLine();
+			 password = inputReader.nextLine();
 			
-			String values = "Select user_name,password from login Where user_name ='"+username+"' and password = '" +password+"';";
-			Statement s=con.createStatement();  
-			ResultSet rs=s.executeQuery(values); 
-			
-			if(rs.next()) {
+			boolean loginResult = loginCheck();
+			if(loginResult)
+			{
 				System.out.println("Successful Login");
 				WelcomeBoard b = new WelcomeBoard();
 				b.welcome();
 			}
-			else {
-			System.out.println("Invalid Login");
-			}    
+			else{
+				System.out.println("Invalid Login");
+			}
+			 
 			inputReader.close();
-			con.close();
+			
 		}
 		catch(Exception e){ System.out.println(e);}  
 			 
+	}
+
+	public boolean loginCheck()
+	{
+		try{
+			Class.forName("com.mysql.jdbc.Driver");  
+			Connection con=DriverManager.getConnection(  
+			"jdbc:mysql://50.62.176.51/Trello","trello","Team12"); 
+		
+		String values = "Select user_name,password from login Where user_name ='"+username+"' and password = '" +password+"';";
+		Statement s=con.createStatement();  
+		ResultSet rs=s.executeQuery(values); 
+		
+		if(rs.next()) {
+			con.close();
+			return true;
+		}
+		else {
+			con.close();
+		return false;
+		}
+		}
+		catch(Exception e){ System.out.println(e);}
+		
+		return false;  
 	}
 	public void restart() {
 		System.out.println("Entry does not match.");
@@ -71,7 +93,7 @@ public class Login {
 				
 				input.close();
 				con.close();
-				login();
+				loginPage();
 			}
 			else
 				restart();

@@ -18,7 +18,7 @@ public class App
     	int value = inputReader.nextInt();
     	if (value == 1) {
     Login user = new Login();
-     user.login();
+     user.loginPage();
     	}
     	else if (value == 2) {
       Register newuser = new Register();
