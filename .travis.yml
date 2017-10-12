@@ -3,4 +3,5 @@ script: mvn clean compile -DskiptTests
 notifications:
   email:
     - rravi2@uh.edu
-    - nsaravanashanmugasundaram@uh.edu - cjscheller@uh.edu
+    - nsaravanashanmugasundaram@uh.edu
+    - cjscheller@uh.edu
