@@ -2,12 +2,30 @@ package login;
 
 import java.util.Scanner;
 import java.sql.*;
+
 import board.WelcomeBoard;
 
 public class Login {
-	public String username;
-	public String password;
+	private String username;
+	private String password;
 	
+	
+	public String getusername()
+	{	   
+	    return username;
+	}
+	public void setusername(String value)
+	{
+	     username = value;
+	}
+	public String getpassword()
+	{
+	    return password;
+	}
+	public void setpassword(String value)
+	{
+	     password = value;
+	}
 	
 	public void loginPage()
 	{ 
@@ -76,7 +94,7 @@ public class Login {
 			
 			Scanner input = new Scanner(System.in);
 			System.out.println("Enter your existing username:");
-			String username = input.nextLine();
+			 username = input.nextLine();
 			
 			String values = "SELECT user_name FROM login Where user_name = '" + username + "';";
 			Statement s = con.createStatement();

@@ -27,8 +27,8 @@ public class AppTest
 	public void test_LoginCheck()
 	{
 		Login obj = new Login();
-		obj.username = "naresh123";
-		obj.password = "test";
+		obj.setusername("naresh123");
+		obj.setpassword ( "test");
 		boolean expectation = true;
 		boolean result = obj.loginCheck();
 		assertEquals(expectation, result);
