@@ -2,8 +2,6 @@ package login;
 
 import java.util.Scanner;
 import java.sql.*;
-
-import board.Board;
 import board.WelcomeBoard;
 
 public class Login {
@@ -37,7 +35,7 @@ public class Login {
 			else {
 			System.out.println("Invalid Login");
 			}    
-			
+			inputReader.close();
 			con.close();
 		}
 		catch(Exception e){ System.out.println(e);}  

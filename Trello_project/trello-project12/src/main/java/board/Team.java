@@ -2,7 +2,6 @@ package board;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 
@@ -27,6 +26,7 @@ public class Team {
 		s = con.createStatement();
 		s.executeUpdate(values);  
 		System.out.println(teamname + "Team created Successfully");
+		inputReader.close();
 		}
 		catch(Exception e){ System.out.println(e);} 
 	}
