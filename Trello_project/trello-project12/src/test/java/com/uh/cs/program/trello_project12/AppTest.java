@@ -22,6 +22,7 @@ public class AppTest
     {
         super( testName );
     }
+    
     @org.junit.Test
 	public void test_LoginCheck()
 	{
@@ -63,6 +64,26 @@ public class AppTest
    		boolean result = obj.password.equals(obj.confirmPassword);
    		assertEquals(expectation, result);
    	}
+    
+    @org.junit.Test
+  	public void test_Registeration_UserName_Check()
+  	{
+  		Register obj = new Register();
+  		obj.username = "raji";
+  		boolean expectation = true;
+  		boolean result = obj.UserNameExisitsCheck();
+  		assertEquals(expectation, result);
+  	}
+    
+    @org.junit.Test
+  	public void test_Registeration_EmailID_Check()
+  	{
+  		Register obj = new Register();
+  		obj.email = "raji@gmail.com";
+  		boolean expectation = true;
+  		boolean result = obj.EmailExisitsCheck();
+  		assertEquals(expectation, result);
+  	}
     
     /**
      * @return the suite of tests being tested
