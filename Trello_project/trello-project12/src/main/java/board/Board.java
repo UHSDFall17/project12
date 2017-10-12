@@ -10,7 +10,7 @@ public class Board {
 public void board() {
 	System.out.println("Creeate Board \n Enter the title of the board");
 	Scanner inputReader = new Scanner (System.in);
-	String title = inputReader.nextLine();
+	//String title = inputReader.nextLine();
 	try {
 	Class.forName("com.mysql.jdbc.Driver");  
 	Connection con=DriverManager.getConnection(  
@@ -29,12 +29,14 @@ public void board() {
 			System.out.println(rs.getString(1));
 		}	
 	}
+	
 	/*else if(input.equals("no")){
 		
 	}*/
 	else {
 		System.out.println("Please enter a valid option");
 	}
+	inputReader.close();
 }
 	catch(Exception e){ System.out.println(e);} 
 }

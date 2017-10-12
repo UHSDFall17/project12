@@ -27,6 +27,7 @@ public class App
     	else if(value == 3) {
     		Login user = new Login();
     		user.forgotPassword();
+    		inputReader.close();
     	}
     	else 
     		System.out.println("Please enter a valid option");

@@ -2,7 +2,6 @@ package login;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 
@@ -89,13 +88,14 @@ public class Register {
 					 {
 						 RequiredValidation(7);
 					 }
-				//inputReader.close();
+				
 				System.out.println("Name:"+ username + "Email ID:"+email);
 				
 				String values = "INSERT INTO login (user_name,password,email_id) " + "VALUES ('" +username+ "', '" +password+"','" +email+"')";
 				s = con.createStatement();
 				s.executeUpdate(values);  
 				System.out.println("Updated Successfully");
+				inputReader.close();
 				WelcomeBoard b = new WelcomeBoard();
 				b.welcome();
 		}

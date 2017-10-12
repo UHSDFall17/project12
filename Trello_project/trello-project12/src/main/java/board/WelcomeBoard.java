@@ -18,7 +18,7 @@ public class WelcomeBoard {
 		c.board();
 		default: System.out.println("invalid option");
     	}
-	
+    	inputReader.close();
 	}
 	
 }
