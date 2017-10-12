@@ -8,6 +8,10 @@ import java.util.Scanner;
 import board.WelcomeBoard;
 
 public class Register {
+	public String username ;
+	public String email;
+	public String password;
+	public String confirmPassword;
 	
 	public void RequiredValidation(int input)
 	{
@@ -54,7 +58,7 @@ public class Register {
 			Scanner inputReader = new Scanner (System.in);
 			System.out.println("---Registration Form---");
 			System.out.println("Please enter your name:");
-			String username  = inputReader.nextLine();
+			 username  = inputReader.nextLine();
 			 if (username.length()==0)
 		    {
 				 RequiredValidation(1);
@@ -63,7 +67,7 @@ public class Register {
 				 RequiredValidation(6);
 			 }				 
 				System.out.println("Please enter your emailID:");
-				String email  = inputReader.nextLine();
+				 email  = inputReader.nextLine();
 				 if (email.length()==0)
 				    {
 						 RequiredValidation(2);
@@ -73,13 +77,13 @@ public class Register {
 					 RequiredValidation(5);
 		              } 
 				System.out.println("Please enter your password");
-				String password = inputReader.nextLine();
+				 password = inputReader.nextLine();
 				 if (password.length()==0)
 				    {
 						 RequiredValidation(3);
 				    }
 				 System.out.println("Please confirm your password");
-					String confirmPassword = inputReader.nextLine();
+					 confirmPassword = inputReader.nextLine();
 					 if (confirmPassword.length()==0)
 					    {
 							 RequiredValidation(3);

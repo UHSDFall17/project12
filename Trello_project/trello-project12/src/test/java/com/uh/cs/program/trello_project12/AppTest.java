@@ -4,6 +4,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import login.Login;
+import login.Register;
 
 
 /**
@@ -26,12 +27,43 @@ public class AppTest
 	{
 		Login obj = new Login();
 		obj.username = "naresh123";
-		obj.password = "test1";
+		obj.password = "test";
 		boolean expectation = true;
 		boolean result = obj.loginCheck();
 		assertEquals(expectation, result);
 	}
-
+    
+    @org.junit.Test
+   	public void test_Username_Alphabets_Only()
+   	{
+   		Register obj = new Register();
+   		obj.username = "naresh";   		
+   		boolean expectation = true;
+   		boolean result = obj.checkNamevalidity(obj.username);
+   		assertEquals(expectation, result);
+   	}
+    
+    @org.junit.Test
+   	public void test_Email_pattern()
+   	{
+   		Register obj = new Register();
+   		obj.email = "naresh@g.com";   		
+   		boolean expectation = true;
+   		boolean result = obj.checkEmailvalidity(obj.email);
+   		assertEquals(expectation, result);
+   	}
+    
+    @org.junit.Test
+   	public void test_Password_ConfirmPassword_match()
+   	{
+   		Register obj = new Register();
+   		obj.password = "test";  
+   		obj.confirmPassword="test";
+   		boolean expectation = true;
+   		boolean result = obj.password.equals(obj.confirmPassword);
+   		assertEquals(expectation, result);
+   	}
+    
     /**
      * @return the suite of tests being tested
      */
