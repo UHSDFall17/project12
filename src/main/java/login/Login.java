@@ -4,11 +4,14 @@ import java.util.Scanner;
 import java.sql.*;
 
 import board.WelcomeBoard;
+import trello.ConnectionManager;
 
 public class Login {
 	private String username;
 	private String password;
 	
+	private Connection con = null;
+
 	
 	public String getusername()
 	{	   
@@ -60,9 +63,7 @@ public class Login {
 	public boolean loginCheck()
 	{
 		try{
-			Class.forName("com.mysql.jdbc.Driver");  
-			Connection con=DriverManager.getConnection(  
-			"jdbc:mysql://50.62.176.51/Trello","trello","Team12"); 
+			con = ConnectionManager.getConnection();
 		
 		String values = "Select user_name,password from login Where user_name ='"+username+"' and password = '" +password+"';";
 		Statement s=con.createStatement();  
