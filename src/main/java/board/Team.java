@@ -19,15 +19,32 @@ public class Team {
 			Statement s = null;
 		
 		Scanner inputReader = new Scanner (System.in);
-		System.out.println("---Create Team---");
-		System.out.println("Please enter Team Name:");
-		String teamname  = inputReader.nextLine();
-		System.out.println("Please enter Team Description(optional):");
-		String teamdesc  = inputReader.nextLine();
-		String values = "INSERT INTO team (team_name,team_desc) " + "VALUES ('" +teamname+ "', '" +teamdesc+"')";
-		s = con.createStatement();
-		s.executeUpdate(values);  
-		System.out.println(teamname + "Team created Successfully");
+		System.out.println("Press 1. for general team /n Press 2. for business team ");
+		String option = inputReader.nextLine();
+		if (option.equals(1)) 
+		{
+			System.out.println("---Create Team---");
+			System.out.println("Please enter Team Name:");
+			String teamname  = inputReader.nextLine();
+			System.out.println("Please enter Team Description(optional):");
+			String teamdesc  = inputReader.nextLine();
+			String values = "INSERT INTO team (team_name,team_desc) " + "VALUES ('" +teamname+ "', '" +teamdesc+"')";
+			s = con.createStatement();
+			s.executeUpdate(values);  
+			System.out.println(teamname + "Team created Successfully");
+		}
+		
+		else if (option.equals(2)) {
+			System.out.println("---Create Business Team---");
+			System.out.println("Please enter Business Team Name:");
+			String teamname  = inputReader.nextLine();
+			System.out.println("Please enter Team Description(optional):");
+			String teamdesc  = inputReader.nextLine();
+			String values = "INSERT INTO business_team (team_name,team_desc) " + "VALUES ('" +teamname+ "', '" +teamdesc+"')";
+			s = con.createStatement();
+			s.executeUpdate(values);  
+			System.out.println(teamname + "Team created Successfully");
+		}
 		inputReader.close();
 		}
 		catch(Exception e){ System.out.println(e);} 

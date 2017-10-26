@@ -12,9 +12,10 @@ public class Board {
 	private Connection con = null;
 	
 public void board() {
-	System.out.println("Creeate Board \n Enter the title of the board");
 	Scanner inputReader = new Scanner (System.in);
-	//String title = inputReader.nextLine();
+	
+	System.out.println("Creeate Board \n Enter the title of the board");
+	String title = inputReader.nextLine();
 	try {
 		con = ConnectionManager.getConnection();
 	Statement s=con.createStatement();  
@@ -29,8 +30,11 @@ public void board() {
 	if(input.equals("yes")) {
 		while(rs.next()) {
 			System.out.println(rs.getString(1));
-		}	
+		}
+		System.out.println("Please enter the team name");
+		
 	}
+	
 	
 	/*else if(input.equals("no")){
 		
