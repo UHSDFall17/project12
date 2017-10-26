@@ -42,7 +42,7 @@ public void board() {
 	else {
 		System.out.println("Please enter a valid option");
 	}
-	inputReader.close();
+
 }
 	catch(Exception e){ System.out.println(e);} 
 }

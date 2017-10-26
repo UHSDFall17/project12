@@ -20,11 +20,12 @@ public class Team {
 		
 		Scanner inputReader = new Scanner (System.in);
 		System.out.println("Press 1. for general team /n Press 2. for business team ");
-		String option = inputReader.nextLine();
-		if (option.equals(1)) 
+		int option = inputReader.nextInt();
+		if (option == 1) 
 		{
 			System.out.println("---Create Team---");
 			System.out.println("Please enter Team Name:");
+			inputReader.nextLine();
 			String teamname  = inputReader.nextLine();
 			System.out.println("Please enter Team Description(optional):");
 			String teamdesc  = inputReader.nextLine();
@@ -34,7 +35,7 @@ public class Team {
 			System.out.println(teamname + "Team created Successfully");
 		}
 		
-		else if (option.equals(2)) {
+		else if (option == 2) {
 			System.out.println("---Create Business Team---");
 			System.out.println("Please enter Business Team Name:");
 			String teamname  = inputReader.nextLine();
