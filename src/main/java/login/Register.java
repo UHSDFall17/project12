@@ -7,12 +7,14 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 import board.WelcomeBoard;
+import trello.ConnectionManager;
 
 public class Register {
 	public String username ;
 	public String email;
 	public String password;
 	public String confirmPassword;
+	private Connection con = null;
 	
 	public void RequiredValidation(int input)
 	{
@@ -51,9 +53,7 @@ public class Register {
 	public boolean UserNameExisitsCheck()
 	{
 		try{
-			Class.forName("com.mysql.jdbc.Driver");  
-			Connection con=DriverManager.getConnection(  
-			"jdbc:mysql://50.62.176.51/Trello","trello","Team12"); 
+			con = ConnectionManager.getConnection();
 		
 			String values = "Select user_name from login Where user_name ='"+username+"';";
 		Statement s=con.createStatement();  

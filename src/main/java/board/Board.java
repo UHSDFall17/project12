@@ -6,15 +6,17 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import trello.ConnectionManager;
+
 public class Board {
+	private Connection con = null;
+	
 public void board() {
 	System.out.println("Creeate Board \n Enter the title of the board");
 	Scanner inputReader = new Scanner (System.in);
 	//String title = inputReader.nextLine();
 	try {
-	Class.forName("com.mysql.jdbc.Driver");  
-	Connection con=DriverManager.getConnection(  
-	"jdbc:mysql://50.62.176.51/Trello","trello","Team12");  
+		con = ConnectionManager.getConnection();
 	Statement s=con.createStatement();  
 	ResultSet rs=s.executeQuery("Select team_name from team");
 	if(rs.next() != true) {

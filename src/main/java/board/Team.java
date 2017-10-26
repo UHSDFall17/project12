@@ -5,16 +5,18 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import trello.ConnectionManager;
+
 public class Team {
 
+	private Connection con = null;
+	
 	public void team()
 	{
 		
 		try {
-		Class.forName("com.mysql.jdbc.Driver");  
-		Connection con=DriverManager.getConnection(  
-		"jdbc:mysql://50.62.176.51/Trello","trello","Team12"); 
-		Statement s = null;
+			con = ConnectionManager.getConnection();
+			Statement s = null;
 		
 		Scanner inputReader = new Scanner (System.in);
 		System.out.println("---Create Team---");
