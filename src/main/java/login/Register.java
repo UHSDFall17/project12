@@ -8,12 +8,14 @@ import java.util.Scanner;
 
 import board.WelcomeBoard;
 import trello.ConnectionManager;
+import validations.Validation;
 
 public class Register {
 	public String username ;
 	public String email;
 	public String password;
 	public String confirmPassword;
+	Validation val = new Validation();
 	private Connection con = null;
 	
 	public void RequiredValidation(int input)
@@ -40,16 +42,7 @@ public class Register {
 		break;
 		}
 	}
-	public boolean checkEmailvalidity(String emailaddress){
-	    String email_regex = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-	   boolean b = emailaddress.matches(email_regex);
-	   return b;
-	}
-	public boolean checkNamevalidity(String name){
-	    String name_regex = "[a-zA-Z]+";
-	   boolean b = name.matches(name_regex);
-	   return b;
-	}
+	
 	public boolean UserNameExisitsCheck()
 	{
 		try{
@@ -97,14 +90,10 @@ public class Register {
 		
 		return false;  
 	}
-	public void register()
-	{
-		try{  
-			Class.forName("com.mysql.jdbc.Driver");  
-			Connection con=DriverManager.getConnection(  
-			"jdbc:mysql://50.62.176.51/Trello","trello","Team12");
-			Statement s = null;
-			
+	
+	public void getInputValues(){
+		try
+		{
 			Scanner inputReader = new Scanner (System.in);
 			System.out.println("---Registration Form---");
 			System.out.println("Please enter your name:");
@@ -113,7 +102,7 @@ public class Register {
 		    {
 				 RequiredValidation(1);
 		    }
-			 else if (!checkNamevalidity(username)){
+			 else if (!val.checkNamevalidity(username)){
 				 RequiredValidation(6);
 			 }				 
 				System.out.println("Please enter your emailID:");
@@ -122,7 +111,7 @@ public class Register {
 				    {
 						 RequiredValidation(2);
 				    }
-				 else if(!checkEmailvalidity(email))
+				 else if(!val.checkEmailvalidity(email))
 				 {
 					 RequiredValidation(5);
 		              } 
@@ -142,6 +131,20 @@ public class Register {
 					 {
 						 RequiredValidation(7);
 					 }
+					 inputReader.close();
+		}
+		catch(Exception e){ System.out.println(e);}	  
+	}
+	
+	public void register()
+	{
+		try{  
+			Class.forName("com.mysql.jdbc.Driver");  
+			Connection con=DriverManager.getConnection(  
+			"jdbc:mysql://50.62.176.51/Trello","trello","Team12");
+			Statement s = null;
+			
+			getInputValues();
 				
 				System.out.println("Name:"+ username + "Email ID:"+email);
 				boolean usernameCheck=UserNameExisitsCheck();
@@ -163,7 +166,7 @@ public class Register {
 				{
 					System.out.println("Email Id already exists in the database");
 				}
-				inputReader.close();
+				
 		}
 		catch(Exception e){ System.out.println(e);}	  
 	}

@@ -5,6 +5,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import login.Login;
 import login.Register;
+import validations.Validation;
 
 
 /**
@@ -13,6 +14,7 @@ import login.Register;
 public class AppTest 
     extends TestCase
 {
+	Validation val = new Validation();
     /**
      * Create the test case
      *
@@ -22,6 +24,7 @@ public class AppTest
     {
         super( testName );
     }
+    
     
     @org.junit.Test
 	public void test_LoginCheck()
@@ -40,7 +43,7 @@ public class AppTest
    		Register obj = new Register();
    		obj.username = "naresh";   		
    		boolean expectation = true;
-   		boolean result = obj.checkNamevalidity(obj.username);
+   		boolean result = val.checkNamevalidity(obj.username);
    		assertEquals(expectation, result);
    	}
     
@@ -50,7 +53,7 @@ public class AppTest
    		Register obj = new Register();
    		obj.email = "naresh@g.com";   		
    		boolean expectation = true;
-   		boolean result = obj.checkEmailvalidity(obj.email);
+   		boolean result = val.checkEmailvalidity(obj.email);
    		assertEquals(expectation, result);
    	}
     
