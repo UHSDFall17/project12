@@ -15,12 +15,14 @@ public class App
 	
    public static void main( String[] args )
    {
+	   System.out.println("Welcome to Trello");
+	   System.out.println("=================");
 	   options();
     }
 
-private static void options() {
+public static void options() {
 	do {
-   	System.out.println("Welcome to Trello \n Enter 1 to Login \n Enter 2 to register \n Enter 3 for New Password\n");
+   	System.out.println("\n Enter 1 to Login \n Enter 2 to register \n Enter 3 for New Password\n Enter 4 for Help/FAQ");
      	Scanner inputReader = new Scanner(System.in);
      	value = inputReader.nextInt();
      	switch (value) {
@@ -36,7 +38,9 @@ private static void options() {
      		Login user1 = new Login();
      		user1.forgotPassword();
      		break;
-     case 4:
+     	case 4:	
+     		System.out.println("Help/FAQ : under construction");
+     case 5:
     	 System.out.println("Terminataing the program");
     	 break;
     	 default:
