@@ -6,6 +6,7 @@ public class WelcomeBoard {
 	public void welcome()
 	{
 		System.out.println("Welcome to Trello... Select the options below \n 1.Create Board \n 2.Create Team \n 3.Create Business Board");
+		
 		Scanner inputReader = new Scanner(System.in);
     	int value = inputReader.nextInt();
     	switch(value)

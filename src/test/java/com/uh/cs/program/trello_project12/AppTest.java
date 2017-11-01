@@ -6,6 +6,7 @@ import junit.framework.TestSuite;
 import login.Login;
 import login.Register;
 import validations.Validation;
+import sqlStatements.CommonSqlQueries;
 
 
 /**
@@ -15,6 +16,7 @@ public class AppTest
     extends TestCase
 {
 	Validation val = new Validation();
+	CommonSqlQueries sqlobj = new CommonSqlQueries();
     /**
      * Create the test case
      *
@@ -74,7 +76,7 @@ public class AppTest
   		Register obj = new Register();
   		obj.username = "raji";
   		boolean expectation = true;
-  		boolean result = obj.UserNameExisitsCheck();
+  		boolean result = sqlobj.UserNameExisitsCheck(obj.username);
   		assertEquals(expectation, result);
   	}
     
@@ -84,7 +86,7 @@ public class AppTest
   		Register obj = new Register();
   		obj.email = "raji@gmail.com";
   		boolean expectation = true;
-  		boolean result = obj.EmailExisitsCheck();
+  		boolean result = sqlobj.EmailExisitsCheck(obj.email);
   		assertEquals(expectation, result);
   	}
     

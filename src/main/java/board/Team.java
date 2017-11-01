@@ -1,7 +1,6 @@
 package board;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.Scanner;
 
@@ -10,6 +9,20 @@ import trello.ConnectionManager;
 public class Team {
 
 	private Connection con = null;
+	String teamname;
+	String teamdesc;
+	String values;
+	
+	public void getInput()
+	{
+		Scanner inputReader = new Scanner (System.in);
+		System.out.println("Please enter Team Name:");
+		inputReader.nextLine();
+		 teamname  = inputReader.nextLine();
+		System.out.println("Please enter Team Description(optional):");
+	      teamdesc  = inputReader.nextLine();
+	      inputReader.close();
+	}
 	
 	public void team()
 	{
@@ -24,28 +37,18 @@ public class Team {
 		if (option == 1) 
 		{
 			System.out.println("---Create Team---");
-			System.out.println("Please enter Team Name:");
-			inputReader.nextLine();
-			String teamname  = inputReader.nextLine();
-			System.out.println("Please enter Team Description(optional):");
-			String teamdesc  = inputReader.nextLine();
-			String values = "INSERT INTO team (team_name,team_desc) " + "VALUES ('" +teamname+ "', '" +teamdesc+"')";
-			s = con.createStatement();
-			s.executeUpdate(values);  
-			System.out.println(teamname + "Team created Successfully");
+			getInput();
+			 values = "INSERT INTO team (team_name,team_desc) " + "VALUES ('" +teamname+ "', '" +teamdesc+"')";			
 		}
 		
 		else if (option == 2) {
 			System.out.println("---Create Business Team---");
-			System.out.println("Please enter Business Team Name:");
-			String teamname  = inputReader.nextLine();
-			System.out.println("Please enter Team Description(optional):");
-			String teamdesc  = inputReader.nextLine();
-			String values = "INSERT INTO business_team (team_name,team_desc) " + "VALUES ('" +teamname+ "', '" +teamdesc+"')";
-			s = con.createStatement();
-			s.executeUpdate(values);  
-			System.out.println(teamname + "Team created Successfully");
+			getInput();
+			 values = "INSERT INTO business_team (team_name,team_desc) " + "VALUES ('" +teamname+ "', '" +teamdesc+"')";			
 		}
+		s = con.createStatement();
+		s.executeUpdate(values);  
+		System.out.println(teamname + "Team created Successfully");
 		inputReader.close();
 		}
 		catch(Exception e){ System.out.println(e);} 
