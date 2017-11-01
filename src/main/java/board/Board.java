@@ -31,7 +31,8 @@ public void board() {
 		while(rs.next()) {
 			System.out.println(rs.getString(1));
 		}
-		System.out.println("Please enter the team name");
+		Team t = new Team();
+		t.team();
 		
 	}
 	
@@ -46,4 +47,5 @@ public void board() {
 }
 	catch(Exception e){ System.out.println(e);} 
 }
+
 }

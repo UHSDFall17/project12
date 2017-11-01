@@ -11,27 +11,40 @@ Team 12
 */
 public class App 
 {
+	static int value;
+	
    public static void main( String[] args )
    {
+	   options();
+    }
+
+private static void options() {
+	do {
    	System.out.println("Welcome to Trello \n Enter 1 to Login \n Enter 2 to register \n Enter 3 for New Password\n");
      	Scanner inputReader = new Scanner(System.in);
-     	int value = inputReader.nextInt();
-     	if (value == 1) {
-     Login user = new Login();
-      user.loginPage();
-     	}
-     	else if (value == 2) {
+     	value = inputReader.nextInt();
+     	switch (value) {
+     	case 1:
+     		Login user = new Login();
+     		user.loginPage();
+     	break;
+     	case 2: 
        Register newuser = new Register();
        newuser.register();
-     }
-     	else if(value == 3) {
-     		Login user = new Login();
-     		user.forgotPassword();
-     		
-     	}
-     	else 
-     		System.out.println("Please enter a valid option");
-     	inputReader.close();
+       break;
+     	case 3:
+     		Login user1 = new Login();
+     		user1.forgotPassword();
+     		break;
+     case 4:
+    	 System.out.println("Terminataing the program");
+    	 break;
+    	 default:
+    		 System.out.println("The selection was invalid!");
+     	}}while(value!= 4);
 }
  }
- 
+
+
+
+
