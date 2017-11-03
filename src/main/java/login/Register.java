@@ -3,7 +3,6 @@ package login;
 import java.util.Scanner;
 
 import board.WelcomeBoard;
-import sqlStatements.CommonSqlQueries;
 import sqlStatements.RegisterStatements;
 import validations.Validation;
 
@@ -13,7 +12,6 @@ public class Register {
 	public String password;
 	public String confirmPassword;
 	Validation val = new Validation();
-	CommonSqlQueries sqlObj = new CommonSqlQueries();
 	RegisterStatements registerObj = new RegisterStatements();
 	
 	public void RequiredValidation(int input)
@@ -91,25 +89,23 @@ public class Register {
 					 }
 						
 						System.out.println("Name:"+ username + "Email ID:"+email);
-						boolean usernameCheck=sqlObj.UserNameExisitsCheck(username);
-						boolean emailCheck=sqlObj.EmailExisitsCheck(email);
-						if(!usernameCheck && !emailCheck ){
-							registerObj.registerUser(username,password,email);
-							System.out.println("Updated Successfully");
-							
-							WelcomeBoard b = new WelcomeBoard();
-							b.welcome();
-						}
-						else if(usernameCheck)
+						int result =registerObj.registerUser(username,password,email);
+						switch(result)
 						{
-							System.out.println("Username already exists in the database");
-							register();
-						}
-						else if(emailCheck)
-						{
-							System.out.println("Email Id already exists in the database");
-							register();
-						}
+						case 0: System.out.println("Updated Successfully");
+						WelcomeBoard b = new WelcomeBoard();
+						b.welcome();
+						break;
+						case 1: System.out.println("Username already exists in the database");
+						register();
+						break;
+						case 2:System.out.println("Email Id already exists in the database");
+						register(); 
+						break;
+						default:System.out.println("Email Id already exists in the database");
+						register(); 
+						break;							
+						}						
 					 inputReader.close();
 			
 				
