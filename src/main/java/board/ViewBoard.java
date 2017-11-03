@@ -11,7 +11,7 @@ public class ViewBoard {
 	String boardname;	String boardname1;
 		public void displayBoards() {
 			sqlObj.viewboards();
-			startBoard();
+			starBoard();
 			
 			
 			System.out.println("Do you wish to open board");
@@ -34,12 +34,15 @@ public class ViewBoard {
 		}
 
 
-		private void startBoard() {
+		private void starBoard() {
 			System.out.println("Do you wish to Star any of your boards");
 			Scanner inputReader = new Scanner (System.in);
 			String option = inputReader.nextLine();
-			if(option.equals("yes"))
+			if(option.equals("yes")) {
 			System.out.println("Please enter the name of the board which you wish to star");
+			boardname = inputReader.nextLine();
+			sqlObj.starIt(boardname);
+			}
 			else
 				System.out.println("No star operation");
 		}

@@ -10,7 +10,7 @@ public class WelcomeBoard {
 	{
 		
     	do {
-    		System.out.println("Select the options below \n 1.Create Board \n 2.Create Team \n 3.Create Business Board \n 4. Logout");
+    		System.out.println("Select the options below \n 1.Create Board \n 2.Create Team \n 3.Create Business Board \n 4. Display Boards \n 5. Logout");
     		Scanner inputReader = new Scanner(System.in);
         	value = inputReader.nextInt();
     	switch(value)
