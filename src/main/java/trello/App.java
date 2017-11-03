@@ -40,6 +40,7 @@ public static void options() {
      		break;
      	case 4:	
      		System.out.println("Help/FAQ : under construction");
+     		break;
      case 5:
     	 System.out.println("Terminataing the program");
     	 break;

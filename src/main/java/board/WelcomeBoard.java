@@ -24,14 +24,16 @@ public class WelcomeBoard {
     	case 3:Board c = new Board();
 		c.board();
 		break;
-    	case 4: 
+    	case 4: ViewBoard vb = new ViewBoard();
+    	vb.displayBoards();
+    	case 5: 
     		App a = new App();
     		a.options();
 		break;
     	default: System.out.println("invalid option");
     	break;
     	}
-    	}	while(value != 4);
+    	}	while(value != 5);
     
 	}
 	}
