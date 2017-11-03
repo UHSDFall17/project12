@@ -8,7 +8,7 @@ import sqlStatements.BoardSqlQueries;
 public class ViewBoard {
 
 	BoardSqlQueries sqlObj=new BoardSqlQueries();
-	String boardname;
+	String boardname;	String boardname1;
 		public void displayBoards() {
 			sqlObj.viewboards();
 			startBoard();
@@ -28,7 +28,8 @@ public class ViewBoard {
 		
 		
 		private void openBoard(String boardname2) {
-			System.out.println("Method to display cards");
+			this.boardname1 = boardname2;
+			sqlObj.listCards(boardname1);
 			
 		}
 
