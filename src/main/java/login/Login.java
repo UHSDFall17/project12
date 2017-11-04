@@ -5,6 +5,7 @@ import java.sql.*;
 
 import board.WelcomeBoard;
 import trello.ConnectionManager;
+import global.Global;
 
 public class Login {
 	private String username;
@@ -40,12 +41,12 @@ public class Login {
 			System.out.println("Please enter your username:");
 			 username  = inputReader.nextLine();
 			System.out.println("Please enter your password");
-			 password = inputReader.nextLine();
-			
+			 password = inputReader.nextLine();			
 			boolean loginResult = loginCheck();
 			if(loginResult)
 			{
 				System.out.println("Successful Login");
+				Global.userName=username;
 				WelcomeBoard b = new WelcomeBoard();
 				b.welcome();
 			}
