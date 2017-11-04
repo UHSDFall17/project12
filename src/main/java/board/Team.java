@@ -59,10 +59,12 @@ public class Team {
 	}
 	public void teamList()
 	{		
-		try {
-						
+		try {					
 		List<String> teamList = new ArrayList<String>();
-		teamList = sqlObj.listTeams();
+		System.out.println("Press/n 1.General Team /n  2.Business Team ");
+		int option = inputReader.nextInt();
+		inputReader.nextLine();		
+		teamList = sqlObj.listTeams(option);
 		for(int i=0;i<teamList.size();i++)
 		{
 			  System.out.println(i+1 +". " + teamList.get(i));
@@ -84,10 +86,13 @@ public class Team {
 	public void addMembersToTeam()
 	{		
 		try {	
+			System.out.println("Press/n 1.General Team /n  2.Business Team ");
+			int option = inputReader.nextInt();
+			inputReader.nextLine();	
 			System.out.println("Enter Team Name:");
 			String teamName  = inputReader.nextLine();
 		memberInput();
-		int option;
+		int optionsToAdd;
 		do
 		{
 			for(int i=0;i<members.size();i++)
@@ -96,18 +101,20 @@ public class Team {
 			}
 			
 			System.out.println("Press 1.Add More Members 2.Confirm Members");
-			option=inputReader.nextInt();
+			optionsToAdd=inputReader.nextInt();
 			inputReader.nextLine();
-			if(option==2)	
-			{System.out.println("loop");
-				boolean result=sqlObj.addMembersToTeam(members,teamName);
+			if(optionsToAdd==2)	
+			{
+				boolean result=sqlObj.addMembersToTeam(members,teamName,option);
 				if(!result)
 					System.out.println("Username does not exixts in the database");
+				else
+					System.out.println("Members added to the team");
 				break;	
 			}
 						
 			memberInput();
-		}while(option!=2);
+		}while(optionsToAdd!=2);
 		
 		}
 		catch(Exception e){ System.out.println(e);} 

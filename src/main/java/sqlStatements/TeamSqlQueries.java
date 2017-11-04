@@ -42,16 +42,24 @@ public class TeamSqlQueries {
 		return false;
 	}
 	
-	public List<String> listTeams() {
+	public List<String> listTeams(int option) {
 		
 		try{
 			con = ConnectionManager.getConnection();	
 			Statement s=con.createStatement(); 
 			String team;
-			ResultSet rs=s.executeQuery("SELECT * FROM team WHERE created_by ='" +Global.userName+ "'");
+			ResultSet rs = null;
+			 if (option == 1) 
+			{
+				  rs=s.executeQuery("SELECT * FROM team WHERE created_by ='" +Global.userName+ "'");			
+			}		
+			else if (option == 2 ) 
+			{
+				 rs=s.executeQuery("SELECT * FROM business_team WHERE created_by ='" +Global.userName+ "'");			
+			}
+			
 			while(rs.next()){
-		        team = rs.getString("team_name");
-		        
+		        team = rs.getString("team_name");		        
 		        teams.add(team);		         
 		    	  	}
 			return teams;
@@ -60,7 +68,7 @@ public class TeamSqlQueries {
 		catch(Exception e){ System.out.println(e);}
 		return null;
 	}
-	public boolean addMembersToTeam(List<String> members,String teamName)
+	public boolean addMembersToTeam(List<String> members,String teamName,int option)
 	{
 		try{
 			
@@ -80,7 +88,15 @@ public class TeamSqlQueries {
 			}		
 			 
 		}
-		values="UPDATE team SET team_members = '" +names+ "' WHERE team_name ='" +teamName+ "'";
+		 if (option == 1) 
+			{
+			 values="UPDATE team SET team_members = '" +names+ "' WHERE team_name ='" +teamName+ "'";			
+			}		
+			else if (option == 2 ) 
+			{
+				values="UPDATE business_team SET team_members = '" +names+ "' WHERE team_name ='" +teamName+ "'";			
+			}
+		
 		System.out.println(names);
 		s = con.createStatement();
 		s.executeUpdate(values);  
