@@ -60,4 +60,34 @@ public class TeamSqlQueries {
 		catch(Exception e){ System.out.println(e);}
 		return null;
 	}
+	public boolean addMembersToTeam(List<String> members,String teamName)
+	{
+		try{
+			
+		con = ConnectionManager.getConnection();
+		String values="";
+		String names="";
+		for(int i=0;i<members.size();i++)
+		{
+			boolean nameExistsCheck = sqlObj.UserNameExisitsCheck(members.get(i));			
+			if(nameExistsCheck)
+			{
+				names += members.get(i)+",";	
+			}
+			else 
+			{
+				return false;	
+			}		
+			 
+		}
+		values="UPDATE team SET team_members = '" +names+ "' WHERE team_name ='" +teamName+ "'";
+		System.out.println(names);
+		s = con.createStatement();
+		s.executeUpdate(values);  
+		con.close();
+		return true;
+		}
+		catch(Exception e){ System.out.println(e);}
+		return false;
+	}
 }
