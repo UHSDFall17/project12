@@ -13,6 +13,7 @@ public class Register {
 	public String confirmPassword;
 	Validation val = new Validation();
 	RegisterStatements registerObj = new RegisterStatements();
+	Scanner inputReader= new Scanner (System.in);
 	
 	public void RequiredValidation(int input)
 	{
@@ -49,8 +50,7 @@ public class Register {
 	
 	public void register()
 	{
-		try{  						
-			Scanner inputReader = new Scanner (System.in);
+		try{  									
 			System.out.println("---Registration Form---");
 			System.out.println("Please enter your name:");
 			 username  = inputReader.nextLine();
@@ -106,7 +106,6 @@ public class Register {
 						register(); 
 						break;							
 						}						
-					 inputReader.close();
 			
 				
 		}
