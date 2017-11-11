@@ -12,7 +12,7 @@ public class Login {
 	private String password;
 	
 	private Connection con = null;
-
+	Scanner inputReader = new Scanner (System.in);
 	
 	public String getusername()
 	{	   
@@ -34,9 +34,7 @@ public class Login {
 	public void loginPage()
 	{ 
 		
-		try{  
-			
-			Scanner inputReader = new Scanner (System.in);
+		try{  				
 			System.out.println("---Login Form---");
 			System.out.println("Please enter your username:");
 			 username  = inputReader.nextLine();
@@ -52,9 +50,7 @@ public class Login {
 			}
 			else{
 				System.out.println("Invalid Login");
-			}
-			 
-			inputReader.close();
+			}			 
 			
 		}
 		catch(Exception e){ System.out.println(e);}  

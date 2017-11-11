@@ -10,9 +10,10 @@ import trello.ConnectionManager;
 
 public class Board {
 	private Connection con = null;
+	Scanner inputReader = new Scanner (System.in);
 	
 public void board() {
-	Scanner inputReader = new Scanner (System.in);
+	
 	
 	System.out.println("Creeate Board \n Enter the title of the board");
 	String title = inputReader.nextLine();

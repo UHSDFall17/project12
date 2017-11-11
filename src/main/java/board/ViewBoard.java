@@ -9,13 +9,14 @@ public class ViewBoard {
 
 	BoardSqlQueries sqlObj=new BoardSqlQueries();
 	String boardname;	String boardname1;
+	Scanner inputReader = new Scanner (System.in);
 		public void displayBoards() {
 			sqlObj.viewboards();
 			starBoard();
 			
 			
 			System.out.println("Do you wish to open board");
-			Scanner inputReader = new Scanner (System.in);
+			
 			String open = inputReader.nextLine();
 			if(open.equals("yes")) {
 				System.out.println("Please enter the name of the board which you wish to open");
@@ -35,8 +36,7 @@ public class ViewBoard {
 
 
 		private void starBoard() {
-			System.out.println("Do you wish to Star any of your boards");
-			Scanner inputReader = new Scanner (System.in);
+			System.out.println("Do you wish to Star any of your boards");			
 			String option = inputReader.nextLine();
 			if(option.equals("yes")) {
 			System.out.println("Please enter the name of the board which you wish to star");
