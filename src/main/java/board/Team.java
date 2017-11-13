@@ -93,7 +93,7 @@ public class Team {
 			int option = inputReader.nextInt();
 			inputReader.nextLine();	
 			System.out.println("Enter Team Name:");
-			String teamName  = inputReader.nextLine();
+			teamname  = inputReader.nextLine();
 		memberInput();
 		int optionsToAdd;
 		do
@@ -108,7 +108,7 @@ public class Team {
 			inputReader.nextLine();
 			if(optionsToAdd==2)	
 			{
-				boolean result=sqlObj.addMembersToTeam(members,teamName,option);
+				boolean result=sqlObj.addMembersToTeam(members,teamname,option);
 				if(!result)
 					System.out.println("Username does not exixts in the database");
 				else
@@ -129,9 +129,9 @@ public class Team {
 			int option = inputReader.nextInt();
 			inputReader.nextLine();	
 			System.out.println("Enter Team Name:");
-			String teamName  = inputReader.nextLine();
+			teamname  = inputReader.nextLine();
 			HashMap<String, String> teamDetails= new HashMap<String, String>();
-			teamDetails = sqlObj.teamInfo(option, teamName);
+			teamDetails = sqlObj.teamInfo(option, teamname);
 		if(teamDetails!=null)
 		{
 			System.out.println("-----Team Information---");
