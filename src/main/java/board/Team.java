@@ -9,13 +9,8 @@ import sqlStatements.TeamSqlQueries;
 
 public class Team {
 
-	public String teamname;
-	public String teamdesc;
-	public String memberNames;
-	public String boardNames;
-	public String admin;
-	public String teamType;
-	public String accessibility;
+	 String teamname;
+	 String teamdesc;	
 	TeamSqlQueries sqlObj=new TeamSqlQueries();
 	List<String> members = new ArrayList<String>();
 	Scanner inputReader= new Scanner (System.in);
