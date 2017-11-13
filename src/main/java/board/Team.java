@@ -1,6 +1,7 @@
 package board;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,8 +9,13 @@ import sqlStatements.TeamSqlQueries;
 
 public class Team {
 
-	String teamname;
-	String teamdesc;
+	public String teamname;
+	public String teamdesc;
+	public String memberNames;
+	public String boardNames;
+	public String admin;
+	public String teamType;
+	public String accessibility;
 	TeamSqlQueries sqlObj=new TeamSqlQueries();
 	List<String> members = new ArrayList<String>();
 	Scanner inputReader= new Scanner (System.in);
@@ -35,6 +41,8 @@ public class Team {
 		case 2:teamList();
 		break;
 		case 3:addMembersToTeam();
+		break;
+		case 4:viewTeamInfo();
 		break;
 		}		
 		}
@@ -116,6 +124,30 @@ public class Team {
 			memberInput();
 		}while(optionsToAdd!=2);
 		
+		}
+		catch(Exception e){ System.out.println(e);} 
+	}
+	public void viewTeamInfo()
+	{		
+		try {	
+			System.out.println("Press/n 1.General Team /n  2.Business Team ");
+			int option = inputReader.nextInt();
+			inputReader.nextLine();	
+			System.out.println("Enter Team Name:");
+			String teamName  = inputReader.nextLine();
+			HashMap<String, String> teamDetails= new HashMap<String, String>();
+			teamDetails = sqlObj.teamInfo(option, teamName);
+		if(teamDetails!=null)
+		{
+			System.out.println("-----Team Information---");
+			System.out.println("Team Name: "+ teamDetails.get("team_name"));
+			System.out.println("Team Description: "+ teamDetails.get("team_desc"));
+			System.out.println("------------------------");
+		}
+		else
+		{
+			System.out.println("Error!");
+		}
 		}
 		catch(Exception e){ System.out.println(e);} 
 	}

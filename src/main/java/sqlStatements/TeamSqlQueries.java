@@ -4,15 +4,18 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import trello.ConnectionManager;
 import sqlStatements.CommonSqlQueries;
 import global.Global;
+import board.Team;
 
 public class TeamSqlQueries {
 	private Connection con;
 	Statement s = null;
+	
 	CommonSqlQueries sqlObj = new CommonSqlQueries();
 	 List<String> teams = new ArrayList<String>();
 	public boolean createTeam(String teamname,String teamdesc,int option )
@@ -105,5 +108,33 @@ public class TeamSqlQueries {
 		}
 		catch(Exception e){ System.out.println(e);}
 		return false;
+	}
+public HashMap<String, String> teamInfo(int option,String teamName) {
+		
+		try{
+			con = ConnectionManager.getConnection();	
+			Statement s=con.createStatement(); 
+			HashMap<String, String> teamDetails= new HashMap<String, String>();
+			ResultSet rs = null;
+			 if (option == 1) 
+			{
+				  rs=s.executeQuery("SELECT * FROM team WHERE team_name ='" +teamName+ "'");			
+			}		
+			else if (option == 2 ) 
+			{
+				 rs=s.executeQuery("SELECT * FROM business_team WHERE team_name ='" +teamName+ "'");			
+			}
+			
+			while(rs.next()){
+				teamDetails.put("team_name", rs.getString("team_name"));
+				teamDetails.put("team_desc", rs.getString("team_desc"));
+		        //teamObj.teamname= rs.getString("team_name");	
+		       // teamObj.teamdesc= rs.getString("team_desc");
+		        return teamDetails;
+		      }
+		}
+		      
+		catch(Exception e){ System.out.println(e);}
+		return null;
 	}
 }
