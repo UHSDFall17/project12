@@ -142,6 +142,23 @@ public class Team {
 			System.out.println("-----Team Information---");
 			System.out.println("Team Name: "+ teamDetails.get("team_name"));
 			System.out.println("Team Description: "+ teamDetails.get("team_desc"));
+			String lastChar =teamDetails.get("team_members").substring(teamDetails.get("team_members").length() - 1);
+			String membernames;
+			if(lastChar.trim().equals(","))
+			{
+				membernames =teamDetails.get("team_members").substring(0,teamDetails.get("team_members").length() - 1);
+			}
+			else
+			{
+				membernames=teamDetails.get("team_members");
+			}
+			System.out.println("Team Members: "+membernames );
+			System.out.println("Admin: "+ teamDetails.get("created_by"));
+			if(teamDetails.get("access_mode") == null ||teamDetails.get("access_mode") == "" )
+					{
+				teamDetails.put("access_mode","Public");
+					}
+			System.out.println("Accessibilty: "+ teamDetails.get("access_mode"));
 			System.out.println("------------------------");
 		}
 		else

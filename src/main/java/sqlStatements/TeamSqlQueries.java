@@ -128,8 +128,10 @@ public HashMap<String, String> teamInfo(int option,String teamName) {
 			while(rs.next()){
 				teamDetails.put("team_name", rs.getString("team_name"));
 				teamDetails.put("team_desc", rs.getString("team_desc"));
-		        //teamObj.teamname= rs.getString("team_name");	
-		       // teamObj.teamdesc= rs.getString("team_desc");
+				teamDetails.put("team_members", rs.getString("team_members"));
+				teamDetails.put("access_mode", rs.getString("access_mode"));
+				teamDetails.put("created_by", rs.getString("created_by"));
+				//teamDetails.put("created_date", rs.getString("created_date"));
 		        return teamDetails;
 		      }
 		}
