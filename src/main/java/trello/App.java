@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import login.Login;
 import login.Register;
+import login.FAQ;
 
 /**
 Software Design, Trello Project 
@@ -22,34 +23,32 @@ public class App
 
 public static void options() {
 	do {
-   	System.out.println("\n Enter 1 to Login \n Enter 2 to register \n Enter 3 for New Password\n Enter 4 for Help/FAQ");
+		System.out.println("\n Enter 1 to Login \n Enter 2 to Register \n Enter 3 for New Password\n Enter 4 for Help/FAQ \n Enter 5 to Exit \n Answer: ");
      	Scanner inputReader = new Scanner(System.in);
      	value = inputReader.nextInt();
      	switch (value) {
-     	case 1:
-     		Login user = new Login();
-     		user.loginPage();
-     	break;
-     	case 2: 
-       Register newuser = new Register();
-       newuser.register();
-       break;
-     	case 3:
-     		Login user1 = new Login();
-     		user1.forgotPassword();
-     		break;
-     	case 4:	
-     		System.out.println("Help/FAQ : under construction");
-     		break;
-     case 5:
-    	 System.out.println("Terminataing the program");
-    	 break;
-    	 default:
-    		 System.out.println("The selection was invalid!");
-     	}}while(value!= 4);
+     		case 1:
+     			Login user = new Login();
+     			user.loginPage();
+     			break;
+     		case 2: 
+     			Register newuser = new Register();
+       			newuser.register();
+       			break;
+     		case 3:
+     			Login user1 = new Login();
+     			user1.forgotPassword();
+     			break;
+     		case 4:
+     			FAQ faq = new FAQ();
+     			faq.start();
+     			break;
+     		case 5:
+    	 		System.out.println("Terminataing the program");
+    	 		break;
+     		default:
+     			System.out.println("The selection was invalid!");
+     	}
+     }while(value!= 4);
 }
- }
-
-
-
-
+}
