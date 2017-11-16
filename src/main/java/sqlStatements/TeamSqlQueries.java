@@ -23,19 +23,15 @@ public class TeamSqlQueries {
 		try{
 		con = ConnectionManager.getConnection();
 		String values="";
-		boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamname,option);
+		boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamname);
 		if(teamExistsCheck)
 		{
 			return false;
 		}
-		else if (option == 1 && !teamExistsCheck) 
+		else if (!teamExistsCheck) 
 		{
-			 values = "INSERT INTO team (team_name,team_desc,created_by) " + "VALUES ('" +teamname+ "', '" +teamdesc+"', '" +Global.userName+"')";			
-		}		
-		else if (option == 2 && !teamExistsCheck) 
-		{
-			 values = "INSERT INTO business_team (team_name,team_desc,created_by) " + "VALUES ('" +teamname+ "', '" +teamdesc+"', '" +Global.userName+"')";			
-		}
+			 values = "INSERT INTO team (team_name,team_desc,created_by,team_type) " + "VALUES ('" +teamname+ "', '" +teamdesc+"', '" +Global.userName+"','" +option+"')";			
+		}				
 		s = con.createStatement();
 		s.executeUpdate(values);  
 		con.close();
@@ -45,22 +41,14 @@ public class TeamSqlQueries {
 		return false;
 	}
 	
-	public List<String> listTeams(int option) {
+	public List<String> listTeams() {
 		
 		try{
 			con = ConnectionManager.getConnection();	
 			Statement s=con.createStatement(); 
 			String team;
-			ResultSet rs = null;
-			 if (option == 1) 
-			{
-				  rs=s.executeQuery("SELECT * FROM team WHERE created_by ='" +Global.userName+ "'");			
-			}		
-			else if (option == 2 ) 
-			{
-				 rs=s.executeQuery("SELECT * FROM business_team WHERE created_by ='" +Global.userName+ "'");			
-			}
-			
+			ResultSet rs = null;			 
+				  rs=s.executeQuery("SELECT * FROM team WHERE created_by ='" +Global.userName+ "'");													
 			while(rs.next()){
 		        team = rs.getString("team_name");		        
 		        teams.add(team);		         
@@ -71,7 +59,7 @@ public class TeamSqlQueries {
 		catch(Exception e){ System.out.println(e);}
 		return null;
 	}
-	public boolean addMembersToTeam(List<String> members,String teamName,int option)
+	public boolean addMembersToTeam(List<String> members,String teamName)
 	{
 		try{
 			
@@ -90,16 +78,18 @@ public class TeamSqlQueries {
 				return false;	
 			}		
 			 
+		}			
+		boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamName);
+		if(!teamExistsCheck)
+		{
+			return false;
 		}
-		 if (option == 1) 
-			{
-			 values="UPDATE team SET team_members = '" +names+ "' WHERE team_name ='" +teamName+ "'";			
-			}		
-			else if (option == 2 ) 
-			{
-				values="UPDATE business_team SET team_members = '" +names+ "' WHERE team_name ='" +teamName+ "'";			
-			}
-		
+		else if (teamExistsCheck) 
+		{
+			values="UPDATE team SET team_members = '" +names+ "' WHERE team_name ='" +teamName+ "'";			
+		}	
+			 							
+			
 		System.out.println(names);
 		s = con.createStatement();
 		s.executeUpdate(values);  
@@ -109,21 +99,23 @@ public class TeamSqlQueries {
 		catch(Exception e){ System.out.println(e);}
 		return false;
 	}
-public HashMap<String, String> teamInfo(int option,String teamName) {
+public HashMap<String, String> teamInfo(String teamName) {
 		
 		try{
 			con = ConnectionManager.getConnection();	
 			Statement s=con.createStatement(); 
 			HashMap<String, String> teamDetails= new HashMap<String, String>();
-			ResultSet rs = null;
-			 if (option == 1) 
+			ResultSet rs = null;		
+			boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamName);
+			if(!teamExistsCheck)
 			{
-				  rs=s.executeQuery("SELECT * FROM team WHERE team_name ='" +teamName+ "'");			
-			}		
-			else if (option == 2 ) 
-			{
-				 rs=s.executeQuery("SELECT * FROM business_team WHERE team_name ='" +teamName+ "'");			
+				return null;
 			}
+			else if (teamExistsCheck) 
+			{
+				rs=s.executeQuery("SELECT * FROM team WHERE team_name ='" +teamName+ "'");			
+			}	
+				  								
 			
 			while(rs.next()){
 				teamDetails.put("team_name", rs.getString("team_name"));
@@ -131,6 +123,7 @@ public HashMap<String, String> teamInfo(int option,String teamName) {
 				teamDetails.put("team_members", rs.getString("team_members"));
 				teamDetails.put("access_mode", rs.getString("access_mode"));
 				teamDetails.put("created_by", rs.getString("created_by"));
+				teamDetails.put("team_type", rs.getString("team_type"));
 				//teamDetails.put("created_date", rs.getString("created_date"));
 		        return teamDetails;
 		      }

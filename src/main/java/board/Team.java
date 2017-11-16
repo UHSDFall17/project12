@@ -64,10 +64,7 @@ public class Team {
 	{		
 		try {					
 		List<String> teamList = new ArrayList<String>();
-		System.out.println("Press/n 1.General Team /n  2.Business Team ");
-		int option = inputReader.nextInt();
-		inputReader.nextLine();		
-		teamList = sqlObj.listTeams(option);
+		teamList = sqlObj.listTeams();
 		for(int i=0;i<teamList.size();i++)
 		{
 			  System.out.println(i+1 +". " + teamList.get(i));
@@ -88,10 +85,7 @@ public class Team {
 	}
 	public void addMembersToTeam()
 	{		
-		try {	
-			System.out.println("Press/n 1.General Team /n  2.Business Team ");
-			int option = inputReader.nextInt();
-			inputReader.nextLine();	
+		try {				
 			System.out.println("Enter Team Name:");
 			teamname  = inputReader.nextLine();
 		memberInput();
@@ -108,7 +102,7 @@ public class Team {
 			inputReader.nextLine();
 			if(optionsToAdd==2)	
 			{
-				boolean result=sqlObj.addMembersToTeam(members,teamname,option);
+				boolean result=sqlObj.addMembersToTeam(members,teamname);
 				if(!result)
 					System.out.println("Username does not exixts in the database");
 				else
@@ -124,14 +118,11 @@ public class Team {
 	}
 	public void viewTeamInfo()
 	{		
-		try {	
-			System.out.println("Press/n 1.General Team /n  2.Business Team ");
-			int option = inputReader.nextInt();
-			inputReader.nextLine();	
+		try {				
 			System.out.println("Enter Team Name:");
 			teamname  = inputReader.nextLine();
 			HashMap<String, String> teamDetails= new HashMap<String, String>();
-			teamDetails = sqlObj.teamInfo(option, teamname);
+			teamDetails = sqlObj.teamInfo(teamname);
 		if(teamDetails!=null)
 		{
 			System.out.println("-----Team Information---");
@@ -154,6 +145,16 @@ public class Team {
 				teamDetails.put("access_mode","Public");
 					}
 			System.out.println("Accessibilty: "+ teamDetails.get("access_mode"));
+			
+			if(teamDetails.get("team_type").equals("1"))
+			{
+		teamDetails.put("team_type","Normal Team");
+			}
+			else if(teamDetails.get("team_type").equals("2"))
+			{
+		teamDetails.put("team_type","Business Team");
+			}
+			System.out.println("Team Type: "+ teamDetails.get("team_type"));
 			System.out.println("------------------------");
 		}
 		else

@@ -54,19 +54,14 @@ public class CommonSqlQueries {
 		
 		return false;  
 	}
-	public boolean TeamNameExisitsCheck(String teamName,int option)
+	public boolean TeamNameExisitsCheck(String teamName)
 	{
 		try{
 			con = ConnectionManager.getConnection(); 
 			String values = "";
-		if (option==1)
-		{
+		
 			 values = "Select team_name from team Where team_name ='"+teamName+"';";
-		}
-		else if (option==2)
-		{			
-			 values = "Select team_name from business_team Where team_name ='"+teamName+"';";			
-		}
+		
 		 s=con.createStatement();  
 		ResultSet rs=s.executeQuery(values); 
 		
