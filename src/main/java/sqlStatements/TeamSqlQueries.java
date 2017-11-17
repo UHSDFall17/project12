@@ -132,4 +132,33 @@ public HashMap<String, String> teamInfo(String teamName) {
 		catch(Exception e){ System.out.println(e);}
 		return null;
 	}
+public boolean addMembersToTeam(Integer option,String teamName)
+{
+	try{
+		
+	con = ConnectionManager.getConnection();
+	String values="";
+	String partofQuery="";			
+	boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamName);
+	/*if(!teamExistsCheck)
+	{
+		return false;
+	}
+	else if (teamExistsCheck) 
+	{
+		if(option == 1)
+		{
+			partofQuery= "team_name='"+teamName+"'";
+		}
+		values="UPDATE team SET "+partofQuery+" WHERE team_name ='" +teamName+ "'";			
+	}	
+		*/ 							
+	s = con.createStatement();
+	s.executeUpdate(values);  
+	con.close();
+	return true;
+	}
+	catch(Exception e){ System.out.println(e);}
+	return false;
+}
 }
