@@ -1,6 +1,5 @@
 package board;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -133,7 +132,7 @@ public class Team {
 	{
 		try
 		{
-			teamDetails = sqlObj.teamInfo(teamname);
+			teamDetails = sqlObj.teamInfo(TeamName);
 			if(teamDetails!=null)
 			{
 				System.out.println("-----Team Information---");
@@ -151,10 +150,14 @@ public class Team {
 				}
 				System.out.println("Team Members: "+membernames );
 				System.out.println("Admin: "+ teamDetails.get("created_by"));
-				if(teamDetails.get("access_mode") == null ||teamDetails.get("access_mode") == "" )
+				if(teamDetails.get("access_mode") == null ||teamDetails.get("access_mode") == "" ||teamDetails.get("access_mode").equals("1"))
 						{
 					teamDetails.put("access_mode","Public");
 						}
+				else 
+				{
+					teamDetails.put("access_mode","Private");
+				}
 				System.out.println("Accessibilty: "+ teamDetails.get("access_mode"));
 				
 				if(teamDetails.get("team_type").equals("1"))
@@ -181,36 +184,69 @@ public class Team {
 			viewTeamInfo();
 			Integer optionToEdit=0;
 			String editedValues;
-			String TeamName=teamDetails.get("team_name");
-			inputReader.nextLine();
+			//String TeamName=teamDetails.get("team_name");
+			boolean result;
 			while(optionToEdit!=5)
 			{
 				System.out.println("Press the numbers associated with the labels to edit the values");
 				System.out.println("1.Team Name 2.Team Description 3. Accessibility 4.Team Type 5.Back to Team option");
 				
 				optionToEdit = inputReader.nextInt();
+				inputReader.nextLine();
 			switch(optionToEdit)
 			{
 			case 1:System.out.println("Enter New Team Name");
 			editedValues=inputReader.nextLine();		
-			teamDetails.put("team_type_edited",editedValues);
-			getTeamInfo(TeamName);
+			teamDetails.put("team_name_edited",editedValues);
+			result=sqlObj.editTeamInfo(optionToEdit,teamDetails);
+			if(result){
+				getTeamInfo(teamDetails.get("team_name_edited"));
+				System.out.println("Updated successully");
+			}
+			else
+			{
+				System.out.println("Error in Updation");
+			}
 			break;
 			case 2:System.out.println("Enter New Team Description");
 			editedValues=inputReader.nextLine();		
-			teamDetails.put("team_type_edited",editedValues);
-			getTeamInfo(TeamName);
+			teamDetails.put("team_desc_edited",editedValues);
+			 result=sqlObj.editTeamInfo(optionToEdit,teamDetails);
+			if(result){
+				getTeamInfo(teamDetails.get("team_name"));
+				System.out.println("Updated successully");
+			}
+			else
+			{
+				System.out.println("Error in Updation");
+			}
 			break;
 			case 3:System.out.println("Change accessibility. Enter 1 for public 2 for private");
 			editedValues=inputReader.nextLine();		
 			teamDetails.put("access_mode_edited",editedValues);
-			getTeamInfo(TeamName);
+			result=sqlObj.editTeamInfo(optionToEdit,teamDetails);
+			if(result){
+				getTeamInfo(teamDetails.get("team_name"));
+				System.out.println("Updated successully");
+			}
+			else
+			{
+				System.out.println("Error in Updation");
+			}
 			break;
 			case 4:System.out.println("Change Team Type. Enter 1 for Normal 2 for Business");
-			editedValues=inputReader.nextLine();		
-			teamDetails.put("access_mode_edited",editedValues);
-			getTeamInfo(TeamName);
-			break;
+			editedValues=inputReader.nextLine();			
+			teamDetails.put("team_type_edited",editedValues);
+			sqlObj.editTeamInfo(optionToEdit,teamDetails);
+			result=sqlObj.editTeamInfo(optionToEdit,teamDetails);
+			if(result){
+				getTeamInfo(teamDetails.get("team_name"));
+				System.out.println("Updated successully");
+			}
+			else
+			{
+				System.out.println("Error in Updation");
+			}			break;
 			}
 			}
 			

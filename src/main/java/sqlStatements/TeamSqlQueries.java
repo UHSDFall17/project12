@@ -132,27 +132,35 @@ public HashMap<String, String> teamInfo(String teamName) {
 		catch(Exception e){ System.out.println(e);}
 		return null;
 	}
-public boolean addMembersToTeam(Integer option,String teamName)
+public boolean editTeamInfo(Integer option,HashMap<String, String> teamDetails)
 {
 	try{
 		
 	con = ConnectionManager.getConnection();
 	String values="";
-	String partofQuery="";			
-	boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamName);
-	/*if(!teamExistsCheck)
+	String partofQuery="";	
+	
+	boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamDetails.get("team_name"));
+	if(!teamExistsCheck)
 	{
 		return false;
 	}
 	else if (teamExistsCheck) 
 	{
-		if(option == 1)
+		switch(option)
 		{
-			partofQuery= "team_name='"+teamName+"'";
+		case 1:partofQuery= "team_name='"+teamDetails.get("team_name_edited")+"'";
+		break;
+		case 2:partofQuery= "team_desc='"+teamDetails.get("team_desc_edited")+"'";
+		break;
+		case 3:partofQuery= "access_mode='"+teamDetails.get("access_mode_edited")+"'";
+		break;
+		case 4:partofQuery= "team_type='"+teamDetails.get("team_type_edited")+"'";
+		break;
 		}
-		values="UPDATE team SET "+partofQuery+" WHERE team_name ='" +teamName+ "'";			
+		values="UPDATE team SET "+partofQuery+" WHERE team_name ='" +teamDetails.get("team_name")+ "'";			
 	}	
-		*/ 							
+		 							
 	s = con.createStatement();
 	s.executeUpdate(values);  
 	con.close();
