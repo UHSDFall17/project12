@@ -178,13 +178,18 @@ public class Team {
 		}
 		catch(Exception e){ System.out.println(e);} 
 	}
+	public void setValuesForEdit()
+	{
+		
+	}
 	public void editTeamInfo()
 	{		
 		try {				
 			viewTeamInfo();
 			Integer optionToEdit=0;
-			String editedValues;
-			//String TeamName=teamDetails.get("team_name");
+			String editedValues="";
+			String printEditLabels="";
+			String editLabels="";
 			boolean result;
 			while(optionToEdit!=5)
 			{
@@ -193,60 +198,41 @@ public class Team {
 				
 				optionToEdit = inputReader.nextInt();
 				inputReader.nextLine();
+				if(optionToEdit==5){
+					break;
+				}
 			switch(optionToEdit)
 			{
-			case 1:System.out.println("Enter New Team Name");
+			case 1: printEditLabels="Enter New Team Name";
+			editLabels="team_name_edited";
+			break;
+			case 2: printEditLabels="Enter New Description Name";
+			editLabels="team_desc_edited";
+			break;			
+			case 3:printEditLabels="Change accessibility. Enter 1 for public 2 for private";
+			editLabels="access_mode_edited";
+			break;				
+			case 4:printEditLabels="Change Team Type. Enter 1 for Normal 2 for Business";
+			editLabels="team_type_edited";
+			break;						
+			}
+			System.out.println(printEditLabels);
 			editedValues=inputReader.nextLine();		
-			teamDetails.put("team_name_edited",editedValues);
+			teamDetails.put(editLabels,editedValues);
 			result=sqlObj.editTeamInfo(optionToEdit,teamDetails);
 			if(result){
-				getTeamInfo(teamDetails.get("team_name_edited"));
+				if(optionToEdit==1){
+					getTeamInfo(teamDetails.get("team_name_edited"));
+				}
+				else{
+					getTeamInfo(teamDetails.get("team_name"));
+				}
+				
 				System.out.println("Updated successully");
 			}
 			else
 			{
 				System.out.println("Error in Updation");
-			}
-			break;
-			case 2:System.out.println("Enter New Team Description");
-			editedValues=inputReader.nextLine();		
-			teamDetails.put("team_desc_edited",editedValues);
-			 result=sqlObj.editTeamInfo(optionToEdit,teamDetails);
-			if(result){
-				getTeamInfo(teamDetails.get("team_name"));
-				System.out.println("Updated successully");
-			}
-			else
-			{
-				System.out.println("Error in Updation");
-			}
-			break;
-			case 3:System.out.println("Change accessibility. Enter 1 for public 2 for private");
-			editedValues=inputReader.nextLine();		
-			teamDetails.put("access_mode_edited",editedValues);
-			result=sqlObj.editTeamInfo(optionToEdit,teamDetails);
-			if(result){
-				getTeamInfo(teamDetails.get("team_name"));
-				System.out.println("Updated successully");
-			}
-			else
-			{
-				System.out.println("Error in Updation");
-			}
-			break;
-			case 4:System.out.println("Change Team Type. Enter 1 for Normal 2 for Business");
-			editedValues=inputReader.nextLine();			
-			teamDetails.put("team_type_edited",editedValues);
-			sqlObj.editTeamInfo(optionToEdit,teamDetails);
-			result=sqlObj.editTeamInfo(optionToEdit,teamDetails);
-			if(result){
-				getTeamInfo(teamDetails.get("team_name"));
-				System.out.println("Updated successully");
-			}
-			else
-			{
-				System.out.println("Error in Updation");
-			}			break;
 			}
 			}
 			
