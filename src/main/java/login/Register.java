@@ -17,40 +17,31 @@ public class Register {
 	
 	public void RequiredValidation(int input)
 	{
-	
+	String printString="";
 		switch(input)
 		{
-		case 1: System.out.println ("Name is Required!. Try Again");
-		register();
+		case 1: printString="Name is Required";			
 		break;
-		case 2: System.out.println ("Email is Required!. Try Again");
-		register();
+		case 2:printString="Email is Required";
 		break;
-		case 3: System.out.println ("Password is Required!. Try Again");
-		register();
-		case 4: System.out.println ("Confirm Password is Required!. Try Again");
-		register();
-		case 5: System.out.println ("Email Id is Invalid!. Try Again");
-		register();
-		case 6: System.out.println ("Name should contain only Numbers!. Try Again");
-		register();
-		case 7: System.out.println ("Password and Confirm password does not match!. Try Again");
-		register();
+		case 3:printString="Password is Required";
+		break;
+		case 4:printString="ConfirmPassword is Required";
+		break;
+		case 5:printString="Email Id is Invalid";
+		break; 
+		case 6:printString="Name should contain only Numbers";
+		break;
+		case 7: printString="Password and Confirm password does not match";
 		break;
 		}
+		System.out.println (printString+"!. Try Again");
+		register();
 	}
 	
 	public void getInputValues(){
 		try
 		{
-			
-		}
-		catch(Exception e){ System.out.println(e);}	  
-	}
-	
-	public void register()
-	{
-		try{  									
 			System.out.println("---Registration Form---");
 			System.out.println("Please enter your name:");
 			 username  = inputReader.nextLine();
@@ -87,26 +78,32 @@ public class Register {
 					 {
 						 RequiredValidation(7);
 					 }
-						
-						System.out.println("Name:"+ username + "Email ID:"+email);
-						int result =registerObj.registerUser(username,password,email);
-						switch(result)
-						{
-						case 0: System.out.println("Updated Successfully");
-						WelcomeBoard b = new WelcomeBoard();
-						b.welcome();
-						break;
-						case 1: System.out.println("Username already exists in the database");
-						register();
-						break;
-						case 2:System.out.println("Email Id already exists in the database");
-						register(); 
-						break;
-						default:System.out.println("Email Id already exists in the database");
-						register(); 
-						break;							
-						}						
-			
+		}
+		catch(Exception e){ System.out.println(e);}	  
+	}
+	
+	public void register()
+	{
+		try{  												
+			getInputValues();
+			System.out.println("Name:"+ username + " Email ID:"+email);
+			int result =registerObj.registerUser(username,password,email);
+			String printValues="";
+			switch(result)
+			{
+			case 0: System.out.println("Updated Successfully");
+			WelcomeBoard b = new WelcomeBoard();
+			b.welcome();
+			break;
+			case 1: printValues="Username already exists in the database";
+			break;
+			case 2: printValues="Email Id already exists in the database";
+			break;
+			default:printValues="Email Id already exists in the database";
+			break;
+			}						
+			System.out.println(printValues);
+			register();
 				
 		}
 		catch(Exception e){ System.out.println(e);}	  
