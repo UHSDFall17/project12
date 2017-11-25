@@ -65,7 +65,8 @@ public class TeamDetails {
 	public HashMap<String, String> getTeamDetails() {
 		return teamDetails;
 	}
-	public void putTeamDetails(String editLabels,String editedValues) {
+
+	public void putTeamDetails(String editLabels, String editedValues) {
 		teamDetails.put(editLabels, editedValues);
 	}
 
