@@ -70,12 +70,9 @@ public class Team {
 	{		
 		try {					
 		List<String> teamList = new ArrayList<String>();
-		teamList = sqlObj.listTeams();
-		for(int i=0;i<teamList.size();i++)
-		{
-			  System.out.println(i+1 +". " + teamList.get(i));
-		}
-		
+		teamList = sqlObj.listTeams();		
+		teamObj.setTeamList(teamList);
+		teamObj.printTeamList();		
 		}
 		catch(Exception e){ System.out.println(e);} 
 	}

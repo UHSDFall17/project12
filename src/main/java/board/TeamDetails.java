@@ -2,6 +2,7 @@ package board;
 
 import java.util.HashMap;
 import java.util.List;
+
 import sqlStatements.TeamSqlQueries;
 
 public class TeamDetails {
@@ -78,5 +79,12 @@ public class TeamDetails {
           public void createTeam()
           {
           sqlObj.createTeam(teamname, teamdesc, option);
+          }
+          public void printTeamList()
+          {
+        	  for(int i=0;i<teamList.size();i++)
+      		{
+      			  System.out.println(i+1 +". " + teamList.get(i));
+      		}
           }
 }
