@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-
+import board.TeamDetails;
 import sqlStatements.TeamSqlQueries;
 
 public class Team {
@@ -15,13 +15,16 @@ public class Team {
 	List<String> members = new ArrayList<String>();
 	Scanner inputReader= new Scanner (System.in);
 	HashMap<String, String> teamDetails= new HashMap<String, String>();
+	 TeamDetails teamObj = new TeamDetails();
 	
 	public void getInputForCreateTeam()
 	{		
 		System.out.println("Please enter Team Name:");
 		 teamname  = inputReader.nextLine();
+		 teamObj.setTeamName(teamname);
 		System.out.println("Please enter Team Description(optional):");
-	      teamdesc  = inputReader.nextLine();		  
+	      teamdesc  = inputReader.nextLine();	     
+	      teamObj.setTeamDesc(teamdesc);
 	}
 	
 	public void team()
@@ -55,11 +58,11 @@ public class Team {
 		if (option == 1) 
 			System.out.println("---Create Team---");							
 		else if (option == 2) 
-			System.out.println("---Create Business Team---");					 			
+			System.out.println("---Create Business Team---");			
 		getInputForCreateTeam();
-		sqlObj.createTeam(teamname, teamdesc, option);	  
-		System.out.println(teamname + "Team created Successfully");
-		
+		  teamObj.setOption(option);  
+		  teamObj.createTeam();
+		System.out.println(teamname + "Team created Successfully");		
 		}
 		catch(Exception e){ System.out.println(e);} 
 	}

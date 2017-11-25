@@ -75,5 +75,8 @@ public class TeamDetails {
           public String getAllMemberNames() {
              return allMemberNames;
           }
-         
+          public void createTeam()
+          {
+          sqlObj.createTeam(teamname, teamdesc, option);
+          }
 }

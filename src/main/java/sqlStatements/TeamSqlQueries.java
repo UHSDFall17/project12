@@ -10,7 +10,6 @@ import java.util.List;
 import trello.ConnectionManager;
 import sqlStatements.CommonSqlQueries;
 import global.Global;
-import board.Team;
 
 public class TeamSqlQueries {
 	private Connection con;
@@ -61,8 +60,7 @@ public class TeamSqlQueries {
 	}
 	public boolean addMembersToTeam(List<String> members,String teamName)
 	{
-		try{
-			
+		try{			
 		con = ConnectionManager.getConnection();
 		String values="";
 		String names="";
@@ -87,8 +85,7 @@ public class TeamSqlQueries {
 		else if (teamExistsCheck) 
 		{
 			values="UPDATE team SET team_members = '" +names+ "' WHERE team_name ='" +teamName+ "'";			
-		}	
-			 							
+		}		 							
 			
 		System.out.println(names);
 		s = con.createStatement();
