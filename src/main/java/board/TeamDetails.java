@@ -1,5 +1,6 @@
 package board;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -22,7 +23,12 @@ public class TeamDetails {
     {
     	teamname = "";
     	teamdesc = "";
-    
+    	members=new ArrayList<String>() ;
+    	teamDetails=new HashMap<String, String>();
+    	teamList=new ArrayList<String>();
+    	memberName="";
+    	allMemberNames="";
+    	option=0;
     }
     public void setTeamName(String teamname) {
         this.teamname = teamname;
@@ -58,16 +64,27 @@ public class TeamDetails {
        public void setTeamList(List<String> teamList) {
            this.teamList = teamList;
         }
-       public List<String> getTeamList() {
-           return teamList;
+       public void getTeamList() {
+    	   teamList = sqlObj.listTeams();          
         }
+       public void printTeamList()
+       {
+    	   getTeamList();
+     	  for(int i=0;i<teamList.size();i++)
+   		{
+   			  System.out.println(i+1 +". " + teamList.get(i));
+   		}
+       }
        public void setMemberName(String memberName) {
            this.memberName = memberName;
         }
 
-        public String getMemberName() {
-           return memberName;
+        public void getMemberName() {
+        System.out.println("Enter Member Name:");
+			memberName  = inputReader.nextLine();
+          
         }
+
         public void setOption(int option) {
             this.option = option;
          }
@@ -88,15 +105,10 @@ public class TeamDetails {
           {
           sqlObj.createTeam(teamname, teamdesc, option);
           }
-          public void printTeamList()
-          {
-        	  for(int i=0;i<teamList.size();i++)
-      		{
-      			  System.out.println(i+1 +". " + teamList.get(i));
-      		}
-          }
+          
           public void addMembers()
-          {
+          { 
+        	  getMemberName();
         	  members.add(memberName);
           }
           public void printTeamMembers()

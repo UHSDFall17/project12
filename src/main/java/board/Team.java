@@ -18,12 +18,6 @@ public class Team {
 	HashMap<String, String> teamDetails= new HashMap<String, String>();
 	 TeamDetails teamObj = new TeamDetails();
 	
-	public void getInputForCreateTeam()
-	{		
-		teamname=teamObj.getTeamName();
-		teamdesc=teamObj.getTeamDesc();  
-	}
-	
 	public void team()
 	{		
 		try {			
@@ -33,7 +27,7 @@ public class Team {
 		{
 		case 1:createTeam();
 		break;
-		case 2:teamList();
+		case 2:teamObj.printTeamList();
 		break;
 		case 3:addMembersToTeam();
 		break;
@@ -54,38 +48,20 @@ public class Team {
 			System.out.println("---Create Team---");							
 		else if (option == 2) 
 			System.out.println("---Create Business Team---");			
-		getInputForCreateTeam();
-		  teamObj.setOption(option);  
-		  teamObj.createTeam();
+		teamname=teamObj.getTeamName();
+		teamdesc=teamObj.getTeamDesc(); 
+		teamObj.setOption(option);  
+		teamObj.createTeam();
 		System.out.println(teamname + " created Successfully");		
 		}
 		catch(Exception e){ System.out.println(e);} 
 	}
-	public void teamList()
-	{		
-		try {					
-		List<String> teamList = new ArrayList<String>();
-		teamList = sqlObj.listTeams();		
-		teamObj.setTeamList(teamList);
-		teamObj.printTeamList();		
-		}
-		catch(Exception e){ System.out.println(e);} 
-	}
-	public void memberInput()
-	{
-		try{						
-			System.out.println("Enter Member Name:");
-			memberName  = inputReader.nextLine();
-			teamObj.setMemberName(memberName);
-			teamObj.addMembers();
-		}
-		catch(Exception e){ System.out.println(e);}
-	}
+
 	public void addMembersToTeam()
 	{		
 		try {				
 			teamname=teamObj.getTeamName();
-		memberInput();
+			teamObj.addMembers();
 		members=teamObj.getMembers();
 		int optionsToAdd;
 		do
@@ -104,7 +80,7 @@ public class Team {
 				break;	
 			}
 						
-			memberInput();
+			teamObj.addMembers();
 		}while(optionsToAdd!=2);
 		
 		}
