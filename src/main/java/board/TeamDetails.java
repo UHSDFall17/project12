@@ -2,6 +2,7 @@ package board;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import sqlStatements.TeamSqlQueries;
 
@@ -15,6 +16,7 @@ public class TeamDetails {
     private String allMemberNames;
     private int option;
     TeamSqlQueries sqlObj=new TeamSqlQueries();
+    Scanner inputReader= new Scanner (System.in);
     
     public TeamDetails()
     {
@@ -27,6 +29,8 @@ public class TeamDetails {
      }
 
      public String getTeamName() {
+    	 System.out.println("Enter Team Name:");
+		teamname  = inputReader.nextLine();	
         return teamname;
      }
      
@@ -35,6 +39,8 @@ public class TeamDetails {
        }
       
        public String getTeamDesc() {
+    	   System.out.println("Please enter Team Description(optional):");
+ 	      teamdesc  = inputReader.nextLine();
           return teamdesc;
        }
        public void setMembers(List<String> members) {
@@ -67,6 +73,8 @@ public class TeamDetails {
          }
 
          public int getOption() {
+           option = inputReader.nextInt();
+     		inputReader.nextLine();
             return option;
          }
          public void setAllMemberNames(String allMemberNames) {
@@ -86,5 +94,16 @@ public class TeamDetails {
       		{
       			  System.out.println(i+1 +". " + teamList.get(i));
       		}
+          }
+          public void addMembers()
+          {
+        	  members.add(memberName);
+          }
+          public void printTeamMembers()
+          {
+        	  for(int i=0;i<members.size();i++)
+			{
+			  System.out.println(i+1 +". " + members.get(i));
+		}
           }
 }

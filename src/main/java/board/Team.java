@@ -11,6 +11,7 @@ public class Team {
 
 	 String teamname;
 	 String teamdesc;	
+	 String memberName;
 	TeamSqlQueries sqlObj=new TeamSqlQueries();
 	List<String> members = new ArrayList<String>();
 	Scanner inputReader= new Scanner (System.in);
@@ -19,20 +20,15 @@ public class Team {
 	
 	public void getInputForCreateTeam()
 	{		
-		System.out.println("Please enter Team Name:");
-		 teamname  = inputReader.nextLine();
-		 teamObj.setTeamName(teamname);
-		System.out.println("Please enter Team Description(optional):");
-	      teamdesc  = inputReader.nextLine();	     
-	      teamObj.setTeamDesc(teamdesc);
+		teamname=teamObj.getTeamName();
+		teamdesc=teamObj.getTeamDesc();  
 	}
 	
 	public void team()
 	{		
 		try {			
 		System.out.println("Select the options below \n 1.Create New Team \n 2.View Team List \n 3.Add Members to Team \n 4.View Team Information \n 5. Edit Team Profile \n 6. Logout");
-		int option = inputReader.nextInt();
-		inputReader.nextLine();
+		int option = teamObj.getOption();
 		switch(option)
 		{
 		case 1:createTeam();
@@ -53,8 +49,7 @@ public class Team {
 	{		
 		try {		
 		System.out.println("Press/n 1.General Team /n  2.Business Team ");
-		int option = inputReader.nextInt();
-		inputReader.nextLine();
+		int option = teamObj.getOption();
 		if (option == 1) 
 			System.out.println("---Create Team---");							
 		else if (option == 2) 
@@ -62,7 +57,7 @@ public class Team {
 		getInputForCreateTeam();
 		  teamObj.setOption(option);  
 		  teamObj.createTeam();
-		System.out.println(teamname + "Team created Successfully");		
+		System.out.println(teamname + " created Successfully");		
 		}
 		catch(Exception e){ System.out.println(e);} 
 	}
@@ -78,28 +73,24 @@ public class Team {
 	}
 	public void memberInput()
 	{
-		try{			
-			String memberName;
+		try{						
 			System.out.println("Enter Member Name:");
 			memberName  = inputReader.nextLine();
-		members.add(memberName);			
+			teamObj.setMemberName(memberName);
+			teamObj.addMembers();
 		}
 		catch(Exception e){ System.out.println(e);}
 	}
 	public void addMembersToTeam()
 	{		
 		try {				
-			System.out.println("Enter Team Name:");
-			teamname  = inputReader.nextLine();
+			teamname=teamObj.getTeamName();
 		memberInput();
+		members=teamObj.getMembers();
 		int optionsToAdd;
 		do
 		{
-			for(int i=0;i<members.size();i++)
-			{
-				  System.out.println(i+1 +". " + members.get(i));
-			}
-			
+			teamObj.printTeamMembers();			
 			System.out.println("Press 1.Add More Members 2.Confirm Members");
 			optionsToAdd=inputReader.nextInt();
 			inputReader.nextLine();
@@ -122,8 +113,7 @@ public class Team {
 	public void viewTeamInfo()
 	{		
 		try {				
-			System.out.println("Enter Team Name:");
-			teamname  = inputReader.nextLine();			
+			teamname=teamObj.getTeamName();		
 			getTeamInfo(teamname);
 		}
 		catch(Exception e){ System.out.println(e);} 
