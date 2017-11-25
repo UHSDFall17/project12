@@ -9,113 +9,166 @@ import sqlStatements.TeamSqlQueries;
 
 public class TeamDetails {
 	private String teamname;
-    private String teamdesc;
-    private List<String> members;
-    private HashMap<String, String> teamDetails;
-    private List<String> teamList;
-    private String memberName;
-    private String allMemberNames;
-    private int option;
-    TeamSqlQueries sqlObj=new TeamSqlQueries();
-    Scanner inputReader= new Scanner (System.in);
-    
-    public TeamDetails()
-    {
-    	teamname = "";
-    	teamdesc = "";
-    	members=new ArrayList<String>() ;
-    	teamDetails=new HashMap<String, String>();
-    	teamList=new ArrayList<String>();
-    	memberName="";
-    	allMemberNames="";
-    	option=0;
-    }
-    public void setTeamName(String teamname) {
-        this.teamname = teamname;
-     }
+	private String teamdesc;
+	private List<String> members;
+	private HashMap<String, String> teamDetails;
+	private List<String> teamList;
+	private String memberName;
+	private String allMemberNames;
+	private int option;
+	TeamSqlQueries sqlObj = new TeamSqlQueries();
+	Scanner inputReader = new Scanner(System.in);
 
-     public String getTeamName() {
-    	 System.out.println("Enter Team Name:");
-		teamname  = inputReader.nextLine();	
-        return teamname;
-     }
-     
-      public void setTeamDesc(String teamdesc) {
-          this.teamdesc = teamdesc;
-       }
-      
-       public String getTeamDesc() {
-    	   System.out.println("Please enter Team Description(optional):");
- 	      teamdesc  = inputReader.nextLine();
-          return teamdesc;
-       }
-       public void setMembers(List<String> members) {
-           this.members = members;
-        }
-       public List<String> getMembers() {
-           return members;
-        }
-       public void setTeamDetails(HashMap<String, String> teamDetails) {
-           this.teamDetails = teamDetails;
-        }
-       public HashMap<String, String> getTeamDetails() {
-           return teamDetails;
-        }
-       public void setTeamList(List<String> teamList) {
-           this.teamList = teamList;
-        }
-       public void getTeamList() {
-    	   teamList = sqlObj.listTeams();          
-        }
-       public void printTeamList()
-       {
-    	   getTeamList();
-     	  for(int i=0;i<teamList.size();i++)
-   		{
-   			  System.out.println(i+1 +". " + teamList.get(i));
-   		}
-       }
-       public void setMemberName(String memberName) {
-           this.memberName = memberName;
-        }
+	public TeamDetails() {
+		teamname = "";
+		teamdesc = "";
+		members = new ArrayList<String>();
+		teamDetails = new HashMap<String, String>();
+		teamList = new ArrayList<String>();
+		memberName = "";
+		allMemberNames = "";
+		option = 0;
+	}
 
-        public void getMemberName() {
-        System.out.println("Enter Member Name:");
-			memberName  = inputReader.nextLine();
-          
-        }
+	public void setTeamName(String teamname) {
+		this.teamname = teamname;
+	}
 
-        public void setOption(int option) {
-            this.option = option;
-         }
+	public String getTeamName() {
+		System.out.println("Enter Team Name:");
+		teamname = inputReader.nextLine();
+		return teamname;
+	}
 
-         public int getOption() {
-           option = inputReader.nextInt();
-     		inputReader.nextLine();
-            return option;
-         }
-         public void setAllMemberNames(String allMemberNames) {
-             this.allMemberNames = allMemberNames;
-          }
-         
-          public String getAllMemberNames() {
-             return allMemberNames;
-          }
-          public void createTeam()
-          {
-          sqlObj.createTeam(teamname, teamdesc, option);
-          }
-          
-          public void addMembers()
-          { 
-        	  getMemberName();
-        	  members.add(memberName);
-          }
-          public void printTeamMembers()
-          {
-        	  for(int i=0;i<members.size();i++)
-			{
-			  System.out.println(i+1 +". " + members.get(i));
+	public void setTeamDesc(String teamdesc) {
+		this.teamdesc = teamdesc;
+	}
+
+	public String getTeamDesc() {
+		System.out.println("Please enter Team Description(optional):");
+		teamdesc = inputReader.nextLine();
+		return teamdesc;
+	}
+
+	public void setMembers(List<String> members) {
+		this.members = members;
+	}
+
+	public List<String> getMembers() {
+		return members;
+	}
+
+	public void setTeamDetails(HashMap<String, String> teamDetails) {
+		this.teamDetails = teamDetails;
+	}
+
+	public HashMap<String, String> getTeamDetails() {
+		return teamDetails;
+	}
+	public void putTeamDetails(String editLabels,String editedValues) {
+		teamDetails.put(editLabels, editedValues);
+	}
+
+	public void setTeamList(List<String> teamList) {
+		this.teamList = teamList;
+	}
+
+	public void getTeamList() {
+		teamList = sqlObj.listTeams();
+	}
+
+	public void printTeamList() {
+		getTeamList();
+		for (int i = 0; i < teamList.size(); i++) {
+			System.out.println(i + 1 + ". " + teamList.get(i));
 		}
-          }
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
+	public void getMemberName() {
+		System.out.println("Enter Member Name:");
+		memberName = inputReader.nextLine();
+	}
+
+	public void setOption(int option) {
+		this.option = option;
+	}
+
+	public int getOption() {
+		option = inputReader.nextInt();
+		inputReader.nextLine();
+		return option;
+	}
+
+	public void setAllMemberNames(String allMemberNames) {
+		this.allMemberNames = allMemberNames;
+	}
+
+	public String getAllMemberNames() {
+		return allMemberNames;
+	}
+
+	public void createTeam() {
+		sqlObj.createTeam(teamname, teamdesc, option);
+	}
+
+	public void addMembers() {
+		getMemberName();
+		members.add(memberName);
+	}
+
+	public void printTeamMembers() {
+		for (int i = 0; i < members.size(); i++) {
+			System.out.println(i + 1 + ". " + members.get(i));
+		}
+	}
+
+	public void printTeamDetails() {
+		try {
+			teamDetails = sqlObj.teamInfo(teamname);
+			if (teamDetails != null) {
+				System.out.println("-----Team Information---");
+				System.out
+						.println("Team Name: " + teamDetails.get("team_name"));
+				System.out.println("Team Description: "
+						+ teamDetails.get("team_desc"));
+				String lastChar = teamDetails.get("team_members").substring(
+						teamDetails.get("team_members").length() - 1);
+				String membernames;
+				if (lastChar.trim().equals(",")) {
+					membernames = teamDetails.get("team_members").substring(0,
+							teamDetails.get("team_members").length() - 1);
+				} else {
+					membernames = teamDetails.get("team_members");
+				}
+				System.out.println("Team Members: " + membernames);
+				System.out.println("Admin: " + teamDetails.get("created_by"));
+				if (teamDetails.get("access_mode") == null
+						|| teamDetails.get("access_mode") == ""
+						|| teamDetails.get("access_mode").equals("1")) {
+					teamDetails.put("access_mode", "Public");
+				} else {
+					teamDetails.put("access_mode", "Private");
+				}
+				System.out.println("Accessibilty: "
+						+ teamDetails.get("access_mode"));
+
+				if (teamDetails.get("team_type").equals("1")) {
+					teamDetails.put("team_type", "Normal Team");
+				} else if (teamDetails.get("team_type").equals("2")) {
+					teamDetails.put("team_type", "Business Team");
+				}
+				System.out
+						.println("Team Type: " + teamDetails.get("team_type"));
+				System.out.println("------------------------");
+			} else {
+				System.out.println("Error!");
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 }
