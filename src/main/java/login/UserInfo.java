@@ -21,7 +21,7 @@ public class UserInfo {
 	}
 
 	public String getUserName() {
-		System.out.println("Enter User Name:");
+		System.out.println("Enter your name:");
 		username = inputReader.nextLine();
 		return username;
 	}
@@ -31,8 +31,26 @@ public class UserInfo {
 	}
 
 	public String getEmail() {
-		System.out.println("Please enter Team Description(optional):");
+		System.out.println("Enter your EmailID:");
 		email = inputReader.nextLine();
 		return email;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getPassword() {
+		System.out.println("Enter Password:");
+		password = inputReader.nextLine();
+		return password;
+	}
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
+	public String getConfirmPassword() {
+		System.out.println("Re-Enter your Password:");
+		confirmPassword = inputReader.nextLine();
+		return confirmPassword;
 	}
 }
