@@ -5,6 +5,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import login.Login;
 import login.Register;
+import login.UserInfo;
 import validations.Validation;
 import sqlStatements.CommonSqlQueries;
 
@@ -32,8 +33,9 @@ public class AppTest
 	public void test_LoginCheck()
 	{
 		Login obj = new Login();
-		obj.setusername("naresh123");
-		obj.setpassword ( "test");
+		UserInfo userObj = new UserInfo();
+		userObj.setUserName("naresh123");
+		userObj.setPassword ( "test");
 		boolean expectation = true;
 		boolean result = obj.loginCheck();
 		assertEquals(expectation, result);

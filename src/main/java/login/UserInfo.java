@@ -21,7 +21,7 @@ public class UserInfo {
 	}
 
 	public String getUserName() {
-		System.out.println("Enter your name:");
+		System.out.println("Enter user name:");
 		username = inputReader.nextLine();
 		return username;
 	}

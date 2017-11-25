@@ -10,34 +10,16 @@ import global.Global;
 public class Login {
 	private String username;
 	private String password;
-
 	private Connection con = null;
 	Scanner inputReader = new Scanner(System.in);
-
-	public String getusername() {
-		return username;
-	}
-
-	public void setusername(String value) {
-		username = value;
-	}
-
-	public String getpassword() {
-		return password;
-	}
-
-	public void setpassword(String value) {
-		password = value;
-	}
+	UserInfo userObj = new UserInfo();
 
 	public void loginPage() {
 
 		try {
 			System.out.println("---Login Form---");
-			System.out.println("Please enter your username:");
-			username = inputReader.nextLine();
-			System.out.println("Please enter your password");
-			password = inputReader.nextLine();
+			username = userObj.getUserName();
+			password = userObj.getPassword();
 			boolean loginResult = loginCheck();
 			if (loginResult) {
 				System.out.println("Successful Login");
@@ -89,8 +71,7 @@ public class Login {
 					"jdbc:mysql://50.62.176.51/Trello", "trello", "Team12");
 
 			Scanner input = new Scanner(System.in);
-			System.out.println("Enter your existing username:");
-			username = input.nextLine();
+			username = userObj.getUserName();
 
 			String values = "SELECT user_name FROM login Where user_name = '"
 					+ username + "';";
@@ -98,9 +79,8 @@ public class Login {
 			ResultSet rs = s.executeQuery(values);
 
 			if (rs.next()) {
-				System.out
-						.println("Entry matches. Please enter a new password:");
-				String password = input.nextLine();
+				System.out.println("Entry matches. ");
+				password = userObj.getPassword();
 
 				values = "UPDATE login (user_name,password) " + "VALUES ('"
 						+ username + "', '" + password + "')";
