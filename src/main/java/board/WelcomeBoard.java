@@ -16,7 +16,7 @@ public class WelcomeBoard {
 		do {
 			if((!Global.userType.equals(null)|| !Global.userType.equals("")) && Global.userType.equals("1"))
 			{
-				System.out.println("Select the options below \n 1.Board \n 2.Team \n 3.Notification \n 4. Logout");
+				System.out.println("Select the options below \n 1.Board \n 2.Team \n 3. Notification \n 4. Restore Deleted Items \n 5. Logout");				
 			}
 			else
 			{
@@ -43,6 +43,10 @@ public class WelcomeBoard {
 				App a = new App();
 				a.options();
 				}
+				break;
+			case 5:				
+				App a = new App();
+				a.options();
 				break;
 			default:
 				System.out.println("invalid option");
