@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
+import board.Cards;
 
 import trello.ConnectionManager;
 
@@ -44,11 +45,9 @@ public void board() {
 	else {
 		System.out.println("Please enter a valid option");
 	}
-
 }
 	catch(Exception e){ System.out.println(e);} 
 }
 
-Cards card = new Cards();
 
 }

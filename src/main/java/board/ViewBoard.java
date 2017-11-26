@@ -25,12 +25,15 @@ public class ViewBoard {
 			openBoard(boardname);
 		} else
 			System.out.print("Back functionality");
+		
+		Cards card = new Cards();
+		card.cardDetails();
 	}
 
 	private void openBoard(String boardname2) {
 		this.boardname1 = boardname2;
 		sqlObj.listCards(boardname1);
-
+		
 	}
 
 	private void starBoard() {
