@@ -7,6 +7,7 @@ import trello.App;
 public class WelcomeBoard {
 	int value;
 	Scanner inputReader = new Scanner(System.in);
+	Board b = new Board();
 
 	public void welcome() {
 
@@ -18,7 +19,6 @@ public class WelcomeBoard {
 			inputReader.nextLine();
 			switch (value) {
 			case 1:
-				Board b = new Board();
 				b.board();
 				break;
 			case 2:
@@ -26,12 +26,10 @@ public class WelcomeBoard {
 				t.team();
 				break;
 			case 3:
-				Board c = new Board();
-				c.board();
+				b.board();
 				break;
 			case 4:
-				ViewBoard vb = new ViewBoard();
-				vb.displayBoards();
+				b.displayBoards();
 				break;
 			case 5:
 				Notifications nuser = new Notifications();
@@ -47,4 +45,7 @@ public class WelcomeBoard {
 		} while (value != 5);
 
 	}
+
+
+	
 }
