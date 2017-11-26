@@ -6,14 +6,41 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 import board.Cards;
+import global.Global;
 import sqlStatements.BoardSqlQueries;
+import trello.App;
 import trello.ConnectionManager;
 
 public class Board {
 	private Connection con = null;
 	Scanner inputReader = new Scanner (System.in);
 	BoardSqlQueries sqlObj = new BoardSqlQueries();
-	String boardname,boardname1;
+	String boardname,boardname1;int value ;
+	WelcomeBoard wb = new WelcomeBoard();
+	
+public void option() {
+	do {
+	System.out.println("Select the options below \n 1.Create Board \n 2. Display Boards \n 3. Star Board \n 4. Go Back");
+	value = inputReader.nextInt();
+	inputReader.nextLine();
+	switch (value) {
+	case 1:
+		board();
+		break;
+	case 2:
+		displayBoards();
+		break;
+	case 3:
+		starBoard();
+	case 4:
+		wb.welcome();
+		break;
+	default:
+		System.out.println("invalid option");
+		break;
+	}
+	}while (value != 4);
+}
 	
 public void board() {
 
