@@ -12,6 +12,7 @@ public class Register {
 	public String email;
 	public String password;
 	public String confirmPassword;
+	public String userType;
 	Validation val = new Validation();
 	RegisterStatements registerObj = new RegisterStatements();
 	Scanner inputReader = new Scanner(System.in);
@@ -71,6 +72,11 @@ public class Register {
 			} else if (!password.equals(confirmPassword)) {
 				RequiredValidation(7);
 			}
+			userType = userObj.getUserType();
+			if(userType.equals("") || userType.equals(null))
+			{
+				userType="2";
+			}
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -80,7 +86,7 @@ public class Register {
 		try {
 			getInputValues();
 			System.out.println("Name:" + username + " Email ID:" + email);
-			int result = registerObj.registerUser(username, password, email);
+			int result = registerObj.registerUser(username, password, email,userType);
 			String printValues = "";
 			switch (result) {
 			case 0:

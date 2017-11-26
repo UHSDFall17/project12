@@ -7,6 +7,7 @@ public class UserInfo {
 	private String email;
 	public String password;
 	public String confirmPassword;
+	public String userType;
 	Scanner inputReader = new Scanner(System.in);
 
 	public UserInfo() {
@@ -14,6 +15,7 @@ public class UserInfo {
 		email = "";
 		password="";
 		confirmPassword="";
+		userType="2";
 	}
 
 	public void setUserName(String username) {
@@ -52,5 +54,14 @@ public class UserInfo {
 		System.out.println("Re-Enter your Password:");
 		confirmPassword = inputReader.nextLine().trim();
 		return confirmPassword;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+	public String getUserType() {
+		System.out.println("Are you a corporate user? Enter 1. Yes 2. No");
+		userType = inputReader.nextLine().trim();
+		return userType;
 	}
 }
