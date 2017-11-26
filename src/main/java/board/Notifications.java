@@ -5,6 +5,7 @@ import sqlStatements.NotificationSqlQueries;
 
 public class Notifications {
 	NotificationSqlQueries notify = new NotificationSqlQueries();
+	WelcomeBoard wb = new WelcomeBoard();
 	public void recentNotificaions() {
 		notify.notification();
 		System.out.println("Do you wish to see all Notifications");
@@ -12,6 +13,9 @@ public class Notifications {
 		String option = inputReader.nextLine();
 		if(option.equals("yes")) {
 			notify.viewAllNotifications();
+		}
+		else {
+			wb.welcome();
 		}
 	}
 }
