@@ -9,7 +9,7 @@ import trello.App;
 public class WelcomeBoard {
 	int value;
 	Scanner inputReader = new Scanner(System.in);
-	Board b = new Board();
+
 
 	public void welcome() {
 
@@ -26,6 +26,7 @@ public class WelcomeBoard {
 			inputReader.nextLine();
 			switch (value) {
 			case 1:
+				Board b = new Board();
 				b.option();
 				break;
 			case 2:
