@@ -22,7 +22,7 @@ public class UserInfo {
 
 	public String getUserName() {
 		System.out.println("Enter user name:");
-		username = inputReader.nextLine();
+		username = inputReader.nextLine().trim();
 		return username;
 	}
 
@@ -32,7 +32,7 @@ public class UserInfo {
 
 	public String getEmail() {
 		System.out.println("Enter your EmailID:");
-		email = inputReader.nextLine();
+		email = inputReader.nextLine().trim();
 		return email;
 	}
 	public void setPassword(String password) {
@@ -41,7 +41,7 @@ public class UserInfo {
 
 	public String getPassword() {
 		System.out.println("Enter Password:");
-		password = inputReader.nextLine();
+		password = inputReader.nextLine().trim();
 		return password;
 	}
 	public void setConfirmPassword(String confirmPassword) {
@@ -50,7 +50,7 @@ public class UserInfo {
 
 	public String getConfirmPassword() {
 		System.out.println("Re-Enter your Password:");
-		confirmPassword = inputReader.nextLine();
+		confirmPassword = inputReader.nextLine().trim();
 		return confirmPassword;
 	}
 }

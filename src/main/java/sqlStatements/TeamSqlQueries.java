@@ -3,7 +3,10 @@ package sqlStatements;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,13 +26,17 @@ public class TeamSqlQueries {
 		con = ConnectionManager.getConnection();
 		String values="";
 		boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamname);
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Date date = new Date();
+		System.out.println(dateFormat.format(date)); 
+		String createDate =dateFormat.format(date).toString(); 
 		if(teamExistsCheck)
 		{
 			return false;
 		}
 		else if (!teamExistsCheck) 
 		{
-			 values = "INSERT INTO team (team_name,team_desc,created_by,team_type) " + "VALUES ('" +teamname+ "', '" +teamdesc+"', '" +Global.userName+"','" +option+"')";			
+			 values = "INSERT INTO team (team_name,team_desc,created_by,team_type,created_date) " + "VALUES ('" +teamname+ "', '" +teamdesc+"', '" +Global.userName+"','" +option+"','" +createDate+"')";			
 		}				
 		s = con.createStatement();
 		s.executeUpdate(values);  
@@ -121,7 +128,7 @@ public HashMap<String, String> teamInfo(String teamName) {
 				teamDetails.put("access_mode", rs.getString("access_mode"));
 				teamDetails.put("created_by", rs.getString("created_by"));
 				teamDetails.put("team_type", rs.getString("team_type"));
-				//teamDetails.put("created_date", rs.getString("created_date"));
+				teamDetails.put("created_date", rs.getString("created_date"));
 		        return teamDetails;
 		      }
 		}

@@ -36,7 +36,7 @@ public class TeamDetails {
 
 	public String getTeamName() {
 		System.out.println("Enter Team Name:");
-		teamname = inputReader.nextLine();
+		teamname = inputReader.nextLine().trim();
 		return teamname;
 	}
 
@@ -46,7 +46,7 @@ public class TeamDetails {
 
 	public String getTeamDesc() {
 		System.out.println("Please enter Team Description(optional):");
-		teamdesc = inputReader.nextLine();
+		teamdesc = inputReader.nextLine().trim();
 		return teamdesc;
 	}
 
@@ -91,7 +91,7 @@ public class TeamDetails {
 
 	public void getMemberName() {
 		System.out.println("Enter Member Name:");
-		memberName = inputReader.nextLine();
+		memberName = inputReader.nextLine().trim();
 	}
 
 	public void setOption(int option) {
@@ -136,16 +136,23 @@ public class TeamDetails {
 						.println("Team Name: " + teamDetails.get("team_name"));
 				System.out.println("Team Description: "
 						+ teamDetails.get("team_desc"));
-				String lastChar = teamDetails.get("team_members").substring(
-						teamDetails.get("team_members").length() - 1);
-				String membernames;
-				if (lastChar.trim().equals(",")) {
-					membernames = teamDetails.get("team_members").substring(0,
+				if(teamDetails.get("team_members")!=null){
+					String lastChar = teamDetails.get("team_members").substring(
 							teamDetails.get("team_members").length() - 1);
-				} else {
-					membernames = teamDetails.get("team_members");
+					String membernames;
+					if (lastChar.trim().equals(",")) {
+						membernames = teamDetails.get("team_members").substring(0,
+								teamDetails.get("team_members").length() - 1);
+					} else {
+						membernames = teamDetails.get("team_members");
+					}
+					System.out.println("Team Members: " + membernames);
 				}
-				System.out.println("Team Members: " + membernames);
+				else
+				{
+					System.out.println("Team Members: No Members" );
+				}
+				
 				System.out.println("Admin: " + teamDetails.get("created_by"));
 				if (teamDetails.get("access_mode") == null
 						|| teamDetails.get("access_mode") == ""
@@ -156,6 +163,8 @@ public class TeamDetails {
 				}
 				System.out.println("Accessibilty: "
 						+ teamDetails.get("access_mode"));
+				System.out.println("Date Created: "
+						+ teamDetails.get("created_date"));
 
 				if (teamDetails.get("team_type").equals("1")) {
 					teamDetails.put("team_type", "Normal Team");
