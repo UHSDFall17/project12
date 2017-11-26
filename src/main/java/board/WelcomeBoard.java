@@ -16,7 +16,7 @@ public class WelcomeBoard {
 		do {
 			if((!Global.userType.equals(null)|| !Global.userType.equals("")) && Global.userType.equals("1"))
 			{
-				System.out.println("Select the options below \n 1.Create Board \n 2.Team \n 3.Create Business Board \n 4. Display Boards \n 5. Notification \n 6. Restore Deleted Boards \n 7. Logout");
+				System.out.println("Select the options below \n 1.Board \n 2.Team \n 3.Notification \n 4. Logout");
 			}
 			else
 			{
