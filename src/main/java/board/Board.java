@@ -49,4 +49,6 @@ public void board() {
 	catch(Exception e){ System.out.println(e);} 
 }
 
+Cards card = new Cards();
+
 }

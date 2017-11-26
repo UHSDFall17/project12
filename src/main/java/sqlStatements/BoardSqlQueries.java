@@ -8,7 +8,7 @@ import trello.ConnectionManager;
 
 public class BoardSqlQueries {
 	private Connection con;
-	Statement s = null;String name,starred;String cards;
+	Statement s = null;String name,starred;String lists;
 	private String boardnames1;
 	private String starboard;
 	public void viewboards()
@@ -51,8 +51,8 @@ public class BoardSqlQueries {
 			Statement s=con.createStatement(); 
 			ResultSet rs=s.executeQuery("SELECT * FROM board WHERE boardname ='" +boardnames1+ "'");
 			while(rs.next()){
-		         cards = rs.getString("card");
-		         System.out.println("Card: " + cards);
+		         lists = rs.getString("list");
+		         System.out.println("List: " + lists);
 		    	  	}	
 		      }
 		      
