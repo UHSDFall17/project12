@@ -12,7 +12,7 @@ public class WelcomeBoard {
 
 		do {
 			System.out
-					.println("Select the options below \n 1.Create Board \n 2.Team \n 3.Create Business Board \n 4. Display Boards \n 5. Logout");
+					.println("Select the options below \n 1.Create Board \n 2.Team \n 3.Create Business Board \n 4. Display Boards \n 5. Notification \n 6. Logout");
 
 			value = inputReader.nextInt();
 			inputReader.nextLine();
@@ -32,7 +32,11 @@ public class WelcomeBoard {
 			case 4:
 				ViewBoard vb = new ViewBoard();
 				vb.displayBoards();
+				break;
 			case 5:
+				Notifications nuser = new Notifications();
+				nuser.recentNotificaions();
+			case 6:
 				App a = new App();
 				a.options();
 				break;

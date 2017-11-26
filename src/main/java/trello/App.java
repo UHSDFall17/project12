@@ -45,10 +45,11 @@ public static void options() {
      			break;
      		case 5:
     	 		System.out.println("Terminataing the program");
+    	 		System.exit(0);
     	 		break;
      		default:
      			System.out.println("The selection was invalid!");
      	}
-     }while(value!= 4);
+     }while(value!= 5);
 }
 }
