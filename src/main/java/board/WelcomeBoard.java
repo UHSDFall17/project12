@@ -67,7 +67,8 @@ public class WelcomeBoard {
 				restoreTeam();
 				break;
 			case 2:
-				restoreTeam();
+				Board b = new Board();
+				b.restoreBoard();
 				break;
 			default:
 				System.out.println("Enter valid option");

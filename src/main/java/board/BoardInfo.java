@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class BoardInfo {
 	Scanner inputReader = new Scanner(System.in);
-	private String boardtitle,teamname,starboard,starBoardName,openBoardName,openBoardOption;
+	private String boardtitle,teamname,starboard,starBoardName,openBoardName,openBoardOption,restoreBoardName;
 	
 	BoardInfo(){
 		boardtitle="";
@@ -13,6 +13,7 @@ public class BoardInfo {
 		starBoardName="";
 		openBoardName="";
 		openBoardOption="";
+		restoreBoardName="";
 	}
 	
 	public void setBoardTitle(String boardtitle) {
@@ -58,6 +59,14 @@ public class BoardInfo {
 	public String getopenBoardOption() {
 		openBoardOption = inputReader.nextLine();
 		return openBoardOption;
+	}
+	
+	public void setrestoreBoardName(String restoreBoardName) {
+		this.restoreBoardName = restoreBoardName;
+	}
+	public String getrestoreBoardName() {
+		restoreBoardName = inputReader.nextLine();
+		return restoreBoardName;
 	}
 	
 }

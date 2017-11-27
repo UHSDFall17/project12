@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import board.Cards;
 import global.Global;
@@ -89,4 +91,10 @@ public class Board {
 			System.out.println("No star operation");
 	}
 
+	public void restoreBoard() {
+			sqlObj.viewDeletedBoards();
+			System.out.println("Enter the name of the deleted board which you wish to restore");
+			String restoreBoardName = boardinfo.getrestoreBoardName();
+			sqlObj.restoreBoards(restoreBoardName);	
+	}
 }

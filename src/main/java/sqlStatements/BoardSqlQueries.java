@@ -3,6 +3,7 @@ package sqlStatements;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 import trello.ConnectionManager;
 
@@ -84,4 +85,30 @@ public class BoardSqlQueries {
 		}
 
 
+	public void restoreBoards(String restoreBoardName) {
+		try {
+			con = ConnectionManager.getConnection();
+			Statement st = con.createStatement();
+			String check = "SELECT boardname FROM deleted_boards WHERE boardname ='" + restoreBoardName + "'";
+			ResultSet rs = st.executeQuery(check);
+			if(rs.next()) {
+			st.executeUpdate("INSERT INTO board (boardname,list,starred,team_name) SELECT boardname,list,starred,team_name FROM deleted_boards WHERE boardname ='" + restoreBoardName + "'");
+			st.executeUpdate("DELETE FROM deleted_boards WHERE boardname ='" + restoreBoardName + "'");
+			System.out.println("Board Restored Successfully");}
+			else {System.out.println("There are no such boards");}
+	}catch (Exception e) { System.out.println(e);}
+}
+
+	public void viewDeletedBoards() {
+		try {
+		con = ConnectionManager.getConnection();
+		Statement st = con.createStatement();
+		String displayDeleted = "SELECT * FROM deleted_boards";
+		ResultSet rs = st.executeQuery(displayDeleted);
+		while (rs.next()) {
+			String deletedBoardName = rs.getString("boardname");
+			System.out.println("Deleted Board: " + deletedBoardName);
+		}
+		}catch (Exception e) { System.out.println(e);}
+	}
 }
