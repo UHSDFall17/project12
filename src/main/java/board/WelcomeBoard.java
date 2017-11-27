@@ -9,6 +9,7 @@ import trello.App;
 public class WelcomeBoard {
 	int value;
 	Scanner inputReader = new Scanner(System.in);
+	Team teamObj=new Team();
 
 
 	public void welcome() {
@@ -38,7 +39,9 @@ public class WelcomeBoard {
 				nuser.recentNotificaions();
 			case 4:
 				if((!Global.userType.equals(null)|| !Global.userType.equals("")) && Global.userType.equals("1"))
-				{}
+				{
+					teamObj.restoreTeam();
+				}
 				else
 				{
 				App a = new App();

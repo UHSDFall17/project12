@@ -62,7 +62,7 @@ public class CommonSqlQueries {
 			
 		if(tableOption==2)
 		{
-			values = "Select deleted_name from team Where team_name ='"+teamName+"';";
+			values = "Select team_name from deleted_team Where team_name ='"+teamName+"';";
 		}
 		 s=con.createStatement();  
 		ResultSet rs=s.executeQuery(values); 

@@ -176,14 +176,15 @@ public boolean deleteTeam(String teamname)
 {
 	try{
 	boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamname,1);
-	if(teamExistsCheck)
+	System.out.println(teamExistsCheck);
+	if(!teamExistsCheck)
 	{
 		return false;
 	}
-	else if (!teamExistsCheck) 
+	else if (teamExistsCheck) 
 	{
-		inserToDeleteTable(teamname); 
-		deleteFromTable(teamname);
+		inserToDeleteTable(teamname,2); 
+		deleteFromTable(teamname,2);
 	}
 	return true;
 	}
@@ -195,14 +196,14 @@ public boolean restoreTeam(String teamname)
 {
 	try{
 	boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamname,2);
-	if(teamExistsCheck)
+	if(!teamExistsCheck)
 	{
 		return false;
 	}
-	else if (!teamExistsCheck) 
+	else if (teamExistsCheck) 
 	{
-		inserToDeleteTable(teamname); 
-		deleteFromTable(teamname);
+		inserToDeleteTable(teamname,1); 
+		deleteFromTable(teamname,1);
 	}
 	return true;
 	}
@@ -210,13 +211,24 @@ public boolean restoreTeam(String teamname)
 	return false;
 }
 
-public boolean inserToDeleteTable(String teamname)
+public boolean inserToDeleteTable(String teamname, int option)
 {
 	try{
 	con = ConnectionManager.getConnection();
-	String values= "INSERT INTO deleted_team (team_name,team_members,team_desc,access_mode,created_by,"
-			+ "created_date,team_type) SELECT team_name,team_members,team_desc,access_mode,created_by,"
-			+ "created_date,team_type from team WHERE team_name ='" +teamname+ "'";					
+	String values="";
+	if(option==1)//restore
+	{
+		 values= "INSERT INTO team(team_name,team_members,team_desc,access_mode,created_by,"
+				+ "created_date,team_type) SELECT team_name,team_members,team_desc,access_mode,created_by,"
+				+ "created_date,team_type from deleted_team WHERE team_name ='" +teamname+ "'";	
+	}
+	else if(option==2)//delete
+	{
+		 values= "INSERT INTO deleted_team(team_name,team_members,team_desc,access_mode,created_by,"
+				+ "created_date,team_type) SELECT team_name,team_members,team_desc,access_mode,created_by,"
+				+ "created_date,team_type from team WHERE team_name ='" +teamname+ "'";	
+	}
+					
 	s = con.createStatement();
 	s.executeUpdate(values);  
 	con.close();
@@ -225,11 +237,20 @@ public boolean inserToDeleteTable(String teamname)
 	catch(Exception e){ System.out.println(e);}
 	return false;
 }
-public boolean deleteFromTable(String teamname)
+public boolean deleteFromTable(String teamname,int option)
 {
 	try{
 	con = ConnectionManager.getConnection();
-	String values= "DELETE from team WHERE team_name ='" +teamname+ "'";					
+	String values="";
+	if(option==1)
+	{
+		 values= "DELETE from deleted_team WHERE team_name ='" +teamname+ "'";
+	}
+	else if(option==2)
+	{
+		 values= "DELETE from team WHERE team_name ='" +teamname+ "'";
+	}
+						
 	s = con.createStatement();
 	s.executeUpdate(values);  
 	con.close();

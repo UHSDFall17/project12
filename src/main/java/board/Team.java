@@ -124,6 +124,23 @@ public class Team {
 			System.out.println(e);
 		}
 	}
+	public void restoreTeam() {
+		try {
+		
+			teamname = teamObj.getTeamName();
+			boolean result = sqlObj.restoreTeam(teamname);
+			if(result)
+			{
+			System.out.println(teamname + " restored Successfully");
+			}
+			else
+			{
+				System.out.println("Error in deleting");
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 	public void editTeamInfo() {
 		try {
 			viewTeamInfo();
