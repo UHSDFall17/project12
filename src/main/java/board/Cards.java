@@ -14,7 +14,7 @@ public class Cards {
 	Scanner input = new Scanner (System.in);
 	ResultSet rs;
 	CardSqlQueries sqlObj = new CardSqlQueries();
-	String cardname, description, comments;
+	String cardname, description, comments, date;
 	
 	
 	public void menu() {
@@ -54,7 +54,16 @@ public class Cards {
 			this.description = input.nextLine();
 			System.out.println("Enter any comments for the card: ");
 			this.comments = input.nextLine();
-			sqlObj.createCard(listname, this.cardname, this.description, this.comments);
+			System.out.println("Assign a due date for this card? Y/N: ");
+			String answer = input.nextLine();
+			if(answer == "Y" || answer == "y") {
+				System.out.println("Enter the due date in 'YYYYY-MM-DD' form: ");
+				this.date = input.nextLine();
+			}
+			else {
+				this.date = null;
+			}
+			sqlObj.createCard(listname, this.cardname, this.description, this.comments, this.date);
 			break;
 		case 3:
 			System.out.println("Provide the card name that you wish to modify: ");
@@ -65,8 +74,7 @@ public class Cards {
 					+ "3) The card comments.\n"
 //					+ "4) Finished or not finished.\n"
 					+ "Enter a number: ");
-			int answer = input.nextInt();
-			sqlObj.modifyCard(listname, this.cardname, answer);
+			sqlObj.modifyCard(listname, this.cardname, input.nextInt());
 			break;
 		case 4:
 			menu();

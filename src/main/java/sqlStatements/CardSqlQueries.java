@@ -19,7 +19,7 @@ public class CardSqlQueries {
 		try{
 			con = ConnectionManager.getConnection();	
 			s=con.createStatement(); 
-			ResultSet rs=s.executeQuery("SELECT * FROM cards WHERE lists ='" + list + "' AND completed = '0'");
+			ResultSet rs = s.executeQuery("SELECT * FROM cards WHERE lists = '" + list + "'");
 			while(rs.next()){
 		         String cards = rs.getString("card_name");
 		         System.out.println("Cards: " + cards);
@@ -47,10 +47,18 @@ public class CardSqlQueries {
 		}
 	}
 	
-	public void createCard(String listname, String cardname, String description, String comments) {
+	public void createCard(String listname, String cardname, String description, String comments, String date) {
 		try {
+			String statement;
 			con = ConnectionManager.getConnection();
-			String statement = "INSERT INTO cards (lists,card_name,description,comments) " + "VALUES ('" + listname + "', '" + cardname + "', '"+ description + "', '" + comments + "')";
+			if(date == null) {
+				statement = "INSERT INTO cards (lists, card_name, description, comments, due_date) " 
+						+ "VALUES ('" + listname + "', '" + cardname + "', '"+ description + "', '" + comments + "', NULL)";
+			}
+			else {
+				statement = "INSERT INTO cards (lists, card_name, description, comments, due_date) " 
+						+ "VALUES ('" + listname + "', '" + cardname + "', '"+ description + "', '" + comments + "', '"+ date + "')";
+			}
 			s = con.createStatement();
 			s.executeUpdate(statement); 
 			System.out.println("Created Card Successfully.");
