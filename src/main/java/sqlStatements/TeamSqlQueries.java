@@ -25,7 +25,7 @@ public class TeamSqlQueries {
 		try{
 		con = ConnectionManager.getConnection();
 		String values="";
-		boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamname);
+		boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamname,1);
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Date date = new Date();
 		String createDate =dateFormat.format(date).toString(); 
@@ -83,7 +83,7 @@ public class TeamSqlQueries {
 			}		
 			 
 		}			
-		boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamName);
+		boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamName,1);
 		if(!teamExistsCheck)
 		{
 			return false;
@@ -109,7 +109,7 @@ public HashMap<String, String> teamInfo(String teamName) {
 			Statement s=con.createStatement(); 
 			HashMap<String, String> teamDetails= new HashMap<String, String>();
 			ResultSet rs = null;		
-			boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamName);
+			boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamName,1);
 			if(!teamExistsCheck)
 			{
 				return null;
@@ -143,7 +143,7 @@ public boolean editTeamInfo(Integer option,HashMap<String, String> teamDetails)
 	String values="";
 	String partofQuery="";	
 	
-	boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamDetails.get("team_name"));
+	boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamDetails.get("team_name"),1);
 	if(!teamExistsCheck)
 	{
 		return false;
@@ -175,9 +175,7 @@ public boolean editTeamInfo(Integer option,HashMap<String, String> teamDetails)
 public boolean deleteTeam(String teamname)
 {
 	try{
-	con = ConnectionManager.getConnection();
-	String values="";
-	boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamname);
+	boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamname,1);
 	if(teamExistsCheck)
 	{
 		return false;
@@ -186,22 +184,39 @@ public boolean deleteTeam(String teamname)
 	{
 		inserToDeleteTable(teamname); 
 		deleteFromTable(teamname);
-	}				
-	s = con.createStatement();
-	s.executeUpdate(values);  
-	con.close();
+	}
 	return true;
 	}
 	catch(Exception e){ System.out.println(e);}
 	return false;
 }
+
+public boolean restoreTeam(String teamname)
+{
+	try{
+	boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamname,2);
+	if(teamExistsCheck)
+	{
+		return false;
+	}
+	else if (!teamExistsCheck) 
+	{
+		inserToDeleteTable(teamname); 
+		deleteFromTable(teamname);
+	}
+	return true;
+	}
+	catch(Exception e){ System.out.println(e);}
+	return false;
+}
+
 public boolean inserToDeleteTable(String teamname)
 {
 	try{
 	con = ConnectionManager.getConnection();
 	String values= "INSERT INTO deleted_team (team_name,team_members,team_desc,access_mode,created_by,"
 			+ "created_date,team_type) SELECT team_name,team_members,team_desc,access_mode,created_by,"
-			+ "created_date,team_type from Team WHERE team_name ='" +teamname+ "'";					
+			+ "created_date,team_type from team WHERE team_name ='" +teamname+ "'";					
 	s = con.createStatement();
 	s.executeUpdate(values);  
 	con.close();
@@ -214,7 +229,7 @@ public boolean deleteFromTable(String teamname)
 {
 	try{
 	con = ConnectionManager.getConnection();
-	String values= "DELETE from Team WHERE team_name ='" +teamname+ "'";					
+	String values= "DELETE from team WHERE team_name ='" +teamname+ "'";					
 	s = con.createStatement();
 	s.executeUpdate(values);  
 	con.close();

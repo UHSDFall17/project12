@@ -54,14 +54,16 @@ public class CommonSqlQueries {
 		
 		return false;  
 	}
-	public boolean TeamNameExisitsCheck(String teamName)
+	public boolean TeamNameExisitsCheck(String teamName,int tableOption)
 	{
 		try{
 			con = ConnectionManager.getConnection(); 
-			String values = "";
-		
-			 values = "Select team_name from team Where team_name ='"+teamName+"';";
-		
+			String values = "Select team_name from team Where team_name ='"+teamName+"';";
+			
+		if(tableOption==2)
+		{
+			values = "Select deleted_name from team Where team_name ='"+teamName+"';";
+		}
 		 s=con.createStatement();  
 		ResultSet rs=s.executeQuery(values); 
 		
@@ -78,5 +80,6 @@ public class CommonSqlQueries {
 		
 		return false;  
 	}
+	
 }
 
