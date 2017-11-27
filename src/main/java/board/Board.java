@@ -18,6 +18,7 @@ public class Board {
 	String boardname, boardname1;
 	int value;
 	WelcomeBoard wb = new WelcomeBoard();
+	BoardInfo boardinfo = new BoardInfo();
 
 	public void option() {
 		do {
@@ -47,9 +48,9 @@ public class Board {
 	public void createBoard() {
 
 		System.out.println("Creeate Board \n Enter the title of the board");
-		String title = inputReader.nextLine();
+		String title = boardinfo.getBoardTitle();
 		System.out.println("Enter the team name to assign");
-		String team_name = inputReader.nextLine();
+		String team_name = boardinfo.getTeamName();
 		sqlObj.createBoard(title,team_name);
 	}
 
@@ -59,10 +60,10 @@ public class Board {
 
 		System.out.println("Do you wish to open board");
 
-		String open = inputReader.nextLine();
+		String open = boardinfo.getopenBoardOption();
 		if (open.equals("yes")) {
 			System.out.println("Please enter the name of the board which you wish to open");
-			boardname = inputReader.nextLine();
+			boardname = boardinfo.getopenBoardName();
 			openBoard(boardname);
 		} else
 			System.out.print("Back functionality");
@@ -79,10 +80,10 @@ public class Board {
 
 	private void starBoard() {
 		System.out.println("Do you wish to Star any of your boards");
-		String option = inputReader.nextLine();
+		String option = boardinfo.getStarBoard();
 		if (option.equals("yes")) {
 			System.out.println("Please enter the name of the board which you wish to star");
-			boardname = inputReader.nextLine();
+			boardname = boardinfo.getstarBoardName();
 			sqlObj.starIt(boardname);
 		} else
 			System.out.println("No star operation");
