@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+
 import board.TeamDetails;
 import sqlStatements.TeamSqlQueries;
 
@@ -21,14 +22,14 @@ public class Team {
 	public void team() {
 		try {
 			System.out
-					.println("Select the options below \n 1.Create New Team \n 2.View Team List \n 3.Add Members to Team \n 4.View Team Information \n 5. Edit Team Profile 6. Delete Team \n 7. Logout");
+					.println("Select the options below \n 1.Create New Team \n 2.View Team List \n 3.Add Members to Team \n 4.View Team Information \n 5. Edit Team Profile \n 6. Delete Team \n 7. Logout");
 			int option = teamObj.getOption();
 			switch (option) {
 			case 1:
 				createTeam();
 				break;
 			case 2:
-				teamObj.printTeamList();
+				teamObj.printTeamList(1);
 				break;
 			case 3:
 				addMembersToTeam();
@@ -109,7 +110,15 @@ public class Team {
 	
 	public void deleteTeam() {
 		try {
-		
+			List<String> teamList = new ArrayList<String>();
+			teamList = sqlObj.listTeams(1);					
+			if(teamList.isEmpty())
+			{
+				System.out.println("No teams found");
+			}
+			else
+			{
+			teamObj.printTeamList(1);
 			teamname = teamObj.getTeamName();
 			boolean result = sqlObj.deleteTeam(teamname);
 			if(result)
@@ -119,6 +128,7 @@ public class Team {
 			else
 			{
 				System.out.println("Error in deleting");
+			}
 			}
 		} catch (Exception e) {
 			System.out.println(e);

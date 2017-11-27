@@ -2,26 +2,30 @@ package board;
 
 import global.Global;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import sqlStatements.TeamSqlQueries;
 import trello.App;
 
 public class WelcomeBoard {
 	int value;
 	Scanner inputReader = new Scanner(System.in);
-	Team teamObj=new Team();
-
+	Team teamObj = new Team();
+	TeamDetails teamDetailsObj = new TeamDetails();
+	TeamSqlQueries teamSqlObj = new TeamSqlQueries();
 
 	public void welcome() {
 
 		do {
-			if((!Global.userType.equals(null)|| !Global.userType.equals("")) && Global.userType.equals("1"))
-			{
-				System.out.println("Select the options below \n 1.Board \n 2.Team \n 3. Notification \n 4. Restore Deleted Items \n 5. Logout");				
-			}
-			else
-			{
-			System.out.println("Select the options below \n 1.Board \n 2.Team \n 3. Notification \n 4. Logout");
+			if ((!Global.userType.equals(null) || !Global.userType.equals(""))
+					&& Global.userType.equals("1")) {
+				System.out
+						.println("Select the options below \n 1.Board \n 2.Team \n 3. Notification \n 4. Restore Deleted Items \n 5. Logout");
+			} else {
+				System.out
+						.println("Select the options below \n 1.Board \n 2.Team \n 3. Notification \n 4. Logout");
 			}
 			value = inputReader.nextInt();
 			inputReader.nextLine();
@@ -38,17 +42,9 @@ public class WelcomeBoard {
 				Notifications nuser = new Notifications();
 				nuser.recentNotificaions();
 			case 4:
-				if((!Global.userType.equals(null)|| !Global.userType.equals("")) && Global.userType.equals("1"))
-				{
-					teamObj.restoreTeam();
-				}
-				else
-				{
-				App a = new App();
-				a.options();
-				}
+				restoreOptions();
 				break;
-			case 5:				
+			case 5:
 				App a = new App();
 				a.options();
 				break;
@@ -60,6 +56,43 @@ public class WelcomeBoard {
 
 	}
 
+	public void restoreOptions() {
+		if ((!Global.userType.equals(null) || !Global.userType.equals(""))
+				&& Global.userType.equals("1")) {
+			System.out.println("Enter 1.Restore Team 2.Restore Board");
+			int option = inputReader.nextInt();
+			inputReader.nextLine();
+			switch (option) {
+			case 1:
+				restoreTeam();
+				break;
+			case 2:
+				restoreTeam();
+				break;
+			default:
+				System.out.println("Enter valid option");
+				break;
+			}
 
-	
+		} else {
+			App a = new App();
+			a.options();
+		}		
+	}
+	public void restoreTeam()
+	{
+		List<String> teamList = new ArrayList<String>();
+		teamList = teamSqlObj.listTeams(2);		
+		
+		if(teamList.isEmpty())
+		{
+			System.out.println("No teams found");
+		}
+		else
+		{
+			teamDetailsObj.printTeamList(2);
+			teamObj.restoreTeam();
+		}
+		
+	}
 }

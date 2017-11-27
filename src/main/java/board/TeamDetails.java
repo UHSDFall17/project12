@@ -74,15 +74,20 @@ public class TeamDetails {
 		this.teamList = teamList;
 	}
 
-	public void getTeamList() {
-		teamList = sqlObj.listTeams();
+	public  void getTeamList(int option) {
+		teamList = sqlObj.listTeams(option);		
 	}
 
-	public void printTeamList() {
-		getTeamList();
+	public void printTeamList(int option) {
+		getTeamList(option);
+		if(teamList.isEmpty())
+		{
+			System.out.println("No teams found");
+		}
 		for (int i = 0; i < teamList.size(); i++) {
 			System.out.println(i + 1 + ". " + teamList.get(i));
 		}
+		
 	}
 
 	public void setMemberName(String memberName) {

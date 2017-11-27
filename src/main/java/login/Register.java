@@ -13,6 +13,7 @@ public class Register {
 	public String password;
 	public String confirmPassword;
 	public String userType;
+	public String orgName=null;
 	Validation val = new Validation();
 	RegisterStatements registerObj = new RegisterStatements();
 	Scanner inputReader = new Scanner(System.in);
@@ -41,6 +42,9 @@ public class Register {
 			break;
 		case 7:
 			printString = "Password and Confirm password does not match";
+			break;
+		case 8:
+			printString = "Organisation Name is Required";
 			break;
 		}
 		System.out.println(printString + "!. Try Again");
@@ -77,6 +81,14 @@ public class Register {
 			{
 				userType="2";
 			}
+			if(userType.equals("1")){
+				orgName=userObj.getOrgName();
+				if(userType.equals("") || userType.equals(null))
+				{
+					RequiredValidation(8);
+				}
+			}
+			
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -86,7 +98,7 @@ public class Register {
 		try {
 			getInputValues();
 			System.out.println("Name:" + username + " Email ID:" + email);
-			int result = registerObj.registerUser(username, password, email,userType);
+			int result = registerObj.registerUser(username, password, email,userType,orgName);
 			String printValues = "";
 			switch (result) {
 			case 0:

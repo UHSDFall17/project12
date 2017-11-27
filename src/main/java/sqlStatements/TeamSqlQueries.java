@@ -46,14 +46,19 @@ public class TeamSqlQueries {
 		return false;
 	}
 	
-	public List<String> listTeams() {
+	public List<String> listTeams(int option) {
 		
 		try{
 			con = ConnectionManager.getConnection();	
 			Statement s=con.createStatement(); 
 			String team;
-			ResultSet rs = null;			 
-				  rs=s.executeQuery("SELECT * FROM team WHERE created_by ='" +Global.userName+ "'");													
+			ResultSet rs = null;
+			if(option ==1){
+				 rs=s.executeQuery("SELECT * FROM team WHERE created_by ='" +Global.userName+ "'");
+			}
+			else if(option ==2){
+				 rs=s.executeQuery("SELECT * FROM deleted_team WHERE created_by ='" +Global.userName+ "'");
+			}	 													
 			while(rs.next()){
 		        team = rs.getString("team_name");		        
 		        teams.add(team);		         

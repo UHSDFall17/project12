@@ -1,5 +1,7 @@
 package sqlStatements;
 
+import global.Global;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -58,11 +60,11 @@ public class CommonSqlQueries {
 	{
 		try{
 			con = ConnectionManager.getConnection(); 
-			String values = "Select team_name from team Where team_name ='"+teamName+"';";
+			String values = "Select team_name from team Where team_name ='"+teamName+"'and created_by ='" +Global.userName+ "';";
 			
 		if(tableOption==2)
 		{
-			values = "Select team_name from deleted_team Where team_name ='"+teamName+"';";
+			values = "Select team_name from deleted_team Where team_name ='"+teamName+"'and created_by ='" +Global.userName+ "';";
 		}
 		 s=con.createStatement();  
 		ResultSet rs=s.executeQuery(values); 

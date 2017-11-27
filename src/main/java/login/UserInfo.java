@@ -8,6 +8,7 @@ public class UserInfo {
 	public String password;
 	public String confirmPassword;
 	public String userType;
+	public String orgName;
 	Scanner inputReader = new Scanner(System.in);
 
 	public UserInfo() {
@@ -16,6 +17,7 @@ public class UserInfo {
 		password="";
 		confirmPassword="";
 		userType="2";
+		orgName="";
 	}
 
 	public void setUserName(String username) {
@@ -63,5 +65,14 @@ public class UserInfo {
 		System.out.println("Are you a corporate user? Enter 1. Yes 2. No");
 		userType = inputReader.nextLine().trim();
 		return userType;
+	}
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+
+	public String getOrgName() {
+		System.out.println("Enter the Organisation Name:");
+		orgName = inputReader.nextLine().trim();
+		return orgName;
 	}
 }
