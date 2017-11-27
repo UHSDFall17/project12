@@ -21,6 +21,7 @@ public class Board {
 	int value;
 	WelcomeBoard wb = new WelcomeBoard();
 	BoardInfo boardinfo = new BoardInfo();
+	Cards card = new Cards();
 
 	public void option() {
 		do {
@@ -49,7 +50,7 @@ public class Board {
 
 	public void createBoard() {
 
-		System.out.println("Creeate Board \n Enter the title of the board");
+		System.out.println("Create Board \n Enter the title of the board");
 		String title = boardinfo.getBoardTitle();
 		System.out.println("Enter the team name to assign");
 		String team_name = boardinfo.getTeamName();
@@ -70,8 +71,7 @@ public class Board {
 		} else
 			System.out.print("Back functionality");
 
-		Cards card = new Cards();
-		card.cardDetails();
+		card.menu();
 	}
 
 	private void openBoard(String boardname2) {

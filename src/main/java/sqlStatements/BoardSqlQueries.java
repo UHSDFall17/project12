@@ -67,7 +67,7 @@ public class BoardSqlQueries {
 			con = ConnectionManager.getConnection();
 			Statement s = con.createStatement();
 			s.executeUpdate("UPDATE board SET starred = '1' WHERE boardname ='" + starboard + "'");
-			System.out.println("Starred Successfully");
+			System.out.println("Starred Successsfully");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -80,7 +80,7 @@ public class BoardSqlQueries {
 			String values = "INSERT INTO baord (boardname,team_name) " + "VALUES ('" +title+ "', '" +team_name+"')";
 			s = con.createStatement();
 			s.executeUpdate(values); 
-			System.out.println("Created Board Succesfully");
+			System.out.println("Created Board Successfully");
 		}catch (Exception e) { System.out.println(e);}
 		}
 
