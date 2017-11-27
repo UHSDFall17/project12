@@ -23,7 +23,7 @@ public class Login {
 			boolean loginResult = loginCheck();
 			if (loginResult) {
 				Global.userName = username;
-				System.out.println("Welcome Global.userName");
+				System.out.println("Welcome \t" +Global.userName);
 				WelcomeBoard b = new WelcomeBoard();
 				b.welcome();
 			} else {
