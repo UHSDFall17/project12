@@ -14,11 +14,12 @@ public class CardSqlQueries {
 	private Scanner input = new Scanner(System.in);
 
 
+	/* Prints out the cards that are not completed */
 	public void listCards(String list) {
 		try{
 			con = ConnectionManager.getConnection();	
 			s=con.createStatement(); 
-			ResultSet rs=s.executeQuery("SELECT * FROM cards WHERE lists ='" + list + "'");
+			ResultSet rs=s.executeQuery("SELECT * FROM cards WHERE lists ='" + list + "' AND completed = '0'");
 			while(rs.next()){
 		         String cards = rs.getString("card_name");
 		         System.out.println("Cards: " + cards);
@@ -84,6 +85,7 @@ public class CardSqlQueries {
 				s.executeUpdate("UPDATE cards SET comments = '" + newComments + "' WHERE lists = '"+ listname + "' AND card_name = '" + cardname +"'");
 				System.out.println("Modified Card Succcessfully");
 				break;
+/*
 			case 4:
 				int number;
 				do {
@@ -92,6 +94,7 @@ public class CardSqlQueries {
 				s.executeUpdate("UPDATE cards SET completed = '" + number + "' WHERE lists = '"+ listname + "' AND card_name = '" + cardname +"'");
 				System.out.println("Card Has Been Saved");
 				break;
+*/			
 			}
 		}
 		catch(Exception e) {
@@ -99,6 +102,8 @@ public class CardSqlQueries {
 		}
 	}
 	
+	
+/*
 	public int checkIfCompleted(String listname, String cardname) {
 		int completed = -1;
 		try {
@@ -125,5 +130,7 @@ public class CardSqlQueries {
 		}
 		return completed;
 	}
+	
+*/
 	
 }

@@ -16,11 +16,6 @@ public class Cards {
 	CardSqlQueries sqlObj = new CardSqlQueries();
 	String cardname, description, comments;
 	
-	public void cardDetails() {
-		System.out.print("Enter the list name to display the card details");
-		sqlObj.listCards(input.nextLine());
-		System.out.println("Description");
-	}
 	
 	public void menu() {
 		System.out.println("------Viewing Lists/Cards------\n");
@@ -68,7 +63,7 @@ public class Cards {
 					+ "1) The card name.\n"
 					+ "2) The card description.\n"
 					+ "3) The card comments.\n"
-					+ "4) Finished or not finished.\n"
+//					+ "4) Finished or not finished.\n"
 					+ "Enter a number: ");
 			int answer = input.nextInt();
 			sqlObj.modifyCard(listname, this.cardname, answer);
