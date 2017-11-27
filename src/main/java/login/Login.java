@@ -22,8 +22,8 @@ public class Login {
 			password = userObj.getPassword();
 			boolean loginResult = loginCheck();
 			if (loginResult) {
-				System.out.println("Successful Login");
 				Global.userName = username;
+				System.out.println("Welcome Global.userName");
 				WelcomeBoard b = new WelcomeBoard();
 				b.welcome();
 			} else {
@@ -40,7 +40,7 @@ public class Login {
 		try {
 			con = ConnectionManager.getConnection();
 
-			String values = "Select user_name,password,user_type from login Where user_name ='"
+			String values = "Select user_name,password,user_type from users Where user_name ='"
 					+ username + "' and password = '" + password + "';";
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery(values);

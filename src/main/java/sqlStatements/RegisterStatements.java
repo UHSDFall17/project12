@@ -9,15 +9,15 @@ public class RegisterStatements {
 	private Connection con;
 	Statement s = null;
 	CommonSqlQueries sqlObj = new CommonSqlQueries();
-	public int registerUser(String username,String password,String email,String userType,String orgName)
+	public int registerUser(String username,String password,String email,String userType,String orgName,String comment)
 	{
 		try{
 		con = ConnectionManager.getConnection();
 		boolean usernameCheck=sqlObj.UserNameExisitsCheck(username);
 		boolean emailCheck=sqlObj.EmailExisitsCheck(email);
 		if(!usernameCheck && !emailCheck ){
-			String values = "INSERT INTO login (user_name,password,email_id,user_type,org_name) " + "VALUES "
-					+ "('" +username+ "', '" +password+"','" +email+"','" +userType+"','" +orgName+"')";
+			String values = "INSERT INTO users (user_name,password,email_id,user_type,org_name,comment) " + "VALUES "
+					+ "('" +username+ "', '" +password+"','" +email+"','" +userType+"','" +orgName+"','"+comment+"')";
 			s = con.createStatement();
 			s.executeUpdate(values);  
 			con.close();

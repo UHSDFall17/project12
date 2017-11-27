@@ -16,15 +16,15 @@ public class NotificationSqlQueries {
 		
 		   System.out.println("Notification ");
 		      System.out.println("--------------");
-		      ResultSet rs1=s.executeQuery("SELECT comments FROM board LIMIT 2");
+		      ResultSet rs1=s.executeQuery("SELECT comment FROM users LIMIT 2");
 		      while(rs1.next()){
-		    	  String comments = rs1.getString("boardname");
+		    	  String comments = rs1.getString("comment");
 		    	  System.out.println(comments);
 		      }
 		      
-		      ResultSet rs2=s.executeQuery("SELECT comments FROM cards LIMIT 2");
+		      ResultSet rs2=s.executeQuery("SELECT comment FROM users LIMIT 2");
 		      while(rs2.next()){
-		    	  String comments = rs2.getString("boardname");
+		    	  String comments = rs2.getString("comment");
 		    	  System.out.println(comments);
 		      }
 	      }
