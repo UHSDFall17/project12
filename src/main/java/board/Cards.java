@@ -34,7 +34,7 @@ public class Cards {
 			chooseOption(listname, input.nextInt());
 			System.out.println("Do you wish to go over the options again? Y/N: ");
 			answer = input.nextLine();
-		}while(answer == "Y" || answer == "y");
+		}while(answer.equals("Y") || answer.equals("y"));
 		System.out.println("Sending you back to the welcome board.");
 		WelcomeBoard wb = new WelcomeBoard();
 		wb.welcome();
@@ -57,7 +57,7 @@ public class Cards {
 			this.comments = input.nextLine();
 			System.out.println("Assign a due date for this card? Y/N: ");
 			String answer = input.nextLine();
-			if(answer == "Y" || answer == "y") {
+			if(answer.equals("Y") || answer.equals("y")) {
 				System.out.println("Enter the due date in 'YYYYY-MM-DD' form: ");
 				this.date = input.nextLine();
 			}
