@@ -1,4 +1,4 @@
-package sqlstatements;
+package sqlStatements;
 
 import global.Global;
 

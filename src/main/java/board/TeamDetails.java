@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import sqlstatements.TeamSqlQueries;
+import sqlStatements.TeamSqlQueries;
 
 public class TeamDetails {
 	private String teamname;

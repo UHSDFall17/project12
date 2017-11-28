@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import board.WelcomeBoard;
-import sqlstatements.RegisterStatements;
+import sqlStatements.RegisterStatements;
 import validations.Validation;
 import login.UserInfo;
 
@@ -16,11 +16,11 @@ public class Register {
 	public String password;
 	public String confirmPassword;
 	public String userType;
-	public String orgName=null;
+	public String orgName = null;
 	public Validation val = new Validation();
-	RegisterStatements registerObj = new RegisterStatements();
-	Scanner inputReader = new Scanner(System.in);
-	UserInfo userObj = new UserInfo();
+	private RegisterStatements registerObj = new RegisterStatements();
+	public Scanner inputReader = new Scanner(System.in);
+	private UserInfo userObj = new UserInfo();
 
 	public void requiredValidation(int input) {
 		String printString = "";
@@ -48,6 +48,8 @@ public class Register {
 			break;
 		case 8:
 			printString = "Organisation Name is Required";
+			break;
+		default:printString = "";
 			break;
 		}
 		System.out.println(printString + "!. Try Again");
@@ -80,18 +82,16 @@ public class Register {
 				requiredValidation(7);
 			}
 			userType = userObj.getUserType();
-			if(userType.equals("") || userType.equals(null))
-			{
-				userType="2";
+			if (userType.equals("") || userType.equals(null)) {
+				userType = "2";
 			}
-			if(userType.equals("1")){
-				orgName=userObj.getOrgName();
-				if(userType.equals("") || userType.equals(null))
-				{
+			if (userType.equals("1")) {
+				orgName = userObj.getOrgName();
+				if (userType.equals("") || userType.equals(null)) {
 					requiredValidation(8);
 				}
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -103,8 +103,10 @@ public class Register {
 			System.out.println("Name:" + username + " Email ID:" + email);
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
-			String comment="Registered into trello on"+dateFormat.format(date);			
-			int result = registerObj.registerUser(username, password, email,userType,orgName,comment);
+			String comment = "Registered into trello on"
+					+ dateFormat.format(date);
+			int result = registerObj.registerUser(username, password, email,
+					userType, orgName, comment);
 			String printValues = "";
 			switch (result) {
 			case 0:
