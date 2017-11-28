@@ -39,7 +39,7 @@ public class FAQ {
 					.println("Besides Trello being free to use, users need to provide an email, username, and password.\n"
 							+ "Do you want to register now? Y/N : ");
 			String answer = input.next();
-			if (answer == "Y" || answer == "y") {
+			if (answer.equals("Y") || answer.equals("y")) {
 				Register newuser = new Register();
 				newuser.register();
 			} else {
