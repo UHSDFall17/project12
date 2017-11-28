@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 import board.WelcomeBoard;
 import global.Global;
-import sqlStatements.CommonSqlQueries;
-import sqlStatements.RegisterStatements;
+import sqlstatements.CommonSqlQueries;
+import sqlstatements.RegisterStatements;
 
 public class Login {
 	private String username;

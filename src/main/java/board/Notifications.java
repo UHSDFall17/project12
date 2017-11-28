@@ -2,7 +2,7 @@ package board;
 
 import java.util.Scanner;
 
-import sqlStatements.NotificationSqlQueries;
+import sqlstatements.NotificationSqlQueries;
 
 public class Notifications {
 	private NotificationSqlQueries notify = new NotificationSqlQueries();
