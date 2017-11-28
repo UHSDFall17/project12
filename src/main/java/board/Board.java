@@ -5,13 +5,13 @@ import board.Cards;
 import sqlStatements.BoardSqlQueries;
 
 public class Board {
-	Scanner inputReader = new Scanner(System.in);
-	BoardSqlQueries sqlObj = new BoardSqlQueries();
-	String boardname, boardname1;
-	int value;
-	WelcomeBoard wb = new WelcomeBoard();
-	BoardInfo boardinfo = new BoardInfo();
-	Cards card = new Cards();
+	private Scanner inputReader = new Scanner(System.in);
+	private BoardSqlQueries sqlObj = new BoardSqlQueries();
+	public String boardname, boardname1;
+	public int value;
+	private WelcomeBoard wb = new WelcomeBoard();
+	private BoardInfo boardinfo = new BoardInfo();
+	private Cards card = new Cards();
 
 	public void option() {
 		do {
@@ -28,6 +28,7 @@ public class Board {
 				break;
 			case 3:
 				starBoard();
+				break;
 			case 4:
 				wb.welcome();
 				break;
@@ -54,7 +55,7 @@ public class Board {
 		System.out.println("Do you wish to open board");
 
 		String open = boardinfo.getopenBoardOption();
-		if (open.equals("yes")) {
+		if ("yes".equals(open)) {
 			System.out.println("Please enter the name of the board which you wish to open");
 			boardname = boardinfo.getopenBoardName();
 			openBoard(boardname);
@@ -73,7 +74,7 @@ public class Board {
 	private void starBoard() {
 		System.out.println("Do you wish to Star any of your boards");
 		String option = boardinfo.getStarBoard();
-		if (option.equals("yes")) {
+		if ("yes".equals(option)) {
 			System.out.println("Please enter the name of the board which you wish to star");
 			boardname = boardinfo.getstarBoardName();
 			sqlObj.starIt(boardname);

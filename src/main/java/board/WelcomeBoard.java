@@ -10,17 +10,17 @@ import sqlStatements.TeamSqlQueries;
 import trello.App;
 
 public class WelcomeBoard {
-	int value;
-	Scanner inputReader = new Scanner(System.in);
-	Team teamObj = new Team();
-	TeamDetails teamDetailsObj = new TeamDetails();
-	TeamSqlQueries teamSqlObj = new TeamSqlQueries();
+	private int value;
+	private Scanner inputReader = new Scanner(System.in);
+	private Team teamObj = new Team();
+	private TeamDetails teamDetailsObj = new TeamDetails();
+	private TeamSqlQueries teamSqlObj = new TeamSqlQueries();
 
 	public void welcome() {
 
 		do {
-			if ((!Global.userType.equals(null) || !Global.userType.equals(""))
-					&& Global.userType.equals("1")) {
+			if (( !"".equals(Global.userType))
+					&& "1".equals(Global.userType)) {
 				System.out
 						.println("Select the options below \n 1.Board \n 2.Team \n 3. Notification \n 4. Restore Deleted Items \n 5. Logout");
 			} else {
