@@ -11,8 +11,7 @@ import board.WelcomeBoard;
 public class Cards {
 	
 	private Scanner input = new Scanner (System.in);
-	private CardSqlQueries sqlObj = new CardSqlQueries();
-	private String cardname, description, comments, date;
+	private CardSqlQueries sqlObj = new CardSqlQueries();	
 	
 	public void menu() {
 		System.out.println("------Viewing Lists/Cards------\n");
@@ -41,6 +40,10 @@ public class Cards {
 	}
 	
 	private void chooseOption(String listname, int number) {
+		String cardname;
+		String description;
+		String comments;
+		String date;
 		switch(number) {
 		case 1:
 			sqlObj.listAllCards(listname);
@@ -50,25 +53,25 @@ public class Cards {
 			break;
 		case 3:
 			System.out.println("Please enter the card name: ");
-			this.cardname = input.nextLine();
+			cardname = input.nextLine();
 			System.out.println("Please enter a description of the card: ");
-			this.description = input.nextLine();
+			description = input.nextLine();
 			System.out.println("Enter any comments for the card: ");
-			this.comments = input.nextLine();
+			comments = input.nextLine();
 			System.out.println("Assign a due date for this card? Y/N: ");
 			String answer = input.nextLine();
-			if(answer.equals("Y") || answer.equals("y")) {
+			if("Y".equals(answer)) {
 				System.out.println("Enter the due date in 'YYYYY-MM-DD' form: ");
-				this.date = input.nextLine();
+				date = input.nextLine();
 			}
 			else {
-				this.date = null;
+				date = null;
 			}
-			sqlObj.createCard(listname, this.cardname, this.description, this.comments, this.date);
+			sqlObj.createCard(listname, cardname, description, comments, date);
 			break;
 		case 4:
 			System.out.println("Provide the card name that you wish to modify: ");
-			this.cardname = input.nextLine();
+			cardname = input.nextLine();
 			System.out.println("What part do you wish to modify?\n"
 					+ "1) The card name.\n"
 					+ "2) The card description.\n"
@@ -76,7 +79,7 @@ public class Cards {
 					+ "4) The card due date.\n"
 					+ "5) Mark card as finished/not finished.\n"
 					+ "Enter a number: ");
-			sqlObj.modifyCard(listname, this.cardname, input.nextInt());
+			sqlObj.modifyCard(listname, cardname, input.nextInt());
 			break;
 		case 5:
 			menu();

@@ -69,7 +69,7 @@ public class AppTest
   	}
     
     @org.junit.Test
-  	public void testRegisterationEmailID_Check()
+  	public void testRegisterationEmailIDCheck()
   	{
   		Register obj = new Register();
   		obj.email = "raji@gmail.com";
@@ -91,6 +91,6 @@ public class AppTest
      */
     public void testApp()
     {
-        
+     assert(true);   
     }
 }
