@@ -10,20 +10,21 @@ import sqlStatements.TeamSqlQueries;
 
 public class Team {
 
-	String teamname;
-	String teamdesc;
-	String memberName;
-	TeamSqlQueries sqlObj = new TeamSqlQueries();
-	List<String> members = new ArrayList<String>();
-	Scanner inputReader = new Scanner(System.in);
-	HashMap<String, String> teamDetails = new HashMap<String, String>();
-	TeamDetails teamObj = new TeamDetails();
+	public String teamname;
+	public String teamdesc;
+	public String memberName;
+	public int option;
+	private TeamSqlQueries sqlObj = new TeamSqlQueries();
+	private List<String> members = new ArrayList<String>();
+	private Scanner inputReader = new Scanner(System.in);
+	private HashMap<String, String> teamDetails = new HashMap<String, String>();
+	private TeamDetails teamObj = new TeamDetails();
 
 	public void team() {
 		try {
 			System.out
 					.println("Select the options below \n 1.Create New Team \n 2.View Team List \n 3.Add Members to Team \n 4.View Team Information \n 5. Edit Team Profile \n 6. Delete Team");
-			int option = teamObj.getOption();
+			option = teamObj.getOption();
 			switch (option) {
 			case 1:
 				createTeam();
@@ -43,6 +44,8 @@ public class Team {
 			case 6:
 				deleteTeam();
 				break;
+			default:
+				break;
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -52,7 +55,7 @@ public class Team {
 	public void createTeam() {
 		try {
 			System.out.println("Press/n 1.General Team /n  2.Business Team ");
-			int option = teamObj.getOption();
+			option = teamObj.getOption();
 			if (option == 1)
 				System.out.println("---Create Team---");
 			else if (option == 2)
@@ -72,14 +75,13 @@ public class Team {
 			teamname = teamObj.getTeamName();
 			teamObj.addMembers();
 			members = teamObj.getMembers();
-			int optionsToAdd;
 			do {
 				teamObj.printTeamMembers();
 				System.out
 						.println("Press 1.Add More Members 2.Confirm Members");
-				optionsToAdd = inputReader.nextInt();
+				option = inputReader.nextInt();
 				inputReader.nextLine();
-				if (optionsToAdd == 2) {
+				if (option == 2) {
 					boolean result = sqlObj.addMembersToTeam(members, teamname);
 					if (!result)
 						System.out
@@ -89,7 +91,7 @@ public class Team {
 					break;
 				}
 				teamObj.addMembers();
-			} while (optionsToAdd != 2);
+			} while (option != 2);
 
 		} catch (Exception e) {
 			System.out.println(e);
@@ -104,69 +106,61 @@ public class Team {
 			System.out.println(e);
 		}
 	}
-	
+
 	public void deleteTeam() {
 		try {
 			List<String> teamList = new ArrayList<String>();
-			teamList = sqlObj.listTeams(1);					
-			if(teamList.isEmpty())
-			{
+			teamList = sqlObj.listTeams(1);
+			if (teamList.isEmpty()) {
 				System.out.println("No teams found");
-			}
-			else
-			{
-			teamObj.printTeamList(1);
-			teamname = teamObj.getTeamName();
-			boolean result = sqlObj.deleteTeam(teamname);
-			if(result)
-			{
-			System.out.println(teamname + " deleted Successfully");
-			}
-			else
-			{
-				System.out.println("Error in deleting");
-			}
+			} else {
+				teamObj.printTeamList(1);
+				teamname = teamObj.getTeamName();
+				boolean result = sqlObj.deleteTeam(teamname);
+				if (result) {
+					System.out.println(teamname + " deleted Successfully");
+				} else {
+					System.out.println("Error in deleting");
+				}
 			}
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
+
 	public void restoreTeam() {
 		try {
-		
+
 			teamname = teamObj.getTeamName();
 			boolean result = sqlObj.restoreTeam(teamname);
-			if(result)
-			{
-			System.out.println(teamname + " restored Successfully");
-			}
-			else
-			{
+			if (result) {
+				System.out.println(teamname + " restored Successfully");
+			} else {
 				System.out.println("Error in deleting");
 			}
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
+
 	public void editTeamInfo() {
 		try {
 			viewTeamInfo();
-			Integer optionToEdit = 0;
 			String editedValues = "";
 			String printEditLabels = "";
 			String editLabels = "";
 			boolean result;
-			while (optionToEdit != 5) {
+			while (option != 5) {
 				System.out
 						.println("Press the numbers associated with the labels to edit the values");
 				System.out
 						.println("1.Team Name 2.Team Description 3. Accessibility 4.Team Type 5.Back to Team option");
 
-				optionToEdit = teamObj.getOption();
-				if (optionToEdit == 5) {
+				option = teamObj.getOption();
+				if (option == 5) {
 					break;
 				}
-				switch (optionToEdit) {
+				switch (option) {
 				case 1:
 					printEditLabels = "Enter New Team Name";
 					editLabels = "team_name_edited";
@@ -183,17 +177,19 @@ public class Team {
 					printEditLabels = "Change Team Type. Enter 1 for Normal 2 for Business";
 					editLabels = "team_type_edited";
 					break;
+				default:
+					break;
 				}
 				System.out.println(printEditLabels);
 				editedValues = inputReader.nextLine();
 				teamObj.putTeamDetails(editLabels, editedValues);
-				teamDetails= teamObj.getTeamDetails();
-				result = sqlObj.editTeamInfo(optionToEdit, teamDetails);
+				teamDetails = teamObj.getTeamDetails();
+				result = sqlObj.editTeamInfo(option, teamDetails);
 				if (result) {
-					if (optionToEdit == 1) {
-						teamObj.setTeamName(teamDetails.get("team_name_edited"));											
+					if (option == 1) {
+						teamObj.setTeamName(teamDetails.get("team_name_edited"));
 					} else {
-						teamObj.setTeamName(teamDetails.get("team_name"));						
+						teamObj.setTeamName(teamDetails.get("team_name"));
 					}
 					teamObj.printTeamDetails();
 					System.out.println("Updated successully");
@@ -205,7 +201,6 @@ public class Team {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
-		
+
 	}
 }
