@@ -14,8 +14,8 @@ import sqlstatements.CommonSqlQueries;
 public class AppTest 
     extends TestCase
 {
-	Validation val = new Validation();
-	CommonSqlQueries sqlobj = new CommonSqlQueries();
+	private Validation val = new Validation();
+	private CommonSqlQueries sqlobj = new CommonSqlQueries();
     /**
      * Create the test case
      *
@@ -28,7 +28,7 @@ public class AppTest
     
     
     @org.junit.Test
-   	public void test_Username_Alphabets_Only()
+   	public void testUsernameAlphabetsOnly()
    	{
    		Register obj = new Register();
    		obj.username = "naresh";   		
@@ -38,7 +38,7 @@ public class AppTest
    	}
     
     @org.junit.Test
-   	public void test_Email_pattern()
+   	public void testEmailpattern()
    	{
    		Register obj = new Register();
    		obj.email = "naresh@g.com";   		
@@ -48,7 +48,7 @@ public class AppTest
    	}
     
     @org.junit.Test
-   	public void test_Password_ConfirmPassword_match()
+   	public void testPasswordConfirmPasswordmatch()
    	{
    		Register obj = new Register();
    		obj.password = "test";  
@@ -59,7 +59,7 @@ public class AppTest
    	}
     
     @org.junit.Test
-  	public void test_Registeration_UserName_Check()
+  	public void testRegisterationUserNameCheck()
   	{
   		Register obj = new Register();
   		obj.username = "raji";
@@ -69,7 +69,7 @@ public class AppTest
   	}
     
     @org.junit.Test
-  	public void test_Registeration_EmailID_Check()
+  	public void testRegisterationEmailID_Check()
   	{
   		Register obj = new Register();
   		obj.email = "raji@gmail.com";
@@ -91,6 +91,6 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+        
     }
 }

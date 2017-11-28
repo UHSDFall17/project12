@@ -7,10 +7,10 @@ import trello.ConnectionManager;
 
 public class BoardSqlQueries {
 	private Connection con;
-	Statement s = null;
-	String name, starred;
-	String lists;
-	private String starboard;
+	private Statement s = null;
+	private String name, starred;
+	private String lists;
+	
 
 	public void viewboards() {
 		try {
@@ -60,11 +60,10 @@ public class BoardSqlQueries {
 	}
 
 	public void starIt(String boardname) {
-		this.starboard = boardname;
 		try {
 			con = ConnectionManager.getConnection();
 			Statement s = con.createStatement();
-			s.executeUpdate("UPDATE board SET starred = '1' WHERE boardname ='" + starboard + "'");
+			s.executeUpdate("UPDATE board SET starred = '1' WHERE boardname ='" + boardname + "'");
 			System.out.println("Starred Successsfully");
 		} catch (Exception e) {
 			System.out.println(e);
