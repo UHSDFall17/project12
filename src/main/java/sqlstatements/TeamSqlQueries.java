@@ -108,11 +108,11 @@ public class TeamSqlQueries {
 		return false;
 	}
 public HashMap<String, String> teamInfo(String teamName) {
-		
+	HashMap<String, String> teamDetails= new HashMap<String, String>();
 		try{
 			con = ConnectionManager.getConnection();	
 			Statement s=con.createStatement(); 
-			HashMap<String, String> teamDetails= new HashMap<String, String>();
+			
 			ResultSet rs = null;		
 			boolean teamExistsCheck = sqlObj.teamNameExisitsCheck(teamName,1);
 			if(!teamExistsCheck)
@@ -132,13 +132,13 @@ public HashMap<String, String> teamInfo(String teamName) {
 				teamDetails.put("access_mode", rs.getString("access_mode"));
 				teamDetails.put("created_by", rs.getString("created_by"));
 				teamDetails.put("team_type", rs.getString("team_type"));
-				teamDetails.put("created_date", rs.getString("created_date"));
-		        return teamDetails;
+				teamDetails.put("created_date", rs.getString("created_date"));		        
 		      }
-			return null;
+			
 		}     
 		catch(Exception e){ System.out.println(e);}
-		return null;
+		return teamDetails;
+	
 		
 	}
 public boolean editTeamInfo(Integer option,HashMap<String, String> teamDetails)
