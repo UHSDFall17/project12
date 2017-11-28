@@ -46,7 +46,7 @@ public static void options() {
      			break;
      		case 5:
     	 		System.out.println("Terminataing the program");
-    	 		Runtime.getRuntime().exit(0); 
+    	 		App.options();
     	 		break;
      		default:
      			System.out.println("The selection was invalid!");

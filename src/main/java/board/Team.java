@@ -14,10 +14,8 @@ public class Team {
 	public String teamdesc;
 	public String memberName;
 	public int option;
-	private TeamSqlQueries sqlObj = new TeamSqlQueries();
-	private List<String> members = new ArrayList<String>();
-	private Scanner inputReader = new Scanner(System.in);
-	private HashMap<String, String> teamDetails = new HashMap<String, String>();
+	private TeamSqlQueries sqlObj = new TeamSqlQueries();	
+	private Scanner inputReader = new Scanner(System.in);	
 	private TeamDetails teamObj = new TeamDetails();
 
 	public void team() {
@@ -72,6 +70,7 @@ public class Team {
 
 	public void addMembersToTeam() {
 		try {
+		 List<String> members = new ArrayList<String>();
 			teamname = teamObj.getTeamName();
 			teamObj.addMembers();
 			members = teamObj.getMembers();
@@ -145,6 +144,7 @@ public class Team {
 
 	public void editTeamInfo() {
 		try {
+			HashMap<String, String> teamDetails = new HashMap<String, String>();
 			viewTeamInfo();
 			String editedValues = "";
 			String printEditLabels = "";

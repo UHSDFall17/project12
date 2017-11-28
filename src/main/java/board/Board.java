@@ -8,13 +8,13 @@ import sqlStatements.BoardSqlQueries;
 public class Board {
 	private Scanner inputReader = new Scanner(System.in);
 	private BoardSqlQueries sqlObj = new BoardSqlQueries();
-	private String boardname, boardname1;
-	private int value;
+	private String boardname;	
 	private WelcomeBoard wb = new WelcomeBoard();
 	private BoardInfo boardinfo = new BoardInfo();
 	private Cards card = new Cards();
 
 	public void option() {
+		int value;
 		do {
 			System.out.println(
 					"Select the options below \n 1.Create Board \n 2. Display Boards \n 3. Star Board \n 4. Go Back");
@@ -66,9 +66,8 @@ public class Board {
 		card.menu();
 	}
 
-	private void openBoard(String boardname2) {
-		this.boardname1 = boardname2;
-		sqlObj.listCards(boardname1);
+	private void openBoard(String boardname2) {		
+		sqlObj.listCards(boardname2);
 
 	}
 
