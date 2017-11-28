@@ -10,13 +10,13 @@ import validations.Validation;
 import login.UserInfo;
 
 public class Register {
-	private String username;
-	private String email;
-	private String password;
-	private String confirmPassword;
-	private String userType;
-	private String orgName=null;
-	private Validation val = new Validation();
+	public String username;
+	public String email;
+	public String password;
+	public String confirmPassword;
+	public String userType;
+	public String orgName=null;
+	public Validation val = new Validation();
 	RegisterStatements registerObj = new RegisterStatements();
 	Scanner inputReader = new Scanner(System.in);
 	UserInfo userObj = new UserInfo();

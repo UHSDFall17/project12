@@ -44,7 +44,7 @@ public class Team {
 			case 6:
 				deleteTeam();
 				break;
-			default:
+			default:System.out.println("Invlaid Option");
 				break;
 			}
 		} catch (Exception e) {
@@ -177,7 +177,7 @@ public class Team {
 					printEditLabels = "Change Team Type. Enter 1 for Normal 2 for Business";
 					editLabels = "team_type_edited";
 					break;
-				default:
+				default:System.out.println("Invlaid Option");
 					break;
 				}
 				System.out.println(printEditLabels);

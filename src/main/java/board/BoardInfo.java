@@ -3,7 +3,7 @@ package board;
 import java.util.Scanner;
 
 public class BoardInfo {
-	Scanner inputReader = new Scanner(System.in);
+	private Scanner inputReader = new Scanner(System.in);
 	private String boardtitle,teamname,starboard,starBoardName,openBoardName,openBoardOption,restoreBoardName;
 	
 	BoardInfo(){
