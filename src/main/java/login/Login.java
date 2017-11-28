@@ -45,7 +45,7 @@ public class Login {
 	public void forgotPassword() {
 		try {
 			username = userObj.getUserName();
-			boolean result = sqlObj.UserNameExisitsCheck(username);
+			boolean result = sqlObj.userNameExisitsCheck(username);
 			System.out.println(result);
 			if (result) {
 				System.out.println("Entry matches. ");

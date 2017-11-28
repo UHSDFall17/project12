@@ -10,9 +10,9 @@ import board.WelcomeBoard;
 
 public class Cards {
 	
-	Scanner input = new Scanner (System.in);
-	CardSqlQueries sqlObj = new CardSqlQueries();
-	String cardname, description, comments, date;
+	private Scanner input = new Scanner (System.in);
+	private CardSqlQueries sqlObj = new CardSqlQueries();
+	private String cardname, description, comments, date;
 	
 	
 	public void menu() {
@@ -35,7 +35,7 @@ public class Cards {
 			chooseOption(listname, input.nextInt());
 			System.out.println("Do you wish to go over the options again? Y/N: ");
 			answer = input.nextLine();
-		}while(answer.equals("Y") || answer.equals("y"));
+		}while("Y".equals(answer));
 		System.out.println("Sending you back to the welcome board.");
 		WelcomeBoard wb = new WelcomeBoard();
 		wb.welcome();

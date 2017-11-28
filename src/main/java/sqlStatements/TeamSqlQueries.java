@@ -25,7 +25,7 @@ public class TeamSqlQueries {
 		try{
 		con = ConnectionManager.getConnection();
 		String values="";
-		boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamname,1);
+		boolean teamExistsCheck = sqlObj.teamNameExisitsCheck(teamname,1);
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Date date = new Date();
 		String createDate =dateFormat.format(date).toString(); 
@@ -77,7 +77,7 @@ public class TeamSqlQueries {
 		String names="";
 		for(int i=0;i<members.size();i++)
 		{
-			boolean nameExistsCheck = sqlObj.UserNameExisitsCheck(members.get(i));			
+			boolean nameExistsCheck = sqlObj.userNameExisitsCheck(members.get(i));			
 			if(nameExistsCheck)
 			{
 				names += members.get(i)+",";	
@@ -88,7 +88,7 @@ public class TeamSqlQueries {
 			}		
 			 
 		}			
-		boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamName,1);
+		boolean teamExistsCheck = sqlObj.teamNameExisitsCheck(teamName,1);
 		if(!teamExistsCheck)
 		{
 			return false;
@@ -114,7 +114,7 @@ public HashMap<String, String> teamInfo(String teamName) {
 			Statement s=con.createStatement(); 
 			HashMap<String, String> teamDetails= new HashMap<String, String>();
 			ResultSet rs = null;		
-			boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamName,1);
+			boolean teamExistsCheck = sqlObj.teamNameExisitsCheck(teamName,1);
 			if(!teamExistsCheck)
 			{
 				return null;
@@ -148,7 +148,7 @@ public boolean editTeamInfo(Integer option,HashMap<String, String> teamDetails)
 	String values="";
 	String partofQuery="";	
 	
-	boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamDetails.get("team_name"),1);
+	boolean teamExistsCheck = sqlObj.teamNameExisitsCheck(teamDetails.get("team_name"),1);
 	if(!teamExistsCheck)
 	{
 		return false;
@@ -180,7 +180,7 @@ public boolean editTeamInfo(Integer option,HashMap<String, String> teamDetails)
 public boolean deleteTeam(String teamname)
 {
 	try{
-	boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamname,1);
+	boolean teamExistsCheck = sqlObj.teamNameExisitsCheck(teamname,1);
 	System.out.println(teamExistsCheck);
 	if(!teamExistsCheck)
 	{
@@ -200,7 +200,7 @@ public boolean deleteTeam(String teamname)
 public boolean restoreTeam(String teamname)
 {
 	try{
-	boolean teamExistsCheck = sqlObj.TeamNameExisitsCheck(teamname,2);
+	boolean teamExistsCheck = sqlObj.teamNameExisitsCheck(teamname,2);
 	if(!teamExistsCheck)
 	{
 		return false;

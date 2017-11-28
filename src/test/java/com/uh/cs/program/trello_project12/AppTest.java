@@ -64,7 +64,7 @@ public class AppTest
   		Register obj = new Register();
   		obj.username = "raji";
   		boolean expectation = true;
-  		boolean result = sqlobj.UserNameExisitsCheck(obj.username);
+  		boolean result = sqlobj.userNameExisitsCheck(obj.username);
   		assertEquals(expectation, result);
   	}
     
@@ -74,7 +74,7 @@ public class AppTest
   		Register obj = new Register();
   		obj.email = "raji@gmail.com";
   		boolean expectation = true;
-  		boolean result = sqlobj.EmailExisitsCheck(obj.email);
+  		boolean result = sqlobj.emailExisitsCheck(obj.email);
   		assertEquals(expectation, result);
   	}
     

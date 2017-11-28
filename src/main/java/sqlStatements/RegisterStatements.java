@@ -16,8 +16,8 @@ public class RegisterStatements {
 	{
 		try{
 		con = ConnectionManager.getConnection();
-		boolean usernameCheck=sqlObj.UserNameExisitsCheck(username);
-		boolean emailCheck=sqlObj.EmailExisitsCheck(email);
+		boolean usernameCheck=sqlObj.userNameExisitsCheck(username);
+		boolean emailCheck=sqlObj.emailExisitsCheck(email);
 		if(!usernameCheck && !emailCheck ){
 			String values = "INSERT INTO login (user_name,password,email_id,user_type,org_name) " + "VALUES "
 					+ "('" +username+ "', '" +password+"','" +email+"','" +userType+"','" +orgName+"')";

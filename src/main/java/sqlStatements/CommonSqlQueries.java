@@ -10,9 +10,9 @@ import trello.ConnectionManager;
 
 public class CommonSqlQueries {
 	private Connection con;
-	Statement s = null;
+	private Statement s = null;
 	
-	public boolean UserNameExisitsCheck(String username)
+	public boolean userNameExisitsCheck(String username)
 	{
 		try{
 			con = ConnectionManager.getConnection();
@@ -34,7 +34,7 @@ public class CommonSqlQueries {
 		
 		return false;  
 	}
-	public boolean EmailExisitsCheck(String email)
+	public boolean emailExisitsCheck(String email)
 	{
 		try{
 			con = ConnectionManager.getConnection(); 
@@ -56,7 +56,7 @@ public class CommonSqlQueries {
 		
 		return false;  
 	}
-	public boolean TeamNameExisitsCheck(String teamName,int tableOption)
+	public boolean teamNameExisitsCheck(String teamName,int tableOption)
 	{
 		try{
 			con = ConnectionManager.getConnection(); 
