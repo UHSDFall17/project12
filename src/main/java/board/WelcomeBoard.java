@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import sqlStatements.TeamSqlQueries;
+import sqlstatements.TeamSqlQueries;
 import trello.App;
 
 public class WelcomeBoard {

@@ -1,4 +1,4 @@
-package sqlStatements;
+package sqlstatements;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
