@@ -85,7 +85,7 @@ public class Register {
 			if ("".equals(userType)) {
 				userType = "2";
 			}
-			if (userType.equals("1")) {
+			if ("1".equals(userType)) {
 				orgName = userObj.getOrgName();
 				if ("".equals(orgName)) {
 					requiredValidation(8);

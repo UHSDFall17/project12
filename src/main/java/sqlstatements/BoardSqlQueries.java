@@ -13,7 +13,8 @@ public class BoardSqlQueries {
 		try {
 			con = ConnectionManager.getConnection();
 			 s = con.createStatement();
-			 String name,starred;
+			 String name;
+			 String starred;
 
 			System.out.println("Starred Board");
 			System.out.println("--------------");
