@@ -1,8 +1,10 @@
 package sqlStatements;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Scanner;
 
 import global.Global;
 import trello.ConnectionManager;
@@ -19,8 +21,8 @@ public class RegisterStatements {
 		boolean usernameCheck=sqlObj.UserNameExisitsCheck(username);
 		boolean emailCheck=sqlObj.EmailExisitsCheck(email);
 		if(!usernameCheck && !emailCheck ){
-			String values = "INSERT INTO users (user_name,password,email_id,user_type,org_name,comment) " + "VALUES "
-					+ "('" +username+ "', '" +password+"','" +email+"','" +userType+"','" +orgName+"','"+comment+"')";
+			String values = "INSERT INTO login (user_name,password,email_id,user_type,org_name) " + "VALUES "
+					+ "('" +username+ "', '" +password+"','" +email+"','" +userType+"','" +orgName+"')";
 			s = con.createStatement();
 			s.executeUpdate(values);  
 			con.close();
@@ -44,7 +46,7 @@ public class RegisterStatements {
 	public boolean loginCheck(String username,String password) {
 		try {
 			con = ConnectionManager.getConnection();
-			String values = "Select user_name,password,user_type from users Where user_name ='" 
+			String values = "Select user_name,password,user_type from login Where user_name ='" 
 					+ username + "' and password = '" + password + "';";
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery(values);
@@ -62,7 +64,18 @@ public class RegisterStatements {
 
 		return false;
 	}
+	public void forgotPassword(String username, String password) {
+		try {		
+			con = ConnectionManager.getConnection();
+					String values = "UPDATE login (user_name,password) " + "VALUES ('"
+						+ username + "', '" + password + "')";
+				s = con.createStatement();
+				s.executeUpdate(values);
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	
-	
-	
+	}
 }
+

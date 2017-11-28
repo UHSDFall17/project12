@@ -2,10 +2,8 @@ package login;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
-
 import board.WelcomeBoard;
 import sqlStatements.RegisterStatements;
 import validations.Validation;
@@ -104,10 +102,7 @@ public class Register {
 			System.out.println("Name:" + username + " Email ID:" + email);
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
-			System.out.println(dateFormat.format(date));
-			String comment="Registered into trello on"+dateFormat.format(date);
-			System.out.println(comment);
-			
+			String comment="Registered into trello on"+dateFormat.format(date);			
 			int result = registerObj.registerUser(username, password, email,userType,orgName,comment);
 			String printValues = "";
 			switch (result) {
