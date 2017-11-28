@@ -16,8 +16,8 @@ public class TeamDetails {
 	private String memberName;
 	private String allMemberNames;
 	private int option;
-	TeamSqlQueries sqlObj = new TeamSqlQueries();
-	Scanner inputReader = new Scanner(System.in);
+	private TeamSqlQueries sqlObj = new TeamSqlQueries();
+	private Scanner inputReader = new Scanner(System.in);
 
 	public TeamDetails() {
 		teamname = "";
@@ -145,7 +145,7 @@ public class TeamDetails {
 					String lastChar = teamDetails.get("team_members").substring(
 							teamDetails.get("team_members").length() - 1);
 					String membernames;
-					if (lastChar.trim().equals(",")) {
+					if (",".equals(lastChar.trim())) {
 						membernames = teamDetails.get("team_members").substring(0,
 								teamDetails.get("team_members").length() - 1);
 					} else {
@@ -159,9 +159,8 @@ public class TeamDetails {
 				}
 				
 				System.out.println("Admin: " + teamDetails.get("created_by"));
-				if (teamDetails.get("access_mode") == null
-						|| teamDetails.get("access_mode") == ""
-						|| teamDetails.get("access_mode").equals("1")) {
+				if ( "".equals(teamDetails.get("access_mode"))
+						|| "1".equals(teamDetails.get("access_mode"))) {
 					teamDetails.put("access_mode", "Public");
 				} else {
 					teamDetails.put("access_mode", "Private");

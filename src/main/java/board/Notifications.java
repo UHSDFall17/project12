@@ -14,7 +14,7 @@ public class Notifications {
 		System.out.println("Do you wish to see all Notifications");
 
 		String option = inputReader.nextLine();
-		if (option.equals("yes")) {
+		if ("yes".equals(option)) {
 			notify.viewAllNotifications();
 		} else {
 			wb.welcome();

@@ -10,10 +10,10 @@ import sqlstatements.RegisterStatements;
 public class Login {
 	private String username;
 	private String password;
-	Scanner inputReader = new Scanner(System.in);
-	RegisterStatements loginObj = new RegisterStatements();
-	CommonSqlQueries sqlObj = new CommonSqlQueries();
-	UserInfo userObj = new UserInfo();
+	public Scanner inputReader = new Scanner(System.in);
+	private RegisterStatements loginObj = new RegisterStatements();
+	private CommonSqlQueries sqlObj = new CommonSqlQueries();
+	private UserInfo userObj = new UserInfo();
 
 	public void loginPage() {
 
