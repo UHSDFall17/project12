@@ -23,7 +23,15 @@ public class UserInfo {
 	public void setUserName(String username) {
 		this.username = username;
 	}
-
+	
+	public  String getNameForTest(){
+		return this.username;
+	}
+	
+	public  String getPasswordForTest(){
+		return this.password;
+	}
+	
 	public String getUserName() {
 		System.out.println("Enter user name:");
 		username = inputReader.nextLine().trim();
