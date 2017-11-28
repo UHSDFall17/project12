@@ -8,14 +8,12 @@ import trello.ConnectionManager;
 public class BoardSqlQueries {
 	private Connection con;
 	private Statement s = null;
-	private String name, starred;
-	private String lists;
-	
 
 	public void viewboards() {
 		try {
 			con = ConnectionManager.getConnection();
-			Statement s = con.createStatement();
+			 s = con.createStatement();
+			 String name,starred;
 
 			System.out.println("Starred Board");
 			System.out.println("--------------");
@@ -44,9 +42,10 @@ public class BoardSqlQueries {
 	public void listCards(String boardnames) {
 		String boardnames1;
 		boardnames1 = boardnames;
+	    String lists;
 		try {
 			con = ConnectionManager.getConnection();
-			Statement s = con.createStatement();
+			 s = con.createStatement();
 			ResultSet rs = s.executeQuery("SELECT * FROM board WHERE boardname ='" + boardnames1 + "'");
 			while (rs.next()) {
 				lists = rs.getString("list");
@@ -62,7 +61,7 @@ public class BoardSqlQueries {
 	public void starIt(String boardname) {
 		try {
 			con = ConnectionManager.getConnection();
-			Statement s = con.createStatement();
+			 s = con.createStatement();
 			s.executeUpdate("UPDATE board SET starred = '1' WHERE boardname ='" + boardname + "'");
 			System.out.println("Starred Successsfully");
 		} catch (Exception e) {

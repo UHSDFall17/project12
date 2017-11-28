@@ -10,8 +10,8 @@ import sqlStatements.CommonSqlQueries;
 
 public class RegisterStatements {
 	private Connection con;
-	Statement s = null;
-	CommonSqlQueries sqlObj = new CommonSqlQueries();
+	private Statement s = null;
+	private CommonSqlQueries sqlObj = new CommonSqlQueries();
 	public int registerUser(String username,String password,String email,String userType,String orgName,String comment)
 	{
 		try{

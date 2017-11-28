@@ -56,8 +56,8 @@ public class WelcomeBoard {
 	}
 
 	public void restoreOptions() {
-		if ((!Global.userType.equals(null) || !Global.userType.equals(""))
-				&& Global.userType.equals("1")) {
+		if ((!"".equals(Global.userType))
+				&& "1".equals(Global.userType)) {
 			System.out.println("Enter 1.Restore Team 2.Restore Board");
 			int option = inputReader.nextInt();
 			inputReader.nextLine();

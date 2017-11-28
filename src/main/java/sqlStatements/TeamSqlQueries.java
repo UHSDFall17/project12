@@ -16,10 +16,10 @@ import global.Global;
 
 public class TeamSqlQueries {
 	private Connection con;
-	Statement s = null;
+	private Statement s = null;
 	
-	CommonSqlQueries sqlObj = new CommonSqlQueries();
-	 List<String> teams = new ArrayList<String>();
+	private CommonSqlQueries sqlObj = new CommonSqlQueries();
+	private List<String> teams = new ArrayList<String>();
 	public boolean createTeam(String teamname,String teamdesc,int option )
 	{
 		try{
@@ -135,10 +135,11 @@ public HashMap<String, String> teamInfo(String teamName) {
 				teamDetails.put("created_date", rs.getString("created_date"));
 		        return teamDetails;
 		      }
-		}
-		      
+			return null;
+		}     
 		catch(Exception e){ System.out.println(e);}
 		return null;
+		
 	}
 public boolean editTeamInfo(Integer option,HashMap<String, String> teamDetails)
 {
@@ -164,6 +165,8 @@ public boolean editTeamInfo(Integer option,HashMap<String, String> teamDetails)
 		case 3:partofQuery= "access_mode='"+teamDetails.get("access_mode_edited")+"'";
 		break;
 		case 4:partofQuery= "team_type='"+teamDetails.get("team_type_edited")+"'";
+		break;
+		default:partofQuery= "team_name='"+teamDetails.get("team_name_edited")+"'";
 		break;
 		}
 		values="UPDATE team SET "+partofQuery+" WHERE team_name ='" +teamDetails.get("team_name")+ "'";			

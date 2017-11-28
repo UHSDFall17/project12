@@ -82,12 +82,12 @@ public class Register {
 				requiredValidation(7);
 			}
 			userType = userObj.getUserType();
-			if (userType.equals("") || userType.equals(null)) {
+			if ("".equals(userType)) {
 				userType = "2";
 			}
 			if (userType.equals("1")) {
 				orgName = userObj.getOrgName();
-				if (userType.equals("") || userType.equals(null)) {
+				if ("".equals(orgName)) {
 					requiredValidation(8);
 				}
 			}
