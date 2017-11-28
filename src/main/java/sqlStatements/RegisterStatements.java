@@ -44,12 +44,10 @@ public class RegisterStatements {
 	public boolean loginCheck(String username,String password) {
 		try {
 			con = ConnectionManager.getConnection();
-
-			String values = "Select user_name,password,user_type from users Where user_name ='"
+			String values = "Select user_name,password,user_type from users Where user_name ='" 
 					+ username + "' and password = '" + password + "';";
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery(values);
-
 			if (rs.next()) {
 				Global.userType = rs.getString("user_type");
 				con.close();
