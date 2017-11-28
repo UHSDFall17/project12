@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import login.Register;
 import validations.Validation;
-import sqlStatements.CommonSqlQueries;
+import sqlstatements.CommonSqlQueries;
 
 
 /**

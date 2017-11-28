@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import board.TeamDetails;
-import sqlStatements.TeamSqlQueries;
+import sqlstatements.TeamSqlQueries;
 
 public class Team {
 

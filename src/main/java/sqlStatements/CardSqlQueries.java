@@ -1,4 +1,4 @@
-package sqlStatements;
+package sqlstatements;
 
 import java.util.Scanner;
 

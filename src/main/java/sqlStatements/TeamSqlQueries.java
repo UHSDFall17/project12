@@ -1,4 +1,4 @@
-package sqlStatements;
+package sqlstatements;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import trello.ConnectionManager;
-import sqlStatements.CommonSqlQueries;
+import sqlstatements.CommonSqlQueries;
 import global.Global;
 
 public class TeamSqlQueries {

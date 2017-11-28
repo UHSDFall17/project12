@@ -1,8 +1,9 @@
 package board;
 
 import java.util.Scanner;
+
 import board.Cards;
-import sqlStatements.BoardSqlQueries;
+import sqlstatements.BoardSqlQueries;
 
 public class Board {
 	private Scanner inputReader = new Scanner(System.in);

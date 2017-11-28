@@ -1,7 +1,8 @@
 package board;
 
 import java.util.Scanner;
-import sqlStatements.CardSqlQueries;
+
+import sqlstatements.CardSqlQueries;
 import board.Board;
 import board.WelcomeBoard;
 
