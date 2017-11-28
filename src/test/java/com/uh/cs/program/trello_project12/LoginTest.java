@@ -11,7 +11,7 @@ public class LoginTest extends TestCase {
         super( testName );
     }
 	//@org.junit.Test
-	public void test_LoginCheck()
+	public void testLoginCheck()
 	{
 		RegisterStatements regObj = new RegisterStatements();
 		UserInfo userObj = new UserInfo();
