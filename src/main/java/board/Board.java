@@ -7,8 +7,8 @@ import sqlStatements.BoardSqlQueries;
 public class Board {
 	private Scanner inputReader = new Scanner(System.in);
 	private BoardSqlQueries sqlObj = new BoardSqlQueries();
-	public String boardname, boardname1;
-	public int value;
+	private String boardname, boardname1;
+	private int value;
 	private WelcomeBoard wb = new WelcomeBoard();
 	private BoardInfo boardinfo = new BoardInfo();
 	private Cards card = new Cards();

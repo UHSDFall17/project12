@@ -9,19 +9,19 @@ import sqlStatements.RegisterStatements;
 import validations.Validation;
 import login.UserInfo;
 
-public class Register {
-	public String username;
-	public String email;
-	public String password;
-	public String confirmPassword;
-	public String userType;
-	public String orgName=null;
+class Register {
+	String username;
+	String email;
+	String password;
+	String confirmPassword;
+	String userType;
+	String orgName=null;
 	Validation val = new Validation();
 	RegisterStatements registerObj = new RegisterStatements();
 	Scanner inputReader = new Scanner(System.in);
 	UserInfo userObj = new UserInfo();
 
-	public void RequiredValidation(int input) {
+	public void requiredValidation(int input) {
 		String printString = "";
 		switch (input) {
 		case 1:
@@ -58,25 +58,25 @@ public class Register {
 			System.out.println("---Registration Form---");
 			username = userObj.getUserName();
 			if (username.length() == 0) {
-				RequiredValidation(1);
+				requiredValidation(1);
 			} else if (!val.checkNamevalidity(username)) {
-				RequiredValidation(6);
+				requiredValidation(6);
 			}
 			email = userObj.getEmail();
 			if (email.length() == 0) {
-				RequiredValidation(2);
+				requiredValidation(2);
 			} else if (!val.checkEmailvalidity(email)) {
-				RequiredValidation(5);
+				requiredValidation(5);
 			}
 			password = userObj.getPassword();
 			if (password.length() == 0) {
-				RequiredValidation(3);
+				requiredValidation(3);
 			}
 			confirmPassword = userObj.getConfirmPassword();
 			if (confirmPassword.length() == 0) {
-				RequiredValidation(3);
+				requiredValidation(3);
 			} else if (!password.equals(confirmPassword)) {
-				RequiredValidation(7);
+				requiredValidation(7);
 			}
 			userType = userObj.getUserType();
 			if(userType.equals("") || userType.equals(null))
@@ -87,7 +87,7 @@ public class Register {
 				orgName=userObj.getOrgName();
 				if(userType.equals("") || userType.equals(null))
 				{
-					RequiredValidation(8);
+					requiredValidation(8);
 				}
 			}
 			
