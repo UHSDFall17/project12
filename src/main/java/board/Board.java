@@ -1,20 +1,10 @@
 package board;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import board.Cards;
-import global.Global;
 import sqlStatements.BoardSqlQueries;
-import trello.App;
-import trello.ConnectionManager;
 
 public class Board {
-	private Connection con = null;
 	Scanner inputReader = new Scanner(System.in);
 	BoardSqlQueries sqlObj = new BoardSqlQueries();
 	String boardname, boardname1;

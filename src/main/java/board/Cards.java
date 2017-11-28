@@ -1,7 +1,5 @@
 package board;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.util.Scanner;
 import sqlStatements.CardSqlQueries;
 import board.Board;
@@ -12,7 +10,6 @@ import board.WelcomeBoard;
 public class Cards {
 	
 	Scanner input = new Scanner (System.in);
-	ResultSet rs;
 	CardSqlQueries sqlObj = new CardSqlQueries();
 	String cardname, description, comments, date;
 	

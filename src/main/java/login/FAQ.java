@@ -6,6 +6,7 @@ import login.Register;
 import login.Login;
 
 public class FAQ {
+	Scanner input = new Scanner(System.in);
 
 	public void start() {
 		System.out
@@ -13,8 +14,7 @@ public class FAQ {
 		questions();
 	}
 
-	public void questions() {
-		Scanner input = new Scanner(System.in);
+	public void questions() {		
 		System.out.println("1) What is trello?");
 		System.out
 				.println("2) What do I need to provide in order to register?");
@@ -27,7 +27,6 @@ public class FAQ {
 	}
 
 	public void answers(int response) {
-		Scanner input = new Scanner(System.in);
 		switch (response) {
 		case 1:
 			System.out

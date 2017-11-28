@@ -3,9 +3,7 @@ package com.uh.cs.program.trello_project12;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import login.Login;
 import login.Register;
-import login.UserInfo;
 import validations.Validation;
 import sqlStatements.CommonSqlQueries;
 

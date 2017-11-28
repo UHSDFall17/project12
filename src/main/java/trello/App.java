@@ -13,6 +13,7 @@ Team 12
 public class App 
 {
 	static int value;
+ 	 
 	
    public static void main( String[] args )
    {
@@ -23,8 +24,8 @@ public class App
 
 public static void options() {
 	do {
-		System.out.println("\n Enter 1 to Login \n Enter 2 to Register \n Enter 3 for New Password\n Enter 4 for Help/FAQ \n Enter 5 to Exit \n Answer: ");
-     	Scanner inputReader = new Scanner(System.in);
+		Scanner inputReader = new Scanner(System.in);
+		System.out.println("\n Enter 1 to Login \n Enter 2 to Register \n Enter 3 for New Password\n Enter 4 for Help/FAQ \n Enter 5 to Exit \n Answer: ");    
      	value = inputReader.nextInt();
      	switch (value) {
      		case 1:
@@ -50,6 +51,7 @@ public static void options() {
      		default:
      			System.out.println("The selection was invalid!");
      	}
+     	inputReader.close();
      }while(value!= 5);
 }
 }

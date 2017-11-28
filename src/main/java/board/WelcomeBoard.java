@@ -44,9 +44,8 @@ public class WelcomeBoard {
 			case 4:
 				restoreOptions();
 				break;
-			case 5:
-				App a = new App();
-				a.options();
+			case 5:				
+				App.options();
 				break;
 			default:
 				System.out.println("invalid option");
@@ -76,8 +75,7 @@ public class WelcomeBoard {
 			}
 
 		} else {
-			App a = new App();
-			a.options();
+			App.options();
 		}		
 	}
 	public void restoreTeam()

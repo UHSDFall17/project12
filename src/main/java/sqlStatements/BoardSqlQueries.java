@@ -3,8 +3,6 @@ package sqlStatements;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.List;
-
 import trello.ConnectionManager;
 
 public class BoardSqlQueries {

@@ -22,7 +22,7 @@ public class Team {
 	public void team() {
 		try {
 			System.out
-					.println("Select the options below \n 1.Create New Team \n 2.View Team List \n 3.Add Members to Team \n 4.View Team Information \n 5. Edit Team Profile \n 6. Delete Team \n 7. Logout");
+					.println("Select the options below \n 1.Create New Team \n 2.View Team List \n 3.Add Members to Team \n 4.View Team Information \n 5. Edit Team Profile \n 6. Delete Team");
 			int option = teamObj.getOption();
 			switch (option) {
 			case 1:
@@ -42,9 +42,6 @@ public class Team {
 				break;
 			case 6:
 				deleteTeam();
-				break;
-			case 7:
-				//editTeamInfo();
 				break;
 			}
 		} catch (Exception e) {

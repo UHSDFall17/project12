@@ -1,9 +1,9 @@
 package com.uh.cs.program.trello_project12;
 
-import sqlStatements.RegisterStatements;
+//import sqlStatements.RegisterStatements;
 import junit.framework.TestCase;
-import login.Login;
-import login.UserInfo;
+//import login.Login;
+//import login.UserInfo;
 
 
 public class LoginTest extends TestCase {
