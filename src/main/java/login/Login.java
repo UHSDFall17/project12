@@ -6,12 +6,14 @@ import java.sql.*;
 import board.WelcomeBoard;
 import trello.ConnectionManager;
 import global.Global;
+import sqlStatements.RegisterStatements;
 
 public class Login {
 	private String username;
 	private String password;
 	private Connection con = null;
 	Scanner inputReader = new Scanner(System.in);
+	RegisterStatements loginObj = new RegisterStatements();
 	UserInfo userObj = new UserInfo();
 
 	public void loginPage() {
@@ -20,7 +22,7 @@ public class Login {
 			System.out.println("---Login Form---");
 			username = userObj.getUserName();
 			password = userObj.getPassword();
-			boolean loginResult = loginCheck();
+			boolean loginResult = loginObj.loginCheck(username,password);
 			if (loginResult) {
 				Global.userName = username;
 				System.out.println("Welcome \t" +Global.userName);
@@ -36,29 +38,7 @@ public class Login {
 
 	}
 
-	public boolean loginCheck() {
-		try {
-			con = ConnectionManager.getConnection();
 
-			String values = "Select user_name,password,user_type from users Where user_name ='"
-					+ username + "' and password = '" + password + "';";
-			Statement s = con.createStatement();
-			ResultSet rs = s.executeQuery(values);
-
-			if (rs.next()) {
-				Global.userType = rs.getString("user_type");
-				con.close();
-				return true;
-			} else {
-				con.close();
-				return false;
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-
-		return false;
-	}
 
 	public void restart() {
 		System.out.println("Entry does not match.");

@@ -1,7 +1,10 @@
 package sqlStatements;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
+
+import global.Global;
 import trello.ConnectionManager;
 import sqlStatements.CommonSqlQueries;
 
@@ -36,4 +39,32 @@ public class RegisterStatements {
 		catch(Exception e){ System.out.println(e);}
 		return 3;
 	}
+	
+	
+	public boolean loginCheck(String username,String password) {
+		try {
+			con = ConnectionManager.getConnection();
+
+			String values = "Select user_name,password,user_type from users Where user_name ='"
+					+ username + "' and password = '" + password + "';";
+			Statement s = con.createStatement();
+			ResultSet rs = s.executeQuery(values);
+
+			if (rs.next()) {
+				Global.userType = rs.getString("user_type");
+				con.close();
+				return true;
+			} else {
+				con.close();
+				return false;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		return false;
+	}
+	
+	
+	
 }
