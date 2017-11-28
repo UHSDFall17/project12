@@ -30,18 +30,6 @@ public class AppTest
     
     
     @org.junit.Test
-	public void test_LoginCheck()
-	{
-		Login obj = new Login();
-		UserInfo userObj = new UserInfo();
-		userObj.setUserName("naresh123");
-		userObj.setPassword ( "test");
-		boolean expectation = true;
-		boolean result = obj.loginCheck();
-		assertEquals(expectation, result);
-	}
-    
-    @org.junit.Test
    	public void test_Username_Alphabets_Only()
    	{
    		Register obj = new Register();
