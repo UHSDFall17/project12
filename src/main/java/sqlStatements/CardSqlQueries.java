@@ -84,7 +84,10 @@ public class CardSqlQueries {
 	
 	
 	public void modifyCard(String listname, String cardname, int choice) {
-		String newCardName, newDescription, newComments, newDate;
+		String newCardName;
+		String newDescription; 
+		String newComments; 
+		String newDate;
 		try {
 			con = ConnectionManager.getConnection();
 			s = con.createStatement();

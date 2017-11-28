@@ -9,14 +9,14 @@ import sqlStatements.RegisterStatements;
 import validations.Validation;
 import login.UserInfo;
 
-class Register {
-	String username;
-	String email;
-	String password;
-	String confirmPassword;
-	String userType;
-	String orgName=null;
-	Validation val = new Validation();
+public class Register {
+	private String username;
+	private String email;
+	private String password;
+	private String confirmPassword;
+	private String userType;
+	private String orgName=null;
+	private Validation val = new Validation();
 	RegisterStatements registerObj = new RegisterStatements();
 	Scanner inputReader = new Scanner(System.in);
 	UserInfo userObj = new UserInfo();

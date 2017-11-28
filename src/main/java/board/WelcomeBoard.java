@@ -10,14 +10,13 @@ import sqlStatements.TeamSqlQueries;
 import trello.App;
 
 public class WelcomeBoard {
-	private int value;
 	private Scanner inputReader = new Scanner(System.in);
 	private Team teamObj = new Team();
 	private TeamDetails teamDetailsObj = new TeamDetails();
 	private TeamSqlQueries teamSqlObj = new TeamSqlQueries();
 
 	public void welcome() {
-
+		int value;
 		do {
 			if (( !"".equals(Global.userType))
 					&& "1".equals(Global.userType)) {
@@ -41,6 +40,7 @@ public class WelcomeBoard {
 			case 3:
 				Notifications nuser = new Notifications();
 				nuser.recentNotificaions();
+				break;
 			case 4:
 				restoreOptions();
 				break;

@@ -10,7 +10,6 @@ public class BoardSqlQueries {
 	Statement s = null;
 	String name, starred;
 	String lists;
-	private String boardnames1;
 	private String starboard;
 
 	public void viewboards() {
@@ -43,7 +42,8 @@ public class BoardSqlQueries {
 	}
 
 	public void listCards(String boardnames) {
-		this.boardnames1 = boardnames;
+		String boardnames1;
+		boardnames1 = boardnames;
 		try {
 			con = ConnectionManager.getConnection();
 			Statement s = con.createStatement();
