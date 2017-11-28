@@ -9,7 +9,7 @@ public class UserInfo {
 	public String confirmPassword;
 	public String userType;
 	public String orgName;
-	Scanner inputReader = new Scanner(System.in);
+	private Scanner inputReader = new Scanner(System.in);
 
 	public UserInfo() {
 		username = "";

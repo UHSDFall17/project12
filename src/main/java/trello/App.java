@@ -12,7 +12,7 @@ Team 12
 */
 public class App 
 {
-	static int value;
+	private static int value;
  	 
 	
    public static void main( String[] args )
@@ -46,10 +46,11 @@ public static void options() {
      			break;
      		case 5:
     	 		System.out.println("Terminataing the program");
-    	 		System.exit(0);
+    	 		Runtime.getRuntime().exit(0); 
     	 		break;
      		default:
      			System.out.println("The selection was invalid!");
+     			break;
      	}
      	inputReader.close();
      }while(value!= 5);

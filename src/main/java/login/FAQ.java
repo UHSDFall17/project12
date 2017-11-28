@@ -6,7 +6,7 @@ import login.Register;
 import login.Login;
 
 public class FAQ {
-	Scanner input = new Scanner(System.in);
+	private Scanner input = new Scanner(System.in);
 
 	public void start() {
 		System.out
@@ -14,7 +14,8 @@ public class FAQ {
 		questions();
 	}
 
-	public void questions() {		
+	public void questions() {
+		
 		System.out.println("1) What is trello?");
 		System.out
 				.println("2) What do I need to provide in order to register?");
@@ -39,7 +40,7 @@ public class FAQ {
 					.println("Besides Trello being free to use, users need to provide an email, username, and password.\n"
 							+ "Do you want to register now? Y/N : ");
 			String answer = input.next();
-			if (answer.equals("Y") || answer.equals("y")) {
+			if ( "Y".equals(answer)) {
 				Register newuser = new Register();
 				newuser.register();
 			} else {
