@@ -2,7 +2,7 @@ package board;
 
 import java.util.Scanner;
 
-import sqlstatements.CardSqlQueries;
+import sqlStatements.CardSqlQueries;
 import board.Board;
 import board.WelcomeBoard;
 
@@ -13,7 +13,6 @@ public class Cards {
 	private Scanner input = new Scanner (System.in);
 	private CardSqlQueries sqlObj = new CardSqlQueries();
 	private String cardname, description, comments, date;
-	
 	
 	public void menu() {
 		System.out.println("------Viewing Lists/Cards------\n");
@@ -75,6 +74,7 @@ public class Cards {
 					+ "2) The card description.\n"
 					+ "3) The card comments.\n"
 					+ "4) The card due date.\n"
+					+ "5) Mark card as finished/not finished.\n"
 					+ "Enter a number: ");
 			sqlObj.modifyCard(listname, this.cardname, input.nextInt());
 			break;

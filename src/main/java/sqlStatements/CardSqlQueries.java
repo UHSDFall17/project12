@@ -1,4 +1,4 @@
-package sqlstatements;
+package sqlStatements;
 
 import java.util.Scanner;
 
@@ -14,16 +14,16 @@ public class CardSqlQueries {
 	private Scanner input = new Scanner(System.in);
 
 	public void listAllCards(String listname) {
-		try {
-			con = ConnectionManager.getConnection();
-			s = con.createStatement();
-			ResultSet rs = s.executeQuery("SELECT * FROM cards WHERE lists = '"
-					+ listname + "'");
-			while (rs.next()) {
-				String cards = rs.getString("card_name");
-				System.out.println("Cards: " + cards);
-			}
-		} catch (Exception e) {
+		try{
+			con = ConnectionManager.getConnection();	
+			s = con.createStatement(); 
+			ResultSet rs = s.executeQuery("SELECT * FROM cards WHERE lists = '" 
+					+ listname + "' AND completed = '0'");
+			while(rs.next()) {
+		         String cards = rs.getString("card_name");
+		         System.out.println("Cards: " + cards);
+		    }	
+		} catch(Exception e) {
 			System.out.println(e);
 		}
 	}
@@ -32,9 +32,9 @@ public class CardSqlQueries {
 		try {
 			con = ConnectionManager.getConnection();
 			s = con.createStatement();
-			ResultSet rs = s.executeQuery("SELECT * FROM cards WHERE lists = '"
-					+ listname + "' AND due_date IS NOT NULL");
-			while (rs.next()) {
+			ResultSet rs = s.executeQuery("SELECT * FROM cards WHERE lists = '" 
+					+ listname +"' AND completed = '0' AND due_date IS NOT NULL");
+			while(rs.next()) {
 				String cards = rs.getString("card_name");
 				System.out.println("Cards: " + cards);
 			}
@@ -73,7 +73,10 @@ public class CardSqlQueries {
 						+ "', '"
 						+ cardname
 						+ "', '"
-						+ description + "', '" + comments + "', NULL)";
+						+ description 
+						+ "', '" 
+						+ comments 
+						+ "', NULL)";
 			} else {
 				statement = "INSERT INTO cards (lists, card_name, description, comments, due_date) "
 						+ "VALUES ('"
@@ -108,9 +111,10 @@ public class CardSqlQueries {
 			case 1:
 				System.out.println("Enter a new card name: ");
 				newCardName = input.nextLine();
-				s.executeUpdate("UPDATE cards SET card_name = '" + newCardName
-						+ "' WHERE lists = '" + listname
+				s.executeUpdate("UPDATE cards SET card_name = '" + newCardName 
+						+ "' WHERE lists = '"+ listname 
 						+ "' AND card_name = '" + cardname + "'");
+				System.out.println("Modified Card Succcessfully");
 				break;
 			case 2:
 				System.out.println("Enter a new description: ");
@@ -118,6 +122,7 @@ public class CardSqlQueries {
 				s.executeUpdate("UPDATE cards SET description = '"
 						+ newDescription + "' WHERE lists = '" + listname
 						+ "' AND card_name = '" + cardname + "'");
+				System.out.println("Modified Card Succcessfully");
 				break;
 			case 3:
 				System.out.println("Enter new comments: ");
@@ -125,6 +130,7 @@ public class CardSqlQueries {
 				s.executeUpdate("UPDATE cards SET comments = '" + newComments
 						+ "' WHERE lists = '" + listname
 						+ "' AND card_name = '" + cardname + "'");
+				System.out.println("Modified Card Succcessfully");
 				break;
 			case 4:
 				System.out.println("Enter the new date in YYYY-MM-DD form: ");
@@ -132,15 +138,56 @@ public class CardSqlQueries {
 				s.executeUpdate("UPDATE cards SET due_date = '" + newDate
 						+ "' WHERE lists = '" + listname
 						+ "' AND card_name = '" + cardname + "'");
+				System.out.println("Modified Card Succcessfully");
+				break;
+			case 5:
+				int number;
+				do{
+					number = checkIfCompleted(listname, cardname);
+				}while(number < 0);
+				s.executeUpdate("UPDATE cards SET completed = '" + number 
+						+ "' WHERE lists = '" + listname 
+						+ "' AND card_name = '" + cardname + "'");
+				System.out.println("Value For Completed Is Saved");
 				break;
 			default:
-				System.out.println("Invalid option");
+				System.out.println("Invalid Option");
 				break;
-			}
-			System.out.println("Modified Card Succcessfully");
-		} catch (Exception e) {
+			}	
+		}
+		catch(Exception e) {
 			System.out.println(e);
 		}
+	}
+	
+	public int checkIfCompleted(String listname, String cardname) {
+		int completed = -1;
+		try {
+			con = ConnectionManager.getConnection();
+			s = con.createStatement();
+			ResultSet rs = s.executeQuery("SELECT lists, card_name, completed FROM cards WHERE lists = '" 
+					+ listname + "' AND card_name = '" + cardname + "'");
+			completed = rs.getInt("completed");
+			if(completed == 0) {
+				System.out.println(cardname + " is not completed.\n" 
+						+ "Do you want to mark the card as completed? Y/N: ");
+			}
+			else {
+				System.out.println(cardname + " is completed.\n" 
+						+ "Do you want to leave the card as completed? Y/N");
+			}
+			String answer = input.nextLine();
+			if("Y".equals(answer)) {
+				completed = 1;
+			}
+			else {
+				completed = 0;
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		return completed;
 	}
 
 }

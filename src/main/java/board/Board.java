@@ -3,7 +3,7 @@ package board;
 import java.util.Scanner;
 
 import board.Cards;
-import sqlstatements.BoardSqlQueries;
+import sqlStatements.BoardSqlQueries;
 
 public class Board {
 	private Scanner inputReader = new Scanner(System.in);

@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import board.WelcomeBoard;
-import sqlstatements.RegisterStatements;
+import sqlStatements.RegisterStatements;
 import validations.Validation;
 import login.UserInfo;
 

@@ -1,4 +1,4 @@
-package sqlstatements;
+package sqlStatements;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 import global.Global;
 import trello.ConnectionManager;
-import sqlstatements.CommonSqlQueries;
+import sqlStatements.CommonSqlQueries;
 
 public class RegisterStatements {
 	private Connection con;
