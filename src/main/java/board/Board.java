@@ -5,13 +5,14 @@ import java.util.Scanner;
 import board.Cards;
 import sqlstatements.BoardSqlQueries;
 
-public class Board {
+public class Board implements TrelloBoard {
 	private Scanner inputReader = new Scanner(System.in);
 	private BoardSqlQueries sqlObj = new BoardSqlQueries();
 	private String boardname;	
 	private WelcomeBoard wb = new WelcomeBoard();
 	private BoardInfo boardinfo = new BoardInfo();
 	private Cards card = new Cards();
+
 
 	public void option() {
 		int value;
@@ -20,15 +21,16 @@ public class Board {
 					"Select the options below \n 1.Create Board \n 2. Display Boards \n 3. Star Board \n 4. Go Back");
 			value = inputReader.nextInt();
 			inputReader.nextLine();
+			TrelloBoard b = new Board();
 			switch (value) {
 			case 1:
-				createBoard();
+				b.createBoard();
 				break;
 			case 2:
-				displayBoards();
+				b.displayBoards();
 				break;
 			case 3:
-				starBoard();
+				b.starBoard();
 				break;
 			case 4:
 				wb.welcome();
@@ -66,12 +68,12 @@ public class Board {
 		card.menu();
 	}
 
-	private void openBoard(String boardname2) {		
+	public void openBoard(String boardname2) {		
 		sqlObj.listCards(boardname2);
 
 	}
 
-	private void starBoard() {
+	public void starBoard() {
 		System.out.println("Do you wish to Star any of your boards");
 		String option = boardinfo.getStarBoard();
 		if ("yes".equals(option)) {
