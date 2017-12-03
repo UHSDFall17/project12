@@ -6,7 +6,7 @@ public class BoardInfo {
 	private Scanner inputReader = new Scanner(System.in);
 	private String boardtitle,teamname,starboard,starBoardName,openBoardName,openBoardOption,restoreBoardName;
 	
-	BoardInfo(){
+	public BoardInfo(){
 		boardtitle="";
 		teamname="";
 		starboard ="";
